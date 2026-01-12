@@ -31,24 +31,24 @@
 }
 
 :root {
-  --background: 0 0% 98%;
-  --foreground: 240 10% 10%;
-  --card: 0 0% 100%;
-  --card-foreground: 240 10% 10%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 240 10% 10%;
-  --primary: 240 5% 15%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 240 4% 95%;
-  --secondary-foreground: 240 10% 10%;
-  --muted: 240 4% 92%;
-  --muted-foreground: 240 5% 45%;
-  --accent: 240 4% 95%;
-  --accent-foreground: 240 10% 10%;
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 0 0% 100%;
-  --border: 240 5% 90%;
-  --input: 240 5% 90%;
+  --background: 240 10% 6%;
+  --foreground: 0 0% 98%;
+  --card: 240 10% 10%;
+  --card-foreground: 0 0% 98%;
+  --popover: 240 10% 10%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 0 0% 98%;
+  --primary-foreground: 240 10% 6%;
+  --secondary: 240 5% 18%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 5% 18%;
+  --muted-foreground: 240 5% 65%;
+  --accent: 240 5% 18%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62% 50%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 5% 20%;
+  --input: 240 5% 20%;
   --ring: 240 5% 65%;
   --radius: 1rem;
 }
@@ -77,17 +77,17 @@ body {
   }
 }
 
-.link-button {
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+.bento-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.link-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.15);
+.bento-card:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.5);
 }
 
-.link-button:active {
-  transform: translateY(0);
+.bento-card:active {
+  transform: translateY(0) scale(0.99);
 }
 
 .social-icon {
@@ -95,7 +95,7 @@ body {
 }
 
 .social-icon:hover {
-  transform: scale(1.1);
+  transform: scale(1.15);
   opacity: 0.8;
 }
 
