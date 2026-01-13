@@ -23,6 +23,7 @@ const bentoCards = [
     id: 1,
     title: "Pomodoro Champion",
     subtitle: "Focus or die",
+    cta: "Visit Website",
     url: "#",
     featured: true,
     bgImage: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80"
@@ -31,6 +32,7 @@ const bentoCards = [
     id: 2,
     title: "Vibe Debugging Pro",
     subtitle: "Book a call and get unstuck fast",
+    cta: "Learn more",
     url: "#",
     bgImage: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&q=80"
   },
@@ -38,6 +40,7 @@ const bentoCards = [
     id: 3,
     title: "Resume",
     subtitle: "Download a copy of my resume",
+    cta: "Download PDF",
     url: "#",
     bgImage: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&q=80"
   }
@@ -137,14 +140,19 @@ export default function LinkInBio() {
             <a
               href={featuredCard.url}
               data-testid={`bento-card-${featuredCard.id}`}
-              className="bento-card opacity-0 animate-fade-in-up stagger-2 block w-full rounded-2xl overflow-hidden relative h-44"
+              className="bento-card opacity-0 animate-fade-in-up stagger-2 block w-full rounded-2xl overflow-hidden relative h-44 group"
             >
               <div 
-                className="absolute inset-0 bg-cover bg-center"
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
                 style={{ backgroundImage: `url(${featuredCard.bgImage})` }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
-              <div className="relative h-full flex flex-col justify-end p-5">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 transition-opacity duration-300 group-hover:opacity-0" />
+              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <span className="text-white font-bold text-lg border-2 border-white px-6 py-2 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                  {featuredCard.cta}
+                </span>
+              </div>
+              <div className="relative h-full flex flex-col justify-end p-5 transition-all duration-300 group-hover:opacity-0 group-hover:translate-y-2">
                 <h3 className="text-xl font-bold text-white mb-1">{featuredCard.title}</h3>
                 <p className="text-sm text-white/80">{featuredCard.subtitle}</p>
               </div>
@@ -157,14 +165,19 @@ export default function LinkInBio() {
                 key={card.id}
                 href={card.url}
                 data-testid={`bento-card-${card.id}`}
-                className={`bento-card opacity-0 animate-fade-in-up stagger-${index + 3} block rounded-2xl overflow-hidden relative h-36`}
+                className={`bento-card opacity-0 animate-fade-in-up stagger-${index + 3} block rounded-2xl overflow-hidden relative h-36 group`}
               >
                 <div 
-                  className="absolute inset-0 bg-cover bg-center"
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
                   style={{ backgroundImage: `url(${card.bgImage})` }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
-                <div className="relative h-full flex flex-col justify-end p-4">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10 transition-opacity duration-300 group-hover:opacity-0" />
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4 text-center">
+                  <span className="text-white font-bold text-sm border border-white px-3 py-1.5 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    {card.cta}
+                  </span>
+                </div>
+                <div className="relative h-full flex flex-col justify-end p-4 transition-all duration-300 group-hover:opacity-0 group-hover:translate-y-2">
                   <h3 className="text-base font-bold text-white mb-0.5 leading-tight">{card.title}</h3>
                   <p className="text-xs text-white/75 leading-snug">{card.subtitle}</p>
                 </div>
