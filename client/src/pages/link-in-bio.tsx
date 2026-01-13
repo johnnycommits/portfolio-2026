@@ -1,3 +1,4 @@
+import React, { useEffect, useRef } from "react";
 import { 
   Instagram, 
   Twitter, 
@@ -7,6 +8,8 @@ import {
   Mail,
   Twitch
 } from "lucide-react";
+// @ts-ignore
+import Stars from "@/lib/stars";
 
 const profile = {
   name: "Alex Morgan",
@@ -53,11 +56,39 @@ const socials = [
 export default function LinkInBio() {
   const featuredCard = bentoCards.find(c => c.featured);
   const gridCards = bentoCards.filter(c => !c.featured);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    if (canvasRef.current) {
+      const stars = new Stars(canvasRef.current, {
+        speed: 0.1,
+        number: 500,
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+      
+      const handleResize = () => {
+        if (canvasRef.current) {
+          canvasRef.current.width = window.innerWidth;
+          canvasRef.current.height = window.innerHeight;
+        }
+      };
+      
+      window.addEventListener('resize', handleResize);
+      return () => {
+        window.removeEventListener('resize', handleResize);
+        // stars.js doesn't seem to have an explicit destroy, 
+        // but we stop the animation if we had a reference to it
+      };
+    }
+  }, []);
 
   return (
-    <div className="min-h-screen relative">
-      <div className="aurora-bg" />
-      <div className="mx-auto max-w-[430px] px-4 py-6 pb-8">
+    <div className="min-h-screen relative overflow-x-hidden">
+      <div className="stars-container">
+        <canvas ref={canvasRef} />
+      </div>
+      <div className="mx-auto max-w-[430px] px-4 py-6 pb-8 relative z-10">
         <header className="text-center mb-5 opacity-0 animate-fade-in-up">
           <div className="avatar-ring inline-block mb-3">
             <img
