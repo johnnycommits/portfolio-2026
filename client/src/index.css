@@ -132,79 +132,55 @@ body {
   inset: 0;
   z-index: -1;
   overflow: hidden;
-  background: hsl(var(--background));
+  background: #050505;
 }
 
 .aurora-bg::before,
-.aurora-bg::after,
-.aurora-bg .aurora-blob {
+.aurora-bg::after {
   content: '';
   position: absolute;
-  border-radius: 50%;
-  filter: blur(60px);
-  opacity: 0.7;
-  mix-blend-mode: screen;
+  inset: -50%;
+  opacity: 0.5;
+  filter: blur(40px);
+  mask-image: radial-gradient(ellipse at center, black, transparent 70%);
 }
 
 .aurora-bg::before {
-  width: 700px;
-  height: 700px;
-  background: radial-gradient(circle, rgba(34, 197, 94, 0.8) 0%, transparent 70%);
-  top: -10%;
-  left: -20%;
-  animation: aurora-float-1 12s ease-in-out infinite;
+  background: repeating-linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(34, 197, 94, 0.4) 10%,
+    rgba(20, 184, 166, 0.6) 20%,
+    rgba(168, 85, 247, 0.4) 30%,
+    transparent 40%
+  );
+  background-size: 200% 200%;
+  animation: aurora-wave 20s linear infinite;
 }
 
 .aurora-bg::after {
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(20, 184, 166, 0.7) 0%, transparent 70%);
-  top: 20%;
-  right: -25%;
-  animation: aurora-float-2 15s ease-in-out infinite;
+  background: repeating-linear-gradient(
+    -80deg,
+    transparent 0%,
+    rgba(20, 184, 166, 0.3) 15%,
+    rgba(34, 197, 94, 0.5) 25%,
+    transparent 40%
+  );
+  background-size: 250% 250%;
+  animation: aurora-wave 25s linear infinite reverse;
+  opacity: 0.3;
 }
 
-.aurora-bg .aurora-blob {
-  width: 650px;
-  height: 650px;
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.7) 0%, transparent 70%);
-  bottom: -20%;
-  left: 10%;
-  animation: aurora-float-3 18s ease-in-out infinite;
-}
-
-@keyframes aurora-float-1 {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
+@keyframes aurora-wave {
+  0% {
+    transform: rotate(0deg) scale(1) translate(0%, 0%);
+    background-position: 0% 0%;
   }
-  33% {
-    transform: translate(50px, 30px) scale(1.1);
+  50% {
+    transform: rotate(2deg) scale(1.1) translate(-5%, 5%);
   }
-  66% {
-    transform: translate(-30px, 50px) scale(0.95);
-  }
-}
-
-@keyframes aurora-float-2 {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  33% {
-    transform: translate(-40px, -30px) scale(1.05);
-  }
-  66% {
-    transform: translate(30px, -50px) scale(1.1);
-  }
-}
-
-@keyframes aurora-float-3 {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  33% {
-    transform: translate(40px, -40px) scale(1.08);
-  }
-  66% {
-    transform: translate(-50px, 20px) scale(0.95);
+  100% {
+    transform: rotate(0deg) scale(1) translate(0%, 0%);
+    background-position: 100% 100%;
   }
 }

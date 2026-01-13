@@ -56,9 +56,7 @@ export default function LinkInBio() {
 
   return (
     <div className="min-h-screen relative">
-      <div className="aurora-bg">
-        <div className="aurora-blob" />
-      </div>
+      <div className="aurora-bg" />
       <div className="mx-auto max-w-[430px] px-4 py-6 pb-8">
         <header className="text-center mb-5 opacity-0 animate-fade-in-up">
           <div className="avatar-ring inline-block mb-3">
