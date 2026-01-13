@@ -61,7 +61,7 @@ export default function LinkInBio() {
   useEffect(() => {
     if (canvasRef.current) {
       const stars = new Stars(canvasRef.current, {
-        speed: 0.1,
+        speed: 0.02,
         number: 500,
         width: window.innerWidth,
         height: window.innerHeight
