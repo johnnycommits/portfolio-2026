@@ -288,7 +288,7 @@ export default function LinkInBio() {
 
         <footer className="mt-8 text-center opacity-0 animate-fade-in-up stagger-6">
           <p className="text-xs text-[hsl(var(--muted-foreground))]">
-            Made with ❤️ using Replit
+            Made with ❤️ using <a href="https://replit.com/join" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-[hsl(var(--foreground))] transition-colors">Replit</a>
           </p>
         </footer>
       </div>
