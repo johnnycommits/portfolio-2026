@@ -8,7 +8,7 @@ import {
   Mail,
   Twitch,
   Sparkles,
-  ChevronRight,
+  Maximize2,
   X,
   ExternalLink
 } from "lucide-react";
@@ -198,7 +198,7 @@ export default function LinkInBio() {
               <div className="relative h-full flex flex-col justify-end p-5 transition-all duration-300 group-hover:translate-y-[-4px]">
                 <h3 className="text-xl font-bold text-white mb-1">{featuredCard.title}</h3>
                 <p className="text-sm text-white/80 flex items-center gap-1">
-                  {featuredCard.subtitle} <ChevronRight size={14} />
+                  {featuredCard.subtitle} <Maximize2 size={14} />
                 </p>
               </div>
             </button>
@@ -223,7 +223,7 @@ export default function LinkInBio() {
                 <div className="relative h-full flex flex-col justify-end p-4 transition-all duration-300 group-hover:translate-y-[-4px]">
                   <h3 className="text-base font-bold text-white mb-0.5 leading-tight">{card.title}</h3>
                   <p className="text-xs text-white/75 leading-snug flex items-center gap-1">
-                    {card.subtitle} <ChevronRight size={14} />
+                    {card.subtitle} <Maximize2 size={14} />
                   </p>
                 </div>
               </button>
