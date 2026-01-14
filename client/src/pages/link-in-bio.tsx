@@ -157,7 +157,7 @@ export default function LinkInBio() {
                 </span>
               </div>
               <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white font-bold text-sm border border-white px-4 py-1.5 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                <span className="text-white font-bold text-sm border border-white px-4 py-1.5 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 min-w-[120px] text-center">
                   {featuredCard.cta}
                 </span>
               </div>
@@ -181,8 +181,8 @@ export default function LinkInBio() {
                   style={{ backgroundImage: `url(${card.bgImage})` }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10 transition-opacity duration-300 group-hover:opacity-0" />
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4 text-center">
-                  <span className="text-white font-bold text-sm border border-white px-3 py-1.5 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
+                  <span className="text-white font-bold text-sm border border-white px-4 py-1.5 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 min-w-[120px] text-center">
                     {card.cta}
                   </span>
                 </div>
