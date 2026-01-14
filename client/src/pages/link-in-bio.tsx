@@ -6,7 +6,8 @@ import {
   Linkedin, 
   Github,
   Mail,
-  Twitch
+  Twitch,
+  Sparkles
 } from "lucide-react";
 // @ts-ignore
 import Stars from "@/lib/stars";
@@ -149,6 +150,12 @@ export default function LinkInBio() {
                 style={{ backgroundImage: `url(${featuredCard.bgImage})` }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 transition-opacity duration-300 group-hover:opacity-0" />
+              <div className="absolute top-4 left-5 z-20">
+                <span className="bg-white/20 backdrop-blur-md border border-white/30 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full flex items-center gap-1">
+                  <Sparkles size={10} className="fill-white" />
+                  Featured
+                </span>
+              </div>
               <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                 <span className="text-white font-bold text-lg border-2 border-white px-6 py-2 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                   {featuredCard.cta}
