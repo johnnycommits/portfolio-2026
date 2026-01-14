@@ -114,12 +114,13 @@ export default function LinkInBio() {
           >
             {profile.handle}
           </p>
-          <p 
-            className="text-sm text-[hsl(var(--foreground))] leading-relaxed max-w-[320px] mx-auto opacity-90"
+          <div 
+            className="text-sm text-[hsl(var(--foreground))] leading-relaxed max-w-[320px] mx-auto opacity-90 space-y-3"
             data-testid="text-profile-bio"
           >
-            {profile.bio}
-          </p>
+            <p>Project Manager with 10+ years of experience building and shipping software products for both startups and large businesses.</p>
+            <p>I bridge execution and design, with a sharp eye for UX that turns ideas into clean, user-centered, high-impact products.</p>
+          </div>
         </header>
 
         <div className="flex justify-center gap-3 mb-5 opacity-0 animate-fade-in-up stagger-1">
