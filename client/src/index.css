@@ -78,13 +78,15 @@ body {
 }
 
 .bento-card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .bento-card:hover {
   transform: translateY(-3px) scale(1.01);
   box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
 .bento-card:active {
