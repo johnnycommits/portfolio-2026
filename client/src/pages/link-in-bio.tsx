@@ -125,8 +125,8 @@ export default function LinkInBio() {
 
   return (
     <div className="min-h-screen relative overflow-x-hidden">
-      <div className="stars-container">
-        <canvas ref={canvasRef} />
+      <div className="stars-container absolute inset-0 pointer-events-none z-0">
+        <canvas ref={canvasRef} className="block" />
       </div>
       <div className="mx-auto max-w-[430px] px-4 py-6 pb-8 relative z-10">
         <header className="text-center mb-5 opacity-0 animate-fade-in-up">

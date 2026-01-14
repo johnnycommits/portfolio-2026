@@ -130,10 +130,39 @@ body {
 .stagger-5 { animation-delay: 0.25s; }
 .stagger-6 { animation-delay: 0.3s; }
 
+.stars-container {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: #000;
+  pointer-events: none;
+}
+
+.stars-container canvas {
+  display: block;
+}
+
 .aurora-modal {
   background: radial-gradient(circle at 0% 0%, rgba(34, 197, 94, 0.15) 0%, transparent 40%),
               radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.15) 0%, transparent 40%),
               hsl(var(--background));
+  animation: modalFadeIn 0.3s ease-out forwards !important;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Remove default slide animation from Radix/Shadcn */
+[data-state=open].aurora-modal {
+  animation: modalFadeIn 0.3s ease-out forwards !important;
 }
 
 .aurora-modal::before {
