@@ -193,13 +193,9 @@ export default function LinkInBio() {
                 </span>
               </div>
 
-              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white font-bold text-sm border border-white px-4 py-1.5 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 min-w-[120px] text-center flex items-center justify-center gap-2">
-                  Learn more <ChevronRight size={14} />
-                </span>
-              </div>
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center" />
               
-              <div className="relative h-full flex flex-col justify-end p-5 transition-all duration-300 group-hover:opacity-0 group-hover:translate-y-2">
+              <div className="relative h-full flex flex-col justify-end p-5 transition-all duration-300 group-hover:translate-y-[-4px]">
                 <h3 className="text-xl font-bold text-white mb-1">{featuredCard.title}</h3>
                 <p className="text-sm text-white/80 flex items-center gap-1">
                   {featuredCard.subtitle} <ChevronRight size={14} />
@@ -222,13 +218,9 @@ export default function LinkInBio() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10 transition-opacity duration-300 group-hover:opacity-0" />
                 
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
-                  <span className="text-white font-bold text-sm border border-white px-4 py-1.5 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 min-w-[120px] text-center flex items-center justify-center gap-1">
-                    Learn more <ChevronRight size={14} />
-                  </span>
-                </div>
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4" />
                 
-                <div className="relative h-full flex flex-col justify-end p-4 transition-all duration-300 group-hover:opacity-0 group-hover:translate-y-2">
+                <div className="relative h-full flex flex-col justify-end p-4 transition-all duration-300 group-hover:translate-y-[-4px]">
                   <h3 className="text-base font-bold text-white mb-0.5 leading-tight">{card.title}</h3>
                   <p className="text-xs text-white/75 leading-snug flex items-center gap-1">
                     {card.subtitle} <ChevronRight size={14} />
