@@ -157,7 +157,7 @@ export default function LinkInBio() {
                 </span>
               </div>
               <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="text-white font-bold text-lg border-2 border-white px-6 py-2 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                <span className="text-white font-bold text-sm border border-white px-4 py-1.5 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                   {featuredCard.cta}
                 </span>
               </div>
