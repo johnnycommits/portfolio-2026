@@ -84,6 +84,16 @@ const bentoCards = [
   }
 ];
 
+const socials = [
+  { icon: Instagram, url: "#", label: "Instagram" },
+  { icon: Twitter, url: "#", label: "Twitter" },
+  { icon: Youtube, url: "#", label: "YouTube" },
+  { icon: Twitch, url: "#", label: "Twitch" },
+  { icon: Linkedin, url: "#", label: "LinkedIn" },
+  { icon: Github, url: "#", label: "GitHub" },
+  { icon: Mail, url: "#", label: "Email" }
+];
+
 export default function LinkInBio() {
   const featuredCard = bentoCards.find(c => c.featured);
   const gridCards = bentoCards.filter(c => !c.featured);
@@ -291,15 +301,3 @@ export default function LinkInBio() {
     </div>
   );
 }
-
-
-        <footer className="mt-8 text-center opacity-0 animate-fade-in-up stagger-6">
-          <p className="text-xs text-[hsl(var(--muted-foreground))]">
-            Made with ♥
-          </p>
-        </footer>
-      </div>
-    </div>
-  );
-}
-
