@@ -10,12 +10,13 @@ import {
 } from "lucide-react";
 // @ts-ignore
 import Stars from "@/lib/stars";
+import profileImage from "@assets/John_Ludena_1768408996520.png";
 
 const profile = {
   name: "John Ludena",
   handle: "@johnnycommits",
   bio: "Product Engineer with over 10+ years of experience building websites for startups and Fortune 500 enterprises.",
-  avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop&crop=face"
+  avatar: profileImage
 };
 
 const bentoCards = [
