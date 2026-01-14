@@ -15,7 +15,7 @@ import profileImage from "@assets/John_Ludena_1768408996520.png";
 const profile = {
   name: "John Ludena",
   handle: "@johnnycommits",
-  bio: "Product Engineer with over 10+ years of experience building websites for startups and Fortune 500 enterprises.",
+  bio: "Project Manager with 10+ years of experience building and shipping software products for both startups and large businesses. I bridge execution and design, with a sharp eye for UX that turns ideas into clean, user-centered, high-impact products.",
   avatar: profileImage
 };
 
