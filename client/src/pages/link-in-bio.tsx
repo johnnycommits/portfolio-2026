@@ -255,7 +255,7 @@ export default function LinkInBio() {
                   </button>
                 </div>
 
-                <div className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-hide">
+                <div className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-hide pb-24">
                   <div>
                     <h2 className="text-2xl font-bold mb-1">{selectedProject.title}</h2>
                     <p className="text-sm text-[hsl(var(--muted-foreground))] uppercase tracking-widest font-semibold">
@@ -269,12 +269,14 @@ export default function LinkInBio() {
                       {selectedProject.description}
                     </div>
                   </div>
+                </div>
 
+                <div className="absolute bottom-0 left-0 right-0 p-6 pt-12 bg-gradient-to-t from-[hsl(var(--background))] via-[hsl(var(--background))/90] to-transparent pointer-events-none">
                   <a
                     href={selectedProject.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] font-bold py-4 rounded-2xl hover:opacity-90 transition-opacity mt-4 sticky bottom-0 shadow-lg"
+                    className="flex items-center justify-center gap-2 w-full bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] font-bold py-4 rounded-2xl hover:opacity-90 transition-opacity pointer-events-auto shadow-xl"
                   >
                     {selectedProject.cta} <ExternalLink size={18} />
                   </a>
