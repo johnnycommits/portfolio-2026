@@ -25,7 +25,7 @@ const bentoCards = [
     title: "Pomodoro Champion",
     subtitle: "Focus or die",
     cta: "Visit Website",
-    url: "#",
+    url: "https://www.google.com",
     featured: true,
     bgImage: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80"
   },
@@ -34,7 +34,7 @@ const bentoCards = [
     title: "Vibe Debugging Pro",
     subtitle: "Book a call and get unstuck fast",
     cta: "Learn more",
-    url: "#",
+    url: "https://www.google.com",
     bgImage: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&q=80"
   },
   {
@@ -42,7 +42,7 @@ const bentoCards = [
     title: "Resume",
     subtitle: "Download a copy of my resume",
     cta: "Download PDF",
-    url: "#",
+    url: "https://www.google.com",
     bgImage: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&q=80"
   }
 ];
