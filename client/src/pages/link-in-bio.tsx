@@ -88,12 +88,12 @@ const bentoCards = [
     title: "ABS Wavesight",
     client: "Adcetera Design Group",
     description:
-      "For **ABS Wavesight**, I led the front-end development of a cutting-edge maritime software suite. This project focused on creating a unified digital platform for fleet management and vessel performance optimization.\n\nWorking within a high-stakes maritime environment, I developed complex data visualization tools and real-time monitoring dashboards that helped maritime operators make data-driven decisions for efficiency and sustainability.\n\nThe system was built with a modular, scalable architecture, allowing for rapid deployment of new features while maintaining high performance and reliability across global maritime operations.",
+      "The ABS Wavesight website was delivered as a highly collaborative, cross-disciplinary effort involving Client Services, UX/UI Design, Motion, Copywriting, and Engineering. ABS Wavesight provides advanced risk and performance analytics for the maritime and offshore industries, requiring a digital experience that balanced technical credibility with a modern, data-driven brand presence.\n\nServing as one of two front-end co-leads on the project, I partnered closely with my counterpart to divide and own front-end responsibilities end-to-end. I worked directly with UX and UI teams to translate complex client needs and design intent into scalable, production-ready solutions.\n\nIn addition to hands-on development, I supported sprint planning, helped define levels of effort for front-end tasks, and collaborated with project leadership to ensure scope, timelines, and technical constraints remained aligned throughout the build.\n\nUsing Drupal with Acquia Site Studio, I helped architect and implement a flexible, custom authoring experience that empowered content creators with fine-grained control over layout, spacing, color themes, animations, and component variations. The system included built-in authoring guidance to reduce errors, improve consistency, and streamline the content creation workflow.\n\nThe final site features rich motion and interactivity, including custom-scripted animations and Lottie-based components designed to enhance storytelling while maintaining performance and accessibility standards suitable for an enterprise audience.",
     subtitle: "Learn more",
     cta: "Visit Website",
     url: "https://www.wavesight.com",
-    role: "Front-End Lead",
-    date: "2021",
+    role: "Front-end Co-Lead",
+    date: "2023",
     bgImage: absWavesightBg,
     images: [
       absWavesightBg,
