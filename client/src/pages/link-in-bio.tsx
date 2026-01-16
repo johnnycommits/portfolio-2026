@@ -55,6 +55,7 @@ const bentoCards = [
     cta: "Visit Website",
     url: "https://www.google.com",
     date: "2019",
+    role: "Front-End Lead",
     featured: true,
     bgImage: kbrBentoBg,
     images: [
@@ -311,6 +312,11 @@ export default function LinkInBio() {
                       <p className="text-sm text-[hsl(var(--muted-foreground))] uppercase tracking-widest font-semibold">
                         Client: {selectedProject.client}
                       </p>
+                      {selectedProject.role && (
+                        <p className="text-sm text-[hsl(var(--muted-foreground))] uppercase tracking-widest font-semibold">
+                          Role: {selectedProject.role}
+                        </p>
+                      )}
                       {selectedProject.date && (
                         <p className="text-sm text-[hsl(var(--muted-foreground))] uppercase tracking-widest font-semibold">
                           Date: {selectedProject.date}
