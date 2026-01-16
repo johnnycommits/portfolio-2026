@@ -22,6 +22,8 @@ import loomisHome from "@assets/Screenshot_2025-09-23_at_4.30.31_PM_176859145176
 import loomisSafes from "@assets/Screenshot_2025-09-23_at_4.31.01_PM_1768591463149.png";
 import loomisMap from "@assets/Screenshot_2025-09-23_at_4.29.46_PM_1768591471916.png";
 import loomisBentoBg from "@assets/CleanShot_2026-01-16_at_13.31.15_1768591898471.png";
+import absWavesightBg from "@assets/CleanShot_2026-01-16_at_14.03.44_1768593843493.png";
+
 import {
   Dialog,
   DialogContent,
@@ -83,20 +85,18 @@ const bentoCards = [
   },
   {
     id: 3,
-    title: "Pomodoro Champion",
-    client: "Champion Labs LLC",
+    title: "ABS Wavesight",
+    client: "Adcetera Design Group",
     description:
-      "A curated collection of my professional journey, skills, and impact over the last decade in software project management.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\n\nExcepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.\n\nNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.\n\nUt enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
+      "For **ABS Wavesight**, I led the front-end development of a cutting-edge maritime software suite. This project focused on creating a unified digital platform for fleet management and vessel performance optimization.\n\nWorking within a high-stakes maritime environment, I developed complex data visualization tools and real-time monitoring dashboards that helped maritime operators make data-driven decisions for efficiency and sustainability.\n\nThe system was built with a modular, scalable architecture, allowing for rapid deployment of new features while maintaining high performance and reliability across global maritime operations.",
     subtitle: "Learn more",
-    cta: "Download PDF",
-    url: "https://www.google.com",
-    role: "Designer & Developer",
-    date: "2023",
-    bgImage:
-      "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&q=80",
+    cta: "Visit Website",
+    url: "https://www.wavesight.com",
+    role: "Front-End Lead",
+    date: "2021",
+    bgImage: absWavesightBg,
     images: [
-      "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&q=80",
-      "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&q=80",
+      absWavesightBg,
     ],
   },
 ];
