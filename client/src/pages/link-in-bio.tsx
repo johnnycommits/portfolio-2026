@@ -17,7 +17,6 @@ import Stars from "@/lib/stars";
 import profileImage from "@assets/John_Ludena_1768408996520.png";
 import kbrImage from "@assets/Screenshot_2025-09-23_at_4.13.48_PM_1768590034547.png";
 import kbrMapImage from "@assets/Screenshot_2025-09-23_at_4.24.19_PM_1768590092789.png";
-import kbrBentoBg from "@assets/New_Project_(7)_1768590709154.png";
 import {
   Dialog,
   DialogContent,
@@ -51,7 +50,7 @@ const bentoCards = [
     cta: "Visit Website",
     url: "https://www.google.com",
     featured: true,
-    bgImage: kbrBentoBg,
+    bgImage: kbrImage,
     images: [
       kbrImage,
       kbrMapImage,
@@ -176,7 +175,7 @@ export default function LinkInBio() {
             data-testid="text-profile-bio"
           >
             <p>
-              Product Engineer with 10+ years of experience building and shipping
+              Project Manager with 10+ years of experience building and shipping
               software products for both startups and large businesses.
             </p>
             <p>
