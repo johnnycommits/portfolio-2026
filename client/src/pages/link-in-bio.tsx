@@ -17,7 +17,7 @@ import Stars from "@/lib/stars";
 import profileImage from "@assets/John_Ludena_1768408996520.png";
 import kbrImage from "@assets/Screenshot_2025-09-23_at_4.13.48_PM_1768590034547.png";
 import kbrMapImage from "@assets/Screenshot_2025-09-23_at_4.24.19_PM_1768590092789.png";
-import kbrBentoBg from "@assets/kbr-background_1768590976310.png";
+import kbrBentoBg from "@assets/CleanShot_2026-01-16_at_13.35.51_1768592171628.png";
 import loomisHome from "@assets/Screenshot_2025-09-23_at_4.30.31_PM_1768591451764.png";
 import loomisSafes from "@assets/Screenshot_2025-09-23_at_4.31.01_PM_1768591463149.png";
 import loomisMap from "@assets/Screenshot_2025-09-23_at_4.29.46_PM_1768591471916.png";
