@@ -17,7 +17,7 @@ import Stars from "@/lib/stars";
 import profileImage from "@assets/John_Ludena_1768408996520.png";
 import kbrImage from "@assets/Screenshot_2025-09-23_at_4.13.48_PM_1768590034547.png";
 import kbrMapImage from "@assets/Screenshot_2025-09-23_at_4.24.19_PM_1768590092789.png";
-import kbrBentoBg from "@assets/New_Project_(7)_1768590643967.png";
+import kbrBentoBg from "@assets/New_Project_(7)_1768590709154.png";
 import {
   Dialog,
   DialogContent,
