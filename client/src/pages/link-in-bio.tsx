@@ -312,19 +312,28 @@ export default function LinkInBio() {
                     <h2 className="text-2xl font-bold mb-1">
                       {selectedProject.title}
                     </h2>
-                    <div className="flex flex-col gap-1">
-                      <p className="text-sm text-[hsl(var(--muted-foreground))] uppercase tracking-widest font-semibold">
-                        Client: {selectedProject.client}
-                      </p>
-                      {selectedProject.role && (
-                        <p className="text-sm text-[hsl(var(--muted-foreground))] uppercase tracking-widest font-semibold">
-                          Role: {selectedProject.role}
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 pt-1">
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-[10px] uppercase tracking-wider font-bold text-[hsl(var(--muted-foreground))] opacity-50">Client</span>
+                        <p className="text-[11px] text-[hsl(var(--foreground))] font-medium">
+                          {selectedProject.client}
                         </p>
+                      </div>
+                      {selectedProject.role && (
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-[10px] uppercase tracking-wider font-bold text-[hsl(var(--muted-foreground))] opacity-50">Role</span>
+                          <p className="text-[11px] text-[hsl(var(--foreground))] font-medium">
+                            {selectedProject.role}
+                          </p>
+                        </div>
                       )}
                       {selectedProject.date && (
-                        <p className="text-sm text-[hsl(var(--muted-foreground))] uppercase tracking-widest font-semibold">
-                          Date: {selectedProject.date}
-                        </p>
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-[10px] uppercase tracking-wider font-bold text-[hsl(var(--muted-foreground))] opacity-50">Date</span>
+                          <p className="text-[11px] text-[hsl(var(--foreground))] font-medium">
+                            {selectedProject.date}
+                          </p>
+                        </div>
                       )}
                     </div>
                   </div>
