@@ -53,6 +53,7 @@ const bentoCards = [
     subtitle: "Learn more",
     cta: "Visit Website",
     url: "https://www.google.com",
+    date: "2019",
     featured: true,
     bgImage: kbrBentoBg,
     images: [
@@ -305,9 +306,16 @@ export default function LinkInBio() {
                     <h2 className="text-2xl font-bold mb-1">
                       {selectedProject.title}
                     </h2>
-                    <p className="text-sm text-[hsl(var(--muted-foreground))] uppercase tracking-widest font-semibold">
-                      Client: {selectedProject.client}
-                    </p>
+                    <div className="flex flex-col gap-1">
+                      <p className="text-sm text-[hsl(var(--muted-foreground))] uppercase tracking-widest font-semibold">
+                        Client: {selectedProject.client}
+                      </p>
+                      {selectedProject.date && (
+                        <p className="text-sm text-[hsl(var(--muted-foreground))] uppercase tracking-widest font-semibold">
+                          Date: {selectedProject.date}
+                        </p>
+                      )}
+                    </div>
                   </div>
 
                   <div className="space-y-4">
@@ -329,16 +337,18 @@ export default function LinkInBio() {
                   </div>
                 </div>
 
-                <div className="absolute bottom-0 left-0 right-0 p-6 pt-12 bg-gradient-to-t from-[hsl(var(--background))] via-[hsl(var(--background))/90] to-transparent pointer-events-none">
-                  <a
-                    href={selectedProject.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] font-bold py-4 rounded-2xl hover:opacity-90 transition-opacity pointer-events-auto shadow-xl"
-                  >
-                    {selectedProject.cta} <ExternalLink size={18} />
-                  </a>
-                </div>
+                {selectedProject.id !== 1 && (
+                  <div className="absolute bottom-0 left-0 right-0 p-6 pt-12 bg-gradient-to-t from-[hsl(var(--background))] via-[hsl(var(--background))/90] to-transparent pointer-events-none">
+                    <a
+                      href={selectedProject.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 w-full bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] font-bold py-4 rounded-2xl hover:opacity-90 transition-opacity pointer-events-auto shadow-xl"
+                    >
+                      {selectedProject.cta} <ExternalLink size={18} />
+                    </a>
+                  </div>
+                )}
               </>
             )}
           </DialogContent>
