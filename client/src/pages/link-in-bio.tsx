@@ -16,6 +16,7 @@ import {
 import Stars from "@/lib/stars";
 import profileImage from "@assets/John_Ludena_1768408996520.png";
 import kbrImage from "@assets/Screenshot_2025-09-23_at_4.13.48_PM_1768590034547.png";
+import kbrMapImage from "@assets/Screenshot_2025-09-23_at_4.24.19_PM_1768590092789.png";
 import {
   Dialog,
   DialogContent,
@@ -52,6 +53,7 @@ const bentoCards = [
     bgImage: kbrImage,
     images: [
       kbrImage,
+      kbrMapImage,
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
       "https://images.unsplash.com/photo-1542744094-24638eff58bb?w=800&q=80",
