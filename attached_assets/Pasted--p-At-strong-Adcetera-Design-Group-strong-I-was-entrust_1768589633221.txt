@@ -1,0 +1,45 @@
+<p>
+    At <strong>Adcetera Design Group</strong>, I was entrusted—just one month after joining the studio—with leading the
+    largest and most complex project to date: a multi-million-dollar, four-month rebuild of <strong>KBR</strong>’s global
+    website. This responsibility was awarded after I quickly demonstrated technical and leadership capability by
+    contributing to Adcetera’s own rebranded website.
+  </p>
+
+  <p>
+    I led a delivery team of two junior front-end engineers while working in close partnership with a backend engineer.
+    I owned technical direction and execution, mentored and unblocked junior developers, and ensured the team stayed
+    aligned on scope, quality, and timelines throughout the engagement.
+  </p>
+
+  <p>
+    A core contribution was the design and implementation of a flexible, component-based system of reusable content
+    blocks within Drupal. This empowered KBR’s internal teams to independently manage and scale content across the site
+    without developer involvement. I worked closely with backend engineering to ensure seamless CMS integration,
+    performance, and long-term maintainability.
+  </p>
+
+  <p>
+    The project required a significant content migration effort, including the transfer and restructuring of legacy
+    articles, press releases, and enterprise content from KBR’s previous website. I helped plan and execute the
+    migration strategy, ensuring content integrity, proper taxonomy mapping, and minimal disruption to ongoing
+    business operations.
+  </p>
+
+  <p>
+    Accessibility was a major focus of the project. I helped drive and implement compliance with
+    <strong>WCAG 2.1 AA</strong> standards across the site, ensuring inclusive experiences through proper semantic
+    markup, keyboard navigation, contrast requirements, and accessible component patterns suitable for a global
+    enterprise audience.
+  </p>
+
+  <p>
+    The project also included a custom Google Maps integration to visualize KBR’s worldwide footprint, supporting a
+    broader brand repositioning from an oil-and-gas services company to a world-class technology leader.
+  </p>
+
+  <p>
+    The award-nominated site increased users year-over-year by <strong>12% within six months of launch</strong>, while
+    boosting <strong>average time on site by 15%</strong>. The work went on to win a <strong>Gold ADDY Award</strong>
+    from the <strong>American Advertising Federation (AAF) Houston</strong>, in a highly competitive year against
+    several of Houston’s top agencies, recognizing the project as <strong>Best B2B Enterprise Website</strong>.
+  </p>
