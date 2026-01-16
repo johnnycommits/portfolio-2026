@@ -23,6 +23,10 @@ import loomisSafes from "@assets/Screenshot_2025-09-23_at_4.31.01_PM_17685914631
 import loomisMap from "@assets/Screenshot_2025-09-23_at_4.29.46_PM_1768591471916.png";
 import loomisBentoBg from "@assets/CleanShot_2026-01-16_at_13.31.15_1768591898471.png";
 import absWavesightBg from "@assets/CleanShot_2026-01-16_at_14.03.44_1768593843493.png";
+import absWavesightHome from "@assets/CleanShot_2026-01-16_at_14.09.18_1768594185368.png";
+import absWavesightPortfolio from "@assets/CleanShot_2026-01-16_at_14.10.12_1768594222455.png";
+import absWavesightRoles from "@assets/CleanShot_2026-01-16_at_14.10.25_1768594234161.png";
+import absWavesightArabic from "@assets/CleanShot_2026-01-16_at_14.11.09_1768594280838.png";
 
 import {
   Dialog,
@@ -96,7 +100,10 @@ const bentoCards = [
     date: "2023",
     bgImage: absWavesightBg,
     images: [
-      absWavesightBg,
+      absWavesightHome,
+      absWavesightPortfolio,
+      absWavesightRoles,
+      absWavesightArabic,
     ],
   },
 ];
