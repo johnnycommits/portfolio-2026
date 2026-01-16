@@ -33,7 +33,7 @@ import {
 const profile = {
   name: "John Ludena",
   handle: "@johnnycommits",
-  bio: "Project Manager with 10+ years of experience building and shipping software products for both startups and large businesses. I bridge execution and design, with a sharp eye for UX that turns ideas into clean, user-centered, high-impact products.",
+  bio: "Project Engineer with 10+ years of experience building and shipping software products for both startups and large businesses. I bridge execution and design, with a sharp eye for UX that turns ideas into clean, user-centered, high-impact products.",
   avatar: profileImage,
 };
 
