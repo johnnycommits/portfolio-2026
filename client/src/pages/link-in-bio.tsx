@@ -15,6 +15,7 @@ import {
 // @ts-ignore
 import Stars from "@/lib/stars";
 import profileImage from "@assets/John_Ludena_1768408996520.png";
+import kbrImage from "@assets/Screenshot_2025-09-23_at_4.13.48_PM_1768590034547.png";
 import {
   Dialog,
   DialogContent,
@@ -48,9 +49,9 @@ const bentoCards = [
     cta: "Visit Website",
     url: "https://www.google.com",
     featured: true,
-    bgImage:
-      "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80",
+    bgImage: kbrImage,
     images: [
+      kbrImage,
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
       "https://images.unsplash.com/photo-1542744094-24638eff58bb?w=800&q=80",
