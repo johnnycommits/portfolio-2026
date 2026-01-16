@@ -33,7 +33,7 @@ import {
 const profile = {
   name: "John Ludena",
   handle: "@johnnycommits",
-  bio: "Project Engineer with 10+ years of experience building and shipping software products for both startups and large businesses. I bridge execution and design, with a sharp eye for UX that turns ideas into clean, user-centered, high-impact products.",
+  bio: "Product Engineer with 10+ years of experience building and shipping software products for both startups and large businesses. I bridge execution and design, with a sharp eye for UX that turns ideas into clean, user-centered, high-impact products.",
   avatar: profileImage,
 };
 
@@ -43,7 +43,7 @@ const bentoCards = [
     title: "KBR Inc.",
     client: "Adcetera Design Group",
     description:
-      "A comprehensive productivity suite designed to maximize deep work sessions. This project involved deep UX research into habit formation and focus triggers.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\n\nExcepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.\n\nNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.\n\nUt enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
+      "At **Adcetera Design Group**, I was entrusted—just one month after joining the studio—with leading the largest and most complex project to date: a multi-million-dollar, four-month rebuild of **KBR**’s global website. This responsibility was awarded after I quickly demonstrated technical and leadership capability by contributing to Adcetera’s own rebranded website.\n\nI led a delivery team of two junior front-end engineers while working in close partnership with a backend engineer. I owned technical direction and execution, mentored and unblocked junior developers, and ensured the team stayed aligned on scope, quality, and timelines throughout the engagement.\n\nA core contribution was the design and implementation of a flexible, component-based system of reusable content blocks within Drupal. This empowered KBR’s internal teams to independently manage and scale content across the site without developer involvement. I worked closely with backend engineering to ensure seamless CMS integration, performance, and long-term maintainability.\n\nAccessibility was a major focus of the project. I helped drive and implement compliance with **WCAG 2.1 AA** standards across the site, ensuring inclusive experiences through proper semantic markup, keyboard navigation, contrast requirements, and accessible component patterns suitable for a global enterprise audience.\n\nThe project also included a custom Google Maps integration to visualize KBR’s worldwide footprint, supporting a broader brand repositioning from an oil-and-gas services company to a world-class technology leader.\n\nThe award-nominated site increased users year-over-year by **12% within six months of launch**, while boosting **average time on site by 15%**. The work went on to win a **Gold ADDY Award** from the **American Advertising Federation (AAF) Houston**, in a highly competitive year against several of Houston’s top agencies, recognizing the project as **Best B2B Enterprise Website**.",
     subtitle: "Learn more",
     cta: "Visit Website",
     url: "https://www.google.com",
@@ -175,7 +175,7 @@ export default function LinkInBio() {
             data-testid="text-profile-bio"
           >
             <p>
-              Project Engineer with 10+ years of experience building and shipping
+              Project Manager with 10+ years of experience building and shipping
               software products for both startups and large businesses.
             </p>
             <p>
@@ -311,7 +311,16 @@ export default function LinkInBio() {
                       About Project
                     </h3>
                     <div className="text-[hsl(var(--foreground))] opacity-80 leading-relaxed text-[15px] space-y-4 whitespace-pre-line">
-                      {selectedProject.description}
+                      {selectedProject.description.split('\n\n').map((paragraph, i) => (
+                        <p key={i}>
+                          {paragraph.split(/(\*\*.*?\*\*)/).map((part, j) => {
+                            if (part.startsWith('**') && part.endsWith('**')) {
+                              return <strong key={j} className="text-[hsl(var(--foreground))] font-bold">{part.slice(2, -2)}</strong>;
+                            }
+                            return part;
+                          })}
+                        </p>
+                      ))}
                     </div>
                   </div>
                 </div>
