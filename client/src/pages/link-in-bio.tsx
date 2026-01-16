@@ -17,6 +17,7 @@ import Stars from "@/lib/stars";
 import profileImage from "@assets/John_Ludena_1768408996520.png";
 import kbrImage from "@assets/Screenshot_2025-09-23_at_4.13.48_PM_1768590034547.png";
 import kbrMapImage from "@assets/Screenshot_2025-09-23_at_4.24.19_PM_1768590092789.png";
+import kbrBentoBg from "@assets/kbr-background_1768590976310.png";
 import {
   Dialog,
   DialogContent,
@@ -50,7 +51,7 @@ const bentoCards = [
     cta: "Visit Website",
     url: "https://www.google.com",
     featured: true,
-    bgImage: kbrImage,
+    bgImage: kbrBentoBg,
     images: [
       kbrImage,
       kbrMapImage,
