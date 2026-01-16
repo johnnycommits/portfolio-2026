@@ -54,9 +54,6 @@ const bentoCards = [
     images: [
       kbrImage,
       kbrMapImage,
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-      "https://images.unsplash.com/photo-1542744094-24638eff58bb?w=800&q=80",
     ],
   },
   {
