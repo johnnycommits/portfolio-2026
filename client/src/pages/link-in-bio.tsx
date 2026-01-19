@@ -134,7 +134,7 @@ const socials = [
     url: "https://www.linkedin.com/in/john-ludena",
     label: "LinkedIn",
   },
-  { icon: Github, url: "https://www.github.com/johnludena", label: "GitHub" },
+  { icon: Github, url: "https://github.com/johnnycommits", label: "GitHub" },
   { icon: Mail, url: "mailto:johnludena@gmail.com", label: "Email" },
 ];
 
