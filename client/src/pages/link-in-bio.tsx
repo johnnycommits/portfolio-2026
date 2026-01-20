@@ -18,9 +18,11 @@ import profileImage from "@assets/John_Ludena_1768408996520.png";
 import kbrImage from "@assets/Screenshot_2025-09-23_at_4.13.48_PM_1768590034547.png";
 import kbrMapImage from "@assets/Screenshot_2025-09-23_at_4.24.19_PM_1768590092789.png";
 import kbrBentoBg from "@assets/kbr-bento_1768945191201.jpg";
-import kbrJackStMalo from "@assets/CleanShot_2026-01-16_at_17.04.23_1768604728435.png";
-import kbrQuote from "@assets/CleanShot_2026-01-16_at_17.05.45_1768604756446.png";
-import kbrEnergyChemicals from "@assets/CleanShot_2026-01-16_at_17.06.05_1768604776391.png";
+import kbrSlider1 from "@assets/kbr-slider-1_1768945952182.jpg";
+import kbrSlider2 from "@assets/kbr-slider-2_1768945952187.jpg";
+import kbrSlider3 from "@assets/kbr-slider-3_1768945952187.jpg";
+import kbrSlider4 from "@assets/kbr-slider-4_1768945952187.jpg";
+import kbrSlider5 from "@assets/kbr-slider-5_1768945952186.jpg";
 import loomisHome from "@assets/Screenshot_2025-09-23_at_4.30.31_PM_1768591451764.png";
 import loomisSafes from "@assets/Screenshot_2025-09-23_at_4.31.01_PM_1768591463149.png";
 import loomisMap from "@assets/Screenshot_2025-09-23_at_4.29.46_PM_1768591471916.png";
@@ -68,11 +70,11 @@ const bentoCards = [
     featured: true,
     bgImage: kbrBentoBg,
     images: [
-      kbrImage,
-      kbrMapImage,
-      kbrJackStMalo,
-      kbrEnergyChemicals,
-      kbrQuote,
+      kbrSlider1,
+      kbrSlider2,
+      kbrSlider3,
+      kbrSlider4,
+      kbrSlider5,
     ],
   },
   {
