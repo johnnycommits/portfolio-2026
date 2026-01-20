@@ -32,7 +32,7 @@ import absWavesightHome from "@assets/abs-slider-1_1768946859771.jpg";
 import absWavesightPortfolio from "@assets/abs-slider-2_1768946859779.jpg";
 import absWavesightRoles from "@assets/abs-slider-3_1768946859779.jpg";
 import absWavesightArabic from "@assets/abs-slider-4_1768946859778.jpg";
-import chevronBentoBg from "@assets/chevron-bento.jpg";
+import chevronBentoBg from "../assets/chevron-bento.jpg";
 
 import {
   Dialog,
