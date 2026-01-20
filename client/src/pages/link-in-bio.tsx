@@ -199,7 +199,7 @@ export default function LinkInBio() {
             data-testid="text-profile-bio"
           >
             <p>
-              Project Manager with 10+ years of experience building and shipping
+              Product Engineer with 10+ years of experience building and shipping
               software products for both startups and large businesses.
             </p>
             <p>
