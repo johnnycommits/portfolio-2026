@@ -23,9 +23,9 @@ import kbrSlider2 from "@assets/kbr-slider-2_1768945952187.jpg";
 import kbrSlider3 from "@assets/kbr-slider-3_1768945952187.jpg";
 import kbrSlider4 from "@assets/kbr-slider-4_1768945952187.jpg";
 import kbrSlider5 from "@assets/kbr-slider-5_1768945952186.jpg";
-import loomisHome from "@assets/Screenshot_2025-09-23_at_4.30.31_PM_1768591451764.png";
-import loomisSafes from "@assets/Screenshot_2025-09-23_at_4.31.01_PM_1768591463149.png";
-import loomisMap from "@assets/Screenshot_2025-09-23_at_4.29.46_PM_1768591471916.png";
+import loomisSlider1 from "@assets/loomis-slider-1_1768947313676.jpg";
+import loomisSlider2 from "@assets/loomis-slider-2_1768947313687.jpg";
+import loomisSlider3 from "@assets/loomis-slider-3_1768947313687.jpg";
 import loomisBentoBg from "@assets/loomis-bento_1768947208061.jpg";
 import absWavesightBg from "@assets/abs-bento_1768946949072.jpg";
 import absWavesightHome from "@assets/abs-slider-1_1768946859771.jpg";
@@ -90,9 +90,9 @@ const bentoCards = [
     date: "2020",
     bgImage: loomisBentoBg,
     images: [
-      loomisHome,
-      loomisSafes,
-      loomisMap,
+      loomisSlider1,
+      loomisSlider2,
+      loomisSlider3,
     ],
   },
   {
