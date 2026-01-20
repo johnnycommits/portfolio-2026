@@ -172,7 +172,7 @@ export default function LinkInBio() {
       <div className="stars-container absolute inset-0 pointer-events-none z-0">
         <canvas ref={canvasRef} className="block" />
       </div>
-      <div className="mx-auto max-w-[430px] px-4 py-6 pb-8 relative z-10">
+      <div className="mx-auto max-w-[600px] px-4 py-6 pb-8 relative z-10">
         <header className="text-center mb-5 opacity-0 animate-fade-in-up">
           <div className="avatar-ring inline-block mb-3">
             <img
@@ -230,7 +230,7 @@ export default function LinkInBio() {
             <button
               onClick={() => setSelectedProject(featuredCard)}
               data-testid={`bento-card-${featuredCard.id}`}
-              className="bento-card opacity-0 animate-fade-in-up stagger-2 block w-full rounded-2xl overflow-hidden relative h-44 group text-left cursor-pointer"
+              className="bento-card opacity-0 animate-fade-in-up stagger-2 block w-full rounded-2xl overflow-hidden relative aspect-video group text-left cursor-pointer"
             >
               <div
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
@@ -264,7 +264,7 @@ export default function LinkInBio() {
                 key={card.id}
                 onClick={() => setSelectedProject(card)}
                 data-testid={`bento-card-${card.id}`}
-                className={`bento-card opacity-0 animate-fade-in-up stagger-${index + 3} block rounded-2xl overflow-hidden relative h-36 group text-left cursor-pointer`}
+                className={`bento-card opacity-0 animate-fade-in-up stagger-${index + 3} block rounded-2xl overflow-hidden relative aspect-video group text-left cursor-pointer`}
               >
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
@@ -291,7 +291,7 @@ export default function LinkInBio() {
           open={!!selectedProject}
           onOpenChange={(open) => !open && setSelectedProject(null)}
         >
-          <DialogContent className="max-w-[430px] w-[95%] h-[90vh] rounded-3xl p-0 overflow-hidden border-none bg-[hsl(var(--background))] text-[hsl(var(--foreground))] aurora-modal flex flex-col">
+          <DialogContent className="max-w-[600px] w-[95%] h-[90vh] rounded-3xl p-0 overflow-hidden border-none bg-[hsl(var(--background))] text-[hsl(var(--foreground))] aurora-modal flex flex-col">
             {selectedProject && (
               <>
                 <div className="relative h-64 w-full shrink-0">
