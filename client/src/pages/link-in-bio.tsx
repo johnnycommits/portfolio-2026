@@ -195,7 +195,7 @@ export default function LinkInBio() {
             {profile.handle}
           </p>
           <div
-            className="text-sm text-[hsl(var(--foreground))] leading-relaxed max-w-[320px] mx-auto opacity-90 space-y-3"
+            className="text-sm text-[hsl(var(--foreground))] leading-relaxed max-w-[450px] mx-auto opacity-90 space-y-3"
             data-testid="text-profile-bio"
           >
             <p>
@@ -294,9 +294,9 @@ export default function LinkInBio() {
           <DialogContent className="max-w-[600px] w-[95%] h-[90vh] rounded-3xl p-0 overflow-hidden border-none bg-[hsl(var(--background))] text-[hsl(var(--foreground))] aurora-modal flex flex-col">
             {selectedProject && (
               <>
-                <div className="relative h-64 w-full shrink-0">
+                <div className="relative w-full aspect-video shrink-0">
                   <Carousel className="w-full h-full">
-                    <CarouselContent className="h-64">
+                    <CarouselContent className="h-full">
                       {selectedProject.images?.map(
                         (img: string, idx: number) => (
                           <CarouselItem key={idx} className="h-full">
