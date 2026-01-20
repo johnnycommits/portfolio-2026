@@ -26,7 +26,7 @@ import kbrSlider5 from "@assets/kbr-slider-5_1768945952186.jpg";
 import loomisHome from "@assets/Screenshot_2025-09-23_at_4.30.31_PM_1768591451764.png";
 import loomisSafes from "@assets/Screenshot_2025-09-23_at_4.31.01_PM_1768591463149.png";
 import loomisMap from "@assets/Screenshot_2025-09-23_at_4.29.46_PM_1768591471916.png";
-import loomisBentoBg from "@assets/CleanShot_2026-01-16_at_13.31.15_1768591898471.png";
+import loomisBentoBg from "@assets/loomis-bento_1768947208061.jpg";
 import absWavesightBg from "@assets/abs-bento_1768946949072.jpg";
 import absWavesightHome from "@assets/abs-slider-1_1768946859771.jpg";
 import absWavesightPortfolio from "@assets/abs-slider-2_1768946859779.jpg";
