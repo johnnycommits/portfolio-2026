@@ -32,6 +32,7 @@ import absWavesightHome from "@assets/abs-slider-1_1768946859771.jpg";
 import absWavesightPortfolio from "@assets/abs-slider-2_1768946859779.jpg";
 import absWavesightRoles from "@assets/abs-slider-3_1768946859779.jpg";
 import absWavesightArabic from "@assets/abs-slider-4_1768946859778.jpg";
+import chevronBentoBg from "@assets/chevron-bento.jpg";
 
 import {
   Dialog,
@@ -112,6 +113,22 @@ const bentoCards = [
       absWavesightPortfolio,
       absWavesightRoles,
       absWavesightArabic,
+    ],
+  },
+  {
+    id: 4,
+    title: "Chevron Corporation",
+    client: "Adcetera Design Group",
+    description:
+      "Working with **Chevron**, one of the world's largest energy corporations, I led front-end development on a series of high-impact digital initiatives aimed at modernizing their corporate communications and recruitment platforms.\n\nA key focus was the development of a high-performance, accessible content framework that allowed Chevron's global teams to deploy localized content across multiple regions while maintaining strict brand consistency and security standards.\n\nI collaborated closely with stakeholders to implement complex data visualizations and interactive maps that showcase Chevron's global operations and sustainability initiatives. The project required rigorous performance optimization to ensure fast load times across varying network conditions in international markets.\n\nThe resulting platform significantly improved user engagement and streamlined the content publishing workflow for Chevron's internal communications teams.",
+    subtitle: "Learn more",
+    cta: "Visit Website",
+    url: "https://www.chevron.com",
+    role: "Front-End Lead",
+    date: "2021",
+    bgImage: chevronBentoBg,
+    images: [
+      chevronBentoBg, // Using bento as placeholder for now since no slider images provided
     ],
   },
 ];
