@@ -27,7 +27,7 @@ import loomisHome from "@assets/Screenshot_2025-09-23_at_4.30.31_PM_176859145176
 import loomisSafes from "@assets/Screenshot_2025-09-23_at_4.31.01_PM_1768591463149.png";
 import loomisMap from "@assets/Screenshot_2025-09-23_at_4.29.46_PM_1768591471916.png";
 import loomisBentoBg from "@assets/CleanShot_2026-01-16_at_13.31.15_1768591898471.png";
-import absWavesightBg from "@assets/CleanShot_2026-01-16_at_14.03.44_1768593843493.png";
+import absWavesightBg from "@assets/abs-bento_1768946949072.jpg";
 import absWavesightHome from "@assets/abs-slider-1_1768946859771.jpg";
 import absWavesightPortfolio from "@assets/abs-slider-2_1768946859779.jpg";
 import absWavesightRoles from "@assets/abs-slider-3_1768946859779.jpg";
