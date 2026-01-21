@@ -21,7 +21,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import profileImage from "@assets/John_Ludena_1768408996520.png";
+import profileImage from "@assets/john-ludena-headshot_1769019956329.jpg";
 import kbrImage from "@assets/Screenshot_2025-09-23_at_4.13.48_PM_1768590034547.png";
 import kbrMapImage from "@assets/Screenshot_2025-09-23_at_4.24.19_PM_1768590092789.png";
 import kbrBentoBg from "@assets/kbr-bento_1768945191201.jpg";
