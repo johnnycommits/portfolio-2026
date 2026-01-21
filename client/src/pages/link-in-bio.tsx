@@ -119,14 +119,14 @@ const bentoCards = [
   {
     id: 4,
     title: "Chevron Corporation",
-    client: "Adcetera Design Group",
+    client: "Cella Consulting",
     description:
-      "Working with **Chevron**, one of the world's largest energy corporations, I led front-end development on a series of high-impact digital initiatives aimed at modernizing their corporate communications and recruitment platforms.\n\nA key focus was the development of a high-performance, accessible content framework that allowed Chevron's global teams to deploy localized content across multiple regions while maintaining strict brand consistency and security standards.\n\nI collaborated closely with stakeholders to implement complex data visualizations and interactive maps that showcase Chevron's global operations and sustainability initiatives. The project required rigorous performance optimization to ensure fast load times across varying network conditions in international markets.\n\nThe resulting platform significantly improved user engagement and streamlined the content publishing workflow for Chevron's internal communications teams.",
+      "As a subcontractor embedded within **Chevron**’s internal in-house studio, I was brought in as a Lead Web Developer to stabilize and recover a high-risk, large-scale learning initiative that had fallen significantly behind schedule. The engagement centered on a seven-month program to deliver 12 highly interactive training modules, with only two months remaining before launch.\n\nI quickly assumed technical and delivery leadership for the project, auditing the existing work, restructuring the front-end approach, and establishing clear development standards and workflows. Over the following eight weeks, I led development while mentoring newly hired studio developers, unblocking technical bottlenecks, and restoring confidence across stakeholders. The team successfully delivered all 12 training modules on time, meeting Chevron’s original commitments and quality standards.\n\nThe modules were designed to educate Chevron’s global workforce on critical topics including field safety, health risks during international travel (such as mosquito-borne illnesses), and core Chevron cultural and compliance standards. Each experience emphasized interactivity and engagement to improve retention within the constraints of Chevron’s Learning Management System.\n\nAll work was required to align with Chevron’s newly launched brand system, which demanded close collaboration with Chevron brand specialists, internal designers, instructional designers, and motion and audio teams. I partnered cross-functionally to translate learning objectives into structured learning paths, ensure brand fidelity, and deliver precise front-end implementations that respected LMS limitations while still feeling modern and engaging.\n\nBeyond the flagship program, I also contributed to several internal initiatives, including the migration and re-branding of multiple SharePoint-based intranet sites across different Chevron business units to the new enterprise brand template.\n\nThe success of the project resulted in formal recognition, and I received an internal award for leadership and delivery excellence that year.",
     subtitle: "Learn more",
     cta: "Visit Website",
     url: "https://www.chevron.com",
-    role: "Front-End Lead",
-    date: "2021",
+    role: "Web Developer",
+    date: "2016",
     bgImage: chevronBentoBg,
     images: [
       chevronBentoBg, // Using bento as placeholder for now since no slider images provided

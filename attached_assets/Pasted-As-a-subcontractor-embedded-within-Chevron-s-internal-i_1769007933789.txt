@@ -1,0 +1,11 @@
+As a subcontractor embedded within Chevron’s internal in-house studio, I was brought in as a Lead Web Developer to stabilize and recover a high-risk, large-scale learning initiative that had fallen significantly behind schedule. The engagement centered on a seven-month program to deliver 12 highly interactive training modules, with only two months remaining before launch.
+
+I quickly assumed technical and delivery leadership for the project, auditing the existing work, restructuring the front-end approach, and establishing clear development standards and workflows. Over the following eight weeks, I led development while mentoring newly hired studio developers, unblocking technical bottlenecks, and restoring confidence across stakeholders. The team successfully delivered all 12 training modules on time, meeting Chevron’s original commitments and quality expectations.
+
+The modules were designed to educate Chevron’s global workforce on critical topics including field safety, health risks during international travel (such as mosquito-borne illnesses), and core Chevron cultural and compliance standards. Each experience emphasized interactivity and engagement to improve retention within the constraints of Chevron’s Learning Management System.
+
+All work was required to align with Chevron’s newly launched brand system, which demanded close collaboration with Chevron brand specialists, internal designers, instructional designers, and motion and audio teams. I partnered cross-functionally to translate learning objectives into structured learning paths, ensure brand fidelity, and deliver precise front-end implementations that respected LMS limitations while still feeling modern and engaging.
+
+Beyond the flagship program, I also contributed to several internal initiatives, including the migration and re-branding of multiple SharePoint-based intranet sites across different Chevron business units to the new enterprise brand template.
+
+The success of the project resulted in formal recognition, and I received an internal award for leadership and delivery excellence that year.
