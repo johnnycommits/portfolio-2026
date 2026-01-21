@@ -13,6 +13,8 @@ import {
   ExternalLink,
   FileText,
 } from "lucide-react";
+// @ts-ignore
+import Stars from "@/lib/stars";
 import {
   Tooltip,
   TooltipContent,
