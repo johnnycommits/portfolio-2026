@@ -404,7 +404,7 @@ export default function LinkInBio() {
                   </div>
                 </div>
 
-                {selectedProject.id !== 1 && (
+                {(selectedProject.id !== 1 && selectedProject.id !== 4) && (
                   <div className="absolute bottom-0 left-0 right-0 p-6 pt-12 bg-gradient-to-t from-[hsl(var(--background))] via-[hsl(var(--background))/90] to-transparent pointer-events-none">
                     <a
                       href={selectedProject.url}
