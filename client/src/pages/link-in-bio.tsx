@@ -135,14 +135,14 @@ const bentoCards = [
   {
     id: 5,
     title: "Eleox",
-    client: "Eleox, LLC",
+    client: "Eleox, LLC.",
     description:
-      "For **Eleox**, a technology provider for the energy industry, I contributed to the design and development of their digital brand presence, focusing on a clean, modern aesthetic that reflects their innovative approach to energy logistics.\n\nI worked on implementing a responsive, component-based front-end that highlights their core service offerings and technology platform. The project involved creating custom illustrations and animated elements to explain complex logistics processes in a user-friendly way.\n\nThe final site provides a professional and engaging platform for Eleox to showcase their solutions to enterprise clients in the energy sector.",
+      "At **Eleox**, a lean energy software startup, I served as the sole product designer while also working as a front-end software engineer, owning the full design-to-implementation lifecycle across the platform. With a core team of fewer than 12 engineers, I partnered directly with the VP of Engineering and leadership to define scope, shape product direction, and deliver new features from concept through production.\n\nI led product design and front-end implementation for OxNom, Eleox’s flagship natural gas nomination tool used by energy trading and operations teams to manage complex, time-sensitive workflows. The challenge was translating dense industry rules and operational constraints into clear, intuitive interfaces that users could trust for daily decision-making.\n\nTo drive alignment and reduce delivery risk, I independently created interactive Sketch prototypes that allowed leadership and stakeholders to click through complete workflows before development began. These prototypes became the primary artifact for product discussions, enabling faster approvals, earlier feedback, and smoother handoffs to engineering. Once approved, I frequently implemented the features myself, while also supporting other engineers with UI architecture and interaction guidance.\n\nFollowing a major company-wide rebrand, I led the platform-wide UI refresh, redesigning layouts and refactoring React components to align with the new visual system. This work resulted in a more cohesive product experience and a modular, reusable component foundation that improved consistency and long-term maintainability.\n\nIn addition to feature development, I acted as a mentor and UI authority for the engineering team, helping unblock implementation challenges and maintaining design quality across the product. I also contributed to user testing efforts and expanded end-to-end test coverage with Cypress, strengthening confidence in critical workflows as the platform scaled.",
     subtitle: "Learn more",
     cta: "Visit Website",
     url: "https://www.eleox.com",
-    role: "Front-End Developer",
-    date: "2022",
+    role: "Product Designer & Front-end Engineer",
+    date: "2023-2025",
     bgImage: eleoxBentoBg,
     images: [
       eleoxBentoBg, // Using bento as placeholder
