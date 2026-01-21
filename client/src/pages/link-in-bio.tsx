@@ -33,6 +33,7 @@ import absWavesightPortfolio from "@assets/abs-slider-2_1768946859779.jpg";
 import absWavesightRoles from "@assets/abs-slider-3_1768946859779.jpg";
 import absWavesightArabic from "@assets/abs-slider-4_1768946859778.jpg";
 import chevronBentoBg from "../assets/chevron-bento.jpg";
+import eleoxBentoBg from "../assets/eleox-bento.jpg";
 
 import {
   Dialog,
@@ -129,6 +130,22 @@ const bentoCards = [
     bgImage: chevronBentoBg,
     images: [
       chevronBentoBg, // Using bento as placeholder for now since no slider images provided
+    ],
+  },
+  {
+    id: 5,
+    title: "Eleox, LLC",
+    client: "Adcetera Design Group",
+    description:
+      "For **Eleox**, a technology provider for the energy industry, I contributed to the design and development of their digital brand presence, focusing on a clean, modern aesthetic that reflects their innovative approach to energy logistics.\n\nI worked on implementing a responsive, component-based front-end that highlights their core service offerings and technology platform. The project involved creating custom illustrations and animated elements to explain complex logistics processes in a user-friendly way.\n\nThe final site provides a professional and engaging platform for Eleox to showcase their solutions to enterprise clients in the energy sector.",
+    subtitle: "Learn more",
+    cta: "Visit Website",
+    url: "https://www.eleox.com",
+    role: "Front-End Developer",
+    date: "2022",
+    bgImage: eleoxBentoBg,
+    images: [
+      eleoxBentoBg, // Using bento as placeholder
     ],
   },
 ];
