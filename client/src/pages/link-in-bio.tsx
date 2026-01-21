@@ -11,6 +11,7 @@ import {
   Maximize2,
   X,
   ExternalLink,
+  FileText,
 } from "lucide-react";
 // @ts-ignore
 import Stars from "@/lib/stars";
@@ -172,6 +173,13 @@ const socials = [
   },
   { icon: Github, url: "https://github.com/johnnycommits", label: "GitHub" },
   { icon: Mail, url: "mailto:johnludena@gmail.com", label: "Email" },
+  { 
+    icon: FileText, 
+    url: "/resume.pdf", 
+    label: "Resume",
+    download: true,
+    rel: "nofollow noopener noreferrer"
+  },
 ];
 
 export default function LinkInBio() {
@@ -250,7 +258,8 @@ export default function LinkInBio() {
               href={social.url}
               aria-label={social.label}
               target="_blank"
-              rel="noopener noreferrer"
+              rel={social.rel || "noopener noreferrer"}
+              download={social.download}
               data-testid={`link-social-${social.label.toLowerCase()}`}
               className="social-icon w-9 h-9 flex items-center justify-center rounded-full bg-[hsl(var(--secondary))] text-[hsl(var(--foreground))]"
             >
