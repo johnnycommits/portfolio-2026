@@ -66,7 +66,7 @@ const profile = {
 
 const bentoCards = [
   {
-    id: 1,
+    id: 5,
     title: "Eleox",
     client: "Eleox, LLC.",
     description:
@@ -76,49 +76,9 @@ const bentoCards = [
     url: "https://www.eleox.com",
     role: "Product Designer & Front-end Engineer",
     date: "2023-2025",
-    bgImage: eleoxBentoBg,
-    images: [
-      eleoxBentoBg, // Using bento as placeholder
-    ],
-  },
-  {
-    id: 1,
-    title: "KBR Inc.",
-    client: "Adcetera Design Group",
-    description:
-      "At **Adcetera Design Group**, I was entrusted—just one month after joining the studio—with leading the largest and most complex project to date: a multi-million-dollar, four-month rebuild of **KBR**’s global website. This responsibility was awarded after I quickly demonstrated technical and leadership capability by contributing to Adcetera’s own rebranded website.\n\nI led a delivery team of two junior front-end engineers while working in close partnership with a backend engineer. I owned technical direction and execution, mentored and unblocked junior developers, and ensured the team stayed aligned on scope, quality, and timelines throughout the engagement.\n\nA core contribution was the design and implementation of a flexible, component-based system of reusable content blocks within Drupal. This empowered KBR’s internal teams to independently manage and scale content across the site without developer involvement. I worked closely with backend engineering to ensure seamless CMS integration, performance, and long-term maintainability.\n\nThe project required a significant content migration effort, including the transfer and restructuring of legacy articles, press releases, and enterprise content from KBR’s previous website. I helped plan and execute the migration strategy, ensuring content integrity, proper taxonomy mapping, and minimal disruption to ongoing business operations.\n\nAccessibility was a major focus of the project. I helped drive and implement compliance with **WCAG 2.1 AA** standards across the site, ensuring inclusive experiences through proper semantic markup, keyboard navigation, contrast requirements, and accessible component patterns suitable for a global enterprise audience.\n\nThe project also included a custom Google Maps integration to visualize KBR’s worldwide footprint, supporting a broader brand repositioning from an oil-and-gas services company to a world-class technology leader.\n\nThe award-nominated site increased users year-over-year by **12% within six months of launch**, while boosting **average time on site by 15%**. The work went on to win a **Gold ADDY Award** from the **American Advertising Federation (AAF) Houston**, in a highly competitive year against several of Houston’s top agencies, recognizing the project as **Best B2B Enterprise Website**.\n\nIn addition to the studio recognition, I was personally awarded **Team of Distinction** by Adcetera that year—an internal honor given to new hires who significantly exceed expectations—recognizing my leadership, impact, and contributions across one of the most demanding projects in the company’s portfolio.",
-    subtitle: "Learn more",
-    cta: "Visit Website",
-    url: "https://www.google.com",
-    date: "2019",
-    role: "Front-End Lead",
     featured: true,
-    bgImage: kbrBentoBg,
-    images: [
-      kbrSlider1,
-      kbrSlider2,
-      kbrSlider3,
-      kbrSlider4,
-      kbrSlider5,
-    ],
-  },
-  {
-    id: 2,
-    title: "Loomis US",
-    client: "Adcetera Design Group",
-    description:
-      "For **Loomis**, a global leader in secure cash handling and armored transport services, I served as one of two senior front-end developers responsible for delivering a complete website rebuild under a highly compressed timeline. The project focused on modernizing Loomis’ digital presence while supporting both enterprise and small-business audiences.\n\nWorking as part of a lean three-person team—two senior front-end developers and one junior backend engineer—we collaborated closely to deliver the project end-to-end in approximately eight weeks. Despite the aggressive schedule, the site launched on time and on budget with no major issues.\n\nI helped design and implement a scalable, component-based front-end system integrated with the Drupal CMS. This system enabled the Loomis team to manage and update content independently while maintaining visual consistency, accessibility, and performance across the site.\n\nThe website featured a robust online catalog showcasing Loomis products and services, along with interactive tools such as a custom ROI Calculator. The calculator allowed small businesses to estimate potential cost savings by using Loomis’ cash management and secure transport services, helping drive lead qualification and customer education directly through the site.\n\nThroughout the project, I worked closely with backend engineering to ensure smooth CMS integration, reliable data handling for interactive features, and a clean handoff for long-term maintenance. The result was a streamlined, high-performing platform delivered efficiently despite limited resources and a fast-moving timeline.",
-    subtitle: "Learn more",
-    cta: "Visit Website",
-    url: "https://www.loomis.us",
-    role: "Senior Front-End Developer",
-    date: "2020",
-    bgImage: loomisBentoBg,
-    images: [
-      loomisSlider1,
-      loomisSlider2,
-      loomisSlider3,
-    ],
+    bgImage: eleoxBentoBg,
+    images: [eleoxBentoBg],
   },
   {
     id: 3,
@@ -140,22 +100,47 @@ const bentoCards = [
     ],
   },
   {
+    id: 2,
+    title: "Loomis US",
+    client: "Adcetera Design Group",
+    description:
+      "For **Loomis**, a global leader in secure cash handling and armored transport services, I served as one of two senior front-end developers responsible for delivering a complete website rebuild under a highly compressed timeline. The project focused on modernizing Loomis’ digital presence while supporting both enterprise and small-business audiences.\n\nWorking as part of a lean three-person team—two senior front-end developers and one junior backend engineer—we collaborated closely to deliver the project end-to-end in approximately eight weeks. Despite the aggressive schedule, the site launched on time and on budget with no major issues.\n\nI helped design and implement a scalable, component-based front-end system integrated with the Drupal CMS. This system enabled the Loomis team to manage and update content independently while maintaining visual consistency, accessibility, and performance across the site.\n\nThe website featured a robust online catalog showcasing Loomis products and services, along with interactive tools such as a custom ROI Calculator. The calculator allowed small businesses to estimate potential cost savings by using Loomis’ cash management and secure transport services, helping drive lead qualification and customer education directly through the site.\n\nThroughout the project, I worked closely with backend engineering to ensure smooth CMS integration, reliable data handling for interactive features, and a clean handoff for long-term maintenance. The result was a streamlined, high-performing platform delivered efficiently despite limited resources and a fast-moving timeline.",
+    subtitle: "Learn more",
+    cta: "Visit Website",
+    url: "https://www.loomis.us",
+    role: "Senior Front-End Developer",
+    date: "2021",
+    bgImage: loomisBentoBg,
+    images: [loomisSlider1, loomisSlider2, loomisSlider3],
+  },
+  {
+    id: 1,
+    title: "KBR Inc.",
+    client: "Adcetera Design Group",
+    description:
+      "At **Adcetera Design Group**, I was entrusted—just one month after joining the studio—with leading the largest and most complex project to date: a multi-million-dollar, four-month rebuild of **KBR**’s global website. This responsibility was awarded after I quickly demonstrated technical and leadership capability by contributing to Adcetera’s own rebranded website.\n\nI led a delivery team of two junior front-end engineers while working in close partnership with a backend engineer. I owned technical direction and execution, mentored and unblocked junior developers, and ensured the team stayed aligned on scope, quality, and timelines throughout the engagement.\n\nA core contribution was the design and implementation of a flexible, component-based system of reusable content blocks within Drupal. This empowered KBR’s internal teams to independently manage and scale content across the site without developer involvement. I worked closely with backend engineering to ensure seamless CMS integration, performance, and long-term maintainability.\n\nThe project required a significant content migration effort, including the transfer and restructuring of legacy articles, press releases, and enterprise content from KBR’s previous website. I helped plan and execute the migration strategy, ensuring content integrity, proper taxonomy mapping, and minimal disruption to ongoing business operations.\n\nAccessibility was a major focus of the project. I helped drive and implement compliance with **WCAG 2.1 AA** standards across the site, ensuring inclusive experiences through proper semantic markup, keyboard navigation, contrast requirements, and accessible component patterns suitable for a global enterprise audience.\n\nThe project also included a custom Google Maps integration to visualize KBR’s worldwide footprint, supporting a broader brand repositioning from an oil-and-gas services company to a world-class technology leader.\n\nThe award-nominated site increased users year-ove...",
+    subtitle: "Learn more",
+    cta: "Visit Website",
+    url: "https://www.google.com",
+    date: "2019",
+    role: "Front-End Lead",
+    bgImage: kbrBentoBg,
+    images: [kbrSlider1, kbrSlider2, kbrSlider3, kbrSlider4, kbrSlider5],
+  },
+  {
     id: 4,
     title: "Chevron Corporation",
     client: "Cella Consulting",
     description:
-      "As a subcontractor embedded within **Chevron**’s internal in-house studio, I was brought in as a Lead Web Developer to stabilize and recover a high-risk, large-scale learning initiative that had fallen significantly behind schedule. The engagement centered on a seven-month program to deliver 12 highly interactive training modules, with only two months remaining before launch.\n\nI quickly assumed technical and delivery leadership for the project, auditing the existing work, restructuring the front-end approach, and establishing clear development standards and workflows. Over the following eight weeks, I led development while mentoring newly hired studio developers, unblocking technical bottlenecks, and restoring confidence across stakeholders. The team successfully delivered all 12 training modules on time, meeting Chevron’s original commitments and quality standards.\n\nThe modules were designed to educate Chevron’s global workforce on critical topics including field safety, health risks during international travel (such as mosquito-borne illnesses), and core Chevron cultural and compliance standards. Each experience emphasized interactivity and engagement to improve retention within the constraints of Chevron’s Learning Management System.\n\nAll work was required to align with Chevron’s newly launched brand system, which demanded close collaboration with Chevron brand specialists, internal designers, instructional designers, and motion and audio teams. I partnered cross-functionally to translate learning objectives into structured learning paths, ensure brand fidelity, and deliver precise front-end implementations that respected LMS limitations while still feeling modern and engaging.\n\nBeyond the flagship program, I also contributed to several internal initiatives, including the migration and re-branding of multiple SharePoint-based intranet sites across different Chevron business units to the new enterprise brand template.\n\nThe success of the project resulted in formal recognition, and I received an internal award for leadership and delivery excellence that year.",
+      "As a subcontractor embedded within **Chevron**’s internal in-house studio, I was brought in as a Lead Web Developer to stabilize and recover a high-risk, large-scale learning initiative that had fallen significantly behind schedule. The engagement centered on a seven-month program to deliver 12 highly interactive training modules, with only two months remaining before launch.\n\nI quickly assumed technical and delivery leadership for the project, auditing the existing work, restructuring the front-end approach, and establishing clear development standards and workflows. Over the following eight weeks, I led development while mentoring newly hired studio developers, unblocking technical bottlenecks, and restoring confidence across stakeholders. The team successfully delivered all 12 training modules on time, meeting Chevron’s original commitments and quality standards.\n\nThe modules were designed to educate Chevron’s global workforce on critical topics including field safety, health risks during international travel (such as mosquito-borne illnesses), and core Chevron cultural and compliance standards. Each experience emphasized interactivity and engagement to improve retention within the constraints of Chevron’s Learning Management System.\n\nAll work was required to align with Chevron’s newly launched brand system, which demanded close collaboration with Chevron brand specialists, internal designers, instructional designers, and motion and audio teams. I partnered cross-functionally to translate learning objectives into structured learning paths, ensure brand fidelity, and deliver precise front-end implementations that respected LMS limitations while still feeling modern and engaging.\n\nBeyond the flagship program, I also contributed to several internal initiatives, including the migration and re-branding of multiple SharePoint-based intranet sites across different Chevron business units to the new enterprise brand template.\n\nThe success of the project Resulted in formal recognition, and I received an internal award for leadership and delivery excellence that year.",
     subtitle: "Learn more",
     cta: "Visit Website",
     url: "https://www.chevron.com",
     role: "Web Developer",
     date: "2016 - 2018",
     bgImage: chevronBentoBg,
-    images: [
-      chevronBentoBg, // Using bento as placeholder for now since no slider images provided
-    ],
+    images: [chevronBentoBg],
   },
-  
 ];
 
 const socials = [
@@ -180,12 +165,12 @@ const socials = [
   },
   { icon: Github, url: "https://github.com/johnnycommits", label: "GitHub" },
   { icon: Mail, url: "mailto:johnludena@gmail.com", label: "Email" },
-  { 
-    icon: FileText, 
-    url: "/resume.pdf", 
+  {
+    icon: FileText,
+    url: "/resume.pdf",
     label: "Resume",
     download: true,
-    rel: "nofollow noopener noreferrer"
+    rel: "nofollow noopener noreferrer",
   },
 ];
 
@@ -250,10 +235,13 @@ export default function LinkInBio() {
             data-testid="text-profile-bio"
           >
             <p>
-              Product Engineer with 10+ years of experience shipping digital products for startups, agencies, and Fortune 500 companies.
+              Product Engineer with 10+ years of experience shipping digital
+              products for startups, agencies, and Fortune 500 companies.
             </p>
             <p>
-              I bridge design and engineering, bringing strong UX instincts and execution speed to turn complex ideas into clear, high-impact deliverables.
+              I bridge design and engineering, bringing strong UX instincts and
+              execution speed to turn complex ideas into clear, high-impact
+              deliverables.
             </p>
           </div>
         </header>
@@ -385,14 +373,18 @@ export default function LinkInBio() {
                     </h2>
                     <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 pt-1">
                       <div className="flex items-center gap-1.5">
-                        <span className="text-[10px] uppercase tracking-wider font-bold text-[hsl(var(--muted-foreground))] opacity-50">Client</span>
+                        <span className="text-[10px] uppercase tracking-wider font-bold text-[hsl(var(--muted-foreground))] opacity-50">
+                          Client
+                        </span>
                         <p className="text-[11px] text-[hsl(var(--foreground))] font-medium">
                           {selectedProject.client}
                         </p>
                       </div>
                       {selectedProject.role && (
                         <div className="flex items-center gap-1.5">
-                          <span className="text-[10px] uppercase tracking-wider font-bold text-[hsl(var(--muted-foreground))] opacity-50">Role</span>
+                          <span className="text-[10px] uppercase tracking-wider font-bold text-[hsl(var(--muted-foreground))] opacity-50">
+                            Role
+                          </span>
                           <p className="text-[11px] text-[hsl(var(--foreground))] font-medium">
                             {selectedProject.role}
                           </p>
@@ -400,7 +392,9 @@ export default function LinkInBio() {
                       )}
                       {selectedProject.date && (
                         <div className="flex items-center gap-1.5">
-                          <span className="text-[10px] uppercase tracking-wider font-bold text-[hsl(var(--muted-foreground))] opacity-50">Date</span>
+                          <span className="text-[10px] uppercase tracking-wider font-bold text-[hsl(var(--muted-foreground))] opacity-50">
+                            Year
+                          </span>
                           <p className="text-[11px] text-[hsl(var(--foreground))] font-medium">
                             {selectedProject.date}
                           </p>
@@ -409,47 +403,43 @@ export default function LinkInBio() {
                     </div>
                   </div>
 
-                  <div className="space-y-4">
-                    <h3 className="text-lg font-semibold border-b border-[hsl(var(--border))] pb-2">
-                      About This Project
-                    </h3>
-                    <div className="text-[hsl(var(--foreground))] opacity-80 leading-relaxed text-[15px] space-y-4 whitespace-pre-line">
-                      {selectedProject.description.split('\n\n').map((paragraph, i) => (
+                  <div className="prose prose-invert prose-sm max-w-none text-[hsl(var(--foreground))] opacity-90 leading-relaxed space-y-4">
+                    {selectedProject.description
+                      .split("\n\n")
+                      .map((paragraph: string, i: number) => (
                         <p key={i}>
-                          {paragraph.split(/(\*\*.*?\*\*)/).map((part, j) => {
-                            if (part.startsWith('**') && part.endsWith('**')) {
-                              return <strong key={j} className="text-[hsl(var(--foreground))] font-bold">{part.slice(2, -2)}</strong>;
+                          {paragraph.split(/(\*\*.*?\*\*)/).map((part: string, j: number) => {
+                            if (part.startsWith("**") && part.endsWith("**")) {
+                              return (
+                                <strong key={j} className="font-bold text-white">
+                                  {part.slice(2, -2)}
+                                </strong>
+                              );
                             }
                             return part;
                           })}
                         </p>
                       ))}
-                    </div>
                   </div>
-                </div>
 
-                {(selectedProject.id !== 1 && selectedProject.id !== 4) && (
-                  <div className="absolute bottom-0 left-0 right-0 p-6 pt-12 bg-gradient-to-t from-[hsl(var(--background))] via-[hsl(var(--background))/90] to-transparent pointer-events-none">
-                    <a
-                      href={selectedProject.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 w-full bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] font-bold py-4 rounded-2xl hover:opacity-90 transition-opacity pointer-events-auto shadow-xl"
-                    >
-                      {selectedProject.cta} <ExternalLink size={18} />
-                    </a>
-                  </div>
-                )}
+                  {selectedProject.cta && (
+                    <div className="pt-2 fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-[hsl(var(--background))] via-[hsl(var(--background))/90] to-transparent pointer-events-none">
+                      <a
+                        href={selectedProject.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="pointer-events-auto w-full inline-flex items-center justify-center gap-2 bg-white text-black font-bold py-4 px-6 rounded-2xl hover:bg-white/90 transition-colors shadow-lg"
+                      >
+                        {selectedProject.cta}
+                        <ExternalLink size={18} />
+                      </a>
+                    </div>
+                  )}
+                </div>
               </>
             )}
           </DialogContent>
         </Dialog>
-
-        <footer className="mt-8 text-center opacity-0 animate-fade-in-up stagger-6">
-          <p className="text-xs text-[hsl(var(--muted-foreground))]">
-            Made with ❤️ in Houston, TX
-          </p>
-        </footer>
       </div>
     </div>
   );
