@@ -231,7 +231,7 @@ export default function LinkInBio() {
             {profile.handle}
           </p>
           <div
-            className="text-sm text-[hsl(var(--foreground))] leading-relaxed max-w-[450px] mx-auto opacity-90 space-y-3"
+            className="text-sm text-[hsl(var(--foreground))] leading-relaxed max-w-[500px] mx-auto opacity-90 space-y-3"
             data-testid="text-profile-bio"
           >
             <p>
