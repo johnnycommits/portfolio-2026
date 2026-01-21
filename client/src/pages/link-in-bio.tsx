@@ -126,7 +126,7 @@ const bentoCards = [
     cta: "Visit Website",
     url: "https://www.chevron.com",
     role: "Web Developer",
-    date: "2016",
+    date: "2016 - 2018",
     bgImage: chevronBentoBg,
     images: [
       chevronBentoBg, // Using bento as placeholder for now since no slider images provided
