@@ -235,12 +235,10 @@ export default function LinkInBio() {
             data-testid="text-profile-bio"
           >
             <p>
-              Product Engineer with 10+ years of experience building and shipping
-              software products for both startups and large businesses.
+              Product Engineer with 10+ years of experience shipping digital products for startups, agencies, and Fortune 500 companies.
             </p>
             <p>
-              I bridge execution and design, with a sharp eye for UX that turns
-              ideas into clean, user-centered, high-impact products.
+              I bridge design and engineering, bringing strong UX instincts and execution speed to turn complex ideas into clear, high-impact products.
             </p>
           </div>
         </header>
