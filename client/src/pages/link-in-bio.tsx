@@ -355,8 +355,12 @@ export default function LinkInBio() {
                         ),
                       )}
                     </CarouselContent>
-                    <CarouselPrevious className="left-2 bg-black/20 border-white/20 text-white hover:bg-black/40" />
-                    <CarouselNext className="right-2 bg-black/20 border-white/20 text-white hover:bg-black/40" />
+                    {selectedProject.images && selectedProject.images.length > 1 && (
+                      <>
+                        <CarouselPrevious className="left-2 bg-black/20 border-white/20 text-white hover:bg-black/40" />
+                        <CarouselNext className="right-2 bg-black/20 border-white/20 text-white hover:bg-black/40" />
+                      </>
+                    )}
                   </Carousel>
                   <button
                     onClick={() => setSelectedProject(null)}
