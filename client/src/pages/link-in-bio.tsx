@@ -134,8 +134,8 @@ const bentoCards = [
   },
   {
     id: 5,
-    title: "Eleox, LLC",
-    client: "Adcetera Design Group",
+    title: "Eleox",
+    client: "Eleox, LLC",
     description:
       "For **Eleox**, a technology provider for the energy industry, I contributed to the design and development of their digital brand presence, focusing on a clean, modern aesthetic that reflects their innovative approach to energy logistics.\n\nI worked on implementing a responsive, component-based front-end that highlights their core service offerings and technology platform. The project involved creating custom illustrations and animated elements to explain complex logistics processes in a user-friendly way.\n\nThe final site provides a professional and engaging platform for Eleox to showcase their solutions to enterprise clients in the energy sector.",
     subtitle: "Learn more",
