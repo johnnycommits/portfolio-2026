@@ -13,8 +13,12 @@ import {
   ExternalLink,
   FileText,
 } from "lucide-react";
-// @ts-ignore
-import Stars from "@/lib/stars";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import profileImage from "@assets/John_Ludena_1768408996520.png";
 import kbrImage from "@assets/Screenshot_2025-09-23_at_4.13.48_PM_1768590034547.png";
 import kbrMapImage from "@assets/Screenshot_2025-09-23_at_4.24.19_PM_1768590092789.png";
@@ -251,22 +255,30 @@ export default function LinkInBio() {
           </div>
         </header>
 
-        <div className="flex justify-center gap-3 mb-5 opacity-0 animate-fade-in-up stagger-1">
-          {socials.map((social) => (
-            <a
-              key={social.label}
-              href={social.url}
-              aria-label={social.label}
-              target="_blank"
-              rel={social.rel || "noopener noreferrer"}
-              download={social.download}
-              data-testid={`link-social-${social.label.toLowerCase()}`}
-              className="social-icon w-9 h-9 flex items-center justify-center rounded-full bg-[hsl(var(--secondary))] text-[hsl(var(--foreground))]"
-            >
-              <social.icon size={18} strokeWidth={1.5} />
-            </a>
-          ))}
-        </div>
+        <TooltipProvider>
+          <div className="flex justify-center gap-3 mb-5 opacity-0 animate-fade-in-up stagger-1">
+            {socials.map((social) => (
+              <Tooltip key={social.label}>
+                <TooltipTrigger asChild>
+                  <a
+                    href={social.url}
+                    aria-label={social.label}
+                    target="_blank"
+                    rel={social.rel || "noopener noreferrer"}
+                    download={social.download}
+                    data-testid={`link-social-${social.label.toLowerCase()}`}
+                    className="social-icon w-9 h-9 flex items-center justify-center rounded-full bg-[hsl(var(--secondary))] text-[hsl(var(--foreground))]"
+                  >
+                    <social.icon size={18} strokeWidth={1.5} />
+                  </a>
+                </TooltipTrigger>
+                <TooltipContent className="bg-[hsl(var(--popover))] text-[hsl(var(--popover-foreground))] border-[hsl(var(--border))] rounded-lg px-2.5 py-1 text-[11px] font-medium shadow-md">
+                  <p>{social.label}</p>
+                </TooltipContent>
+              </Tooltip>
+            ))}
+          </div>
+        </TooltipProvider>
 
         <div className="space-y-3">
           {featuredCard && (
