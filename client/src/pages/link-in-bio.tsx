@@ -60,7 +60,7 @@ import {
 const profile = {
   name: "John Ludena",
   handle: "@johnnycommits",
-  bio: "Product Engineer with 10+ years of experience building and shipping software products for both startups and large businesses. I bridge execution and design, with a sharp eye for UX that turns ideas into clean, user-centered, high-impact products.",
+  bio: "Senior Frontend Engineer with 10+ years of experience building and shipping software products for both startups and large businesses. I bridge execution and design, with a sharp eye for UX that turns ideas into clean, user-centered, high-impact products.",
   avatar: profileImage,
 };
 
@@ -233,7 +233,7 @@ export default function LinkInBio() {
             data-testid="text-profile-bio"
           >
             <p>
-              Product Engineer with 10+ years of experience shipping digital
+              Senior Frontend Engineer with 10+ years of experience shipping digital
               products for startups, agencies, and Fortune 500 companies.
             </p>
             <p>
