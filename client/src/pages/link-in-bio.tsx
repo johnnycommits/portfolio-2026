@@ -332,7 +332,7 @@ export default function LinkInBio() {
         </div>
 
         <footer className="mt-12 mb-8 text-center opacity-0 animate-fade-in-up stagger-5">
-          <p className="text-[11px] text-[hsl(var(--muted-foreground))] opacity-60 font-medium tracking-wide uppercase">
+          <p className="text-[11px] text-[hsl(var(--muted-foreground))] opacity-80 font-medium tracking-wide uppercase">
             Made with ❤️ under Texas skies
           </p>
         </footer>
