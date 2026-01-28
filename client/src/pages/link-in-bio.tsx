@@ -42,6 +42,7 @@ import absWavesightArabic from "@assets/abs-slider-4_1768946859778.jpg";
 import chevronBentoBg from "@/assets/chevron-bento.jpg";
 import eleoxBentoBg from "@/assets/eleox-bento.jpg";
 import texasGridBentoBg from "@/assets/texas-grid-bento.jpg";
+import vdproBentoBg from "@/assets/vdpro-bento.jpg";
 
 import {
   Dialog,
@@ -153,6 +154,20 @@ const bentoCards = [
     date: "2016 - 2018",
     bgImage: chevronBentoBg,
     images: [chevronBentoBg],
+  },
+  {
+    id: 7,
+    title: "Vibe Debugging Pro",
+    client: "Personal Project",
+    description:
+      "A next-generation debugging utility designed for the modern developer. Vibe Debugging Pro leverages advanced pattern recognition and developer intuition to streamline the troubleshooting process.\n\nPlaceholder text: Detailed feature breakdown and technical specifications coming soon.",
+    subtitle: "Learn more",
+    cta: "Visit Website",
+    url: "https://www.google.com",
+    role: "Lead Developer",
+    date: "2025",
+    bgImage: vdproBentoBg,
+    images: [vdproBentoBg],
   },
 ];
 
