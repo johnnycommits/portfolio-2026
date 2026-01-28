@@ -39,8 +39,9 @@ import absWavesightHome from "@assets/abs-slider-1_1768946859771.jpg";
 import absWavesightPortfolio from "@assets/abs-slider-2_1768946859779.jpg";
 import absWavesightRoles from "@assets/abs-slider-3_1768946859779.jpg";
 import absWavesightArabic from "@assets/abs-slider-4_1768946859778.jpg";
-import chevronBentoBg from "../assets/chevron-bento.jpg";
-import eleoxBentoBg from "../assets/eleox-bento.jpg";
+import chevronBentoBg from "@/assets/chevron-bento.jpg";
+import eleoxBentoBg from "@/assets/eleox-bento.jpg";
+import texasGridBentoBg from "@/assets/texas-grid-bento.jpg";
 
 import {
   Dialog,
@@ -66,6 +67,21 @@ const profile = {
 
 const bentoCards = [
   {
+    id: 6,
+    title: "Texas Grid Status",
+    client: "Personal Project",
+    description:
+      "A real-time monitoring dashboard for the Texas electrical grid (ERCOT). This project provides live visibility into power demand, available capacity, and operating reserves, helping Texans stay informed about grid conditions through a clean and intuitive interface.\n\nPlaceholder text: Further details about technical implementation, data sources, and design decisions will be added soon.",
+    subtitle: "Featured Project",
+    cta: "Visit Website",
+    url: "https://www.google.com",
+    role: "Lead Engineer",
+    date: "2024",
+    featured: true,
+    bgImage: texasGridBentoBg,
+    images: [texasGridBentoBg],
+  },
+  {
     id: 5,
     title: "Eleox",
     client: "Eleox, LLC.",
@@ -76,7 +92,6 @@ const bentoCards = [
     url: "https://www.eleox.com",
     role: "Product Designer & Front-end Engineer",
     date: "2023-2025",
-    featured: true,
     bgImage: eleoxBentoBg,
     images: [eleoxBentoBg],
   },
@@ -131,7 +146,7 @@ const bentoCards = [
     title: "Chevron Corporation",
     client: "Cella Consulting",
     description:
-      "As a subcontractor embedded within **Chevron**’s internal in-house studio, I was brought in as a Lead Web Developer to stabilize and recover a high-risk, large-scale learning initiative that had fallen significantly behind schedule. The engagement centered on a seven-month program to deliver 12 highly interactive training modules, with only two months remaining before launch.\n\nI quickly assumed technical and delivery leadership for the project, auditing the existing work, restructuring the front-end approach, and establishing clear development standards and workflows. Over the following eight weeks, I led development while mentoring newly hired studio developers, unblocking technical bottlenecks, and restoring confidence across stakeholders. The team successfully delivered all 12 training modules on time, meeting Chevron’s original commitments and quality standards.\n\nThe modules were designed to educate Chevron’s global workforce on critical topics including field safety, health risks during international travel (such as mosquito-borne illnesses), and core Chevron cultural and compliance standards. Each experience emphasized interactivity and engagement to improve retention within the constraints of Chevron’s Learning Management System.\n\nAll work was required to align with Chevron’s newly launched brand system, which demanded close collaboration with Chevron brand specialists, internal designers, instructional designers, and motion and audio teams. I partnered cross-functionally to translate learning objectives into structured learning paths, ensure brand fidelity, and deliver precise front-end implementations that respected LMS limitations while still feeling modern and engaging.\n\nBeyond the flagship program, I also contributed to several internal initiatives, including the migration and re-branding of multiple SharePoint-based intranet sites across different Chevron business units to the new enterprise brand template.\n\nThe success of the project Resulted in formal recognition, and I received an internal award for leadership and delivery excellence that year.",
+      "As a subcontractor embedded within **Chevron**’s internal in-house studio, I was brought in as a Lead Web Developer to stabilize and recover a high-risk, large-scale learning initiative that had fallen significantly behind schedule. The engagement centered on a seven-month program to deliver 12 highly interactive training modules, with only two months remaining before launch.\n\nI quickly assumed technical and delivery leadership for the project, auditing the existing work, restructuring the front-end approach, and establishing clear development standards and workflows. Over the following eight weeks, I led development while mentoring newly hired studio developers, unblocking technical bottlenecks, and restoring confidence across stakeholders. The team successfully delivered all 12 training modules on time, meeting Chevron’s original commitments and quality standards.\n\nThe modules were designed to educate Chevron’s global workforce on critical topics including field safety, health risks during international travel (such as mosquito-borne illnesses), and core Chevron cultural and compliance standards. Each experience emphasized interactivity and engagement to improve retention within the constraints of Chevron’s Learning Management System.\n\nAll work was required to align with Chevron’s newly launched brand system, which demanded close collaboration with Chevron brand specialists, internal designers, instructional designers, and motion and audio teams. I partnered cross-functionally to translate learning objectives into structured learning paths, ensure brand fidelity, and deliver precise front-end implementations that respected LMS limitations while still feeling modern and engaging.\n\nBeyond the flagship program, I also contributed to several internal initiatives, including the migration and re-branding of multiple SharePoint-based intranet sites across different Chevron business units to the new enterprise brand template.\n\nThe success of the project led to a sustained partnership with Chevron’s in-house studio, where I continued to provide technical guidance and support for subsequent web-based learning and internal communication efforts.",
     subtitle: "Learn more",
     url: "https://www.chevron.com",
     role: "Web Developer",
@@ -401,7 +416,7 @@ export default function LinkInBio() {
                       {selectedProject.date && (
                         <div className="flex items-center gap-1.5">
                           <span className="text-[10px] uppercase tracking-wider font-bold text-[hsl(var(--muted-foreground))] opacity-50">
-                            Year
+                            Date
                           </span>
                           <p className="text-[11px] text-[hsl(var(--foreground))] font-medium">
                             {selectedProject.date}
@@ -411,37 +426,35 @@ export default function LinkInBio() {
                     </div>
                   </div>
 
-                  <div className="prose prose-invert prose-sm max-w-none text-[hsl(var(--foreground))] opacity-90 leading-relaxed space-y-4">
-                    {selectedProject.description
-                      .split("\n\n")
-                      .map((paragraph: string, i: number) => (
-                        <p key={i}>
-                          {paragraph.split(/(\*\*.*?\*\*)/).map((part: string, j: number) => {
-                            if (part.startsWith("**") && part.endsWith("**")) {
-                              return (
-                                <strong key={j} className="font-bold text-white">
-                                  {part.slice(2, -2)}
-                                </strong>
-                              );
-                            }
-                            return part;
-                          })}
-                        </p>
-                      ))}
-                  </div>
-
-                  {selectedProject.cta && (
-                    <div className="pt-2 fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-[hsl(var(--background))] via-[hsl(var(--background))/90] to-transparent pointer-events-none">
-                      <a
-                        href={selectedProject.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="pointer-events-auto w-full inline-flex items-center justify-center gap-2 bg-white text-black font-bold py-4 px-6 rounded-2xl hover:bg-white/90 transition-colors shadow-lg"
-                      >
-                        {selectedProject.cta}
-                        <ExternalLink size={18} />
-                      </a>
+                  <div className="prose prose-invert max-w-none">
+                    <div className="text-sm leading-relaxed text-[hsl(var(--foreground))] opacity-90 space-y-4 whitespace-pre-line">
+                      {selectedProject.description.split("\n\n").map((text: string, i: number) => {
+                        const parts = text.split(/(\*\*.*?\*\*)/g);
+                        return (
+                          <p key={i}>
+                            {parts.map((part, j) => {
+                              if (part.startsWith("**") && part.endsWith("**")) {
+                                return <strong key={j}>{part.slice(2, -2)}</strong>;
+                              }
+                              return part;
+                            })}
+                          </p>
+                        );
+                      })}
                     </div>
+                  </div>
+                </div>
+
+                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-[hsl(var(--background))] via-[hsl(var(--background))] to-transparent">
+                  {selectedProject.cta && selectedProject.url && !([1, 4].includes(selectedProject.id)) && (
+                    <a
+                      href={selectedProject.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-4 bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] rounded-2xl font-bold text-center block transition-transform active:scale-[0.98] shadow-lg"
+                    >
+                      {selectedProject.cta}
+                    </a>
                   )}
                 </div>
               </>
