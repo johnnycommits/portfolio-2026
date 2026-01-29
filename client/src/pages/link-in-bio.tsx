@@ -416,12 +416,13 @@ export default function LinkInBio() {
                   </button>
                 </div>
 
-                <div className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-hide pb-24">
+                <div className="flex-1 overflow-y-auto p-6 space-y-4 scrollbar-hide pb-24">
                   <div>
-                    <h2 className="text-2xl font-bold mb-1">
+                    <h2 className="text-2xl font-bold mb-4">
                       {selectedProject.title}
                     </h2>
-                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 pt-1">
+                    
+                    <div className="border-t border-[hsl(var(--border))] py-3 flex flex-wrap items-center gap-x-4 gap-y-1.5">
                       <div className="flex items-center gap-1.5">
                         <span className="text-[10px] uppercase tracking-wider font-bold text-[hsl(var(--muted-foreground))] opacity-50">
                           Client
@@ -451,48 +452,48 @@ export default function LinkInBio() {
                         </div>
                       )}
                     </div>
-                  </div>
 
-                  <div className="border-y border-[hsl(var(--border))] py-3">
-                    <button
-                      onClick={() => setIsTechOpen(!isTechOpen)}
-                      className="flex items-center justify-between w-full group"
-                    >
-                      <span className="text-[10px] uppercase tracking-wider font-bold text-[hsl(var(--muted-foreground))] opacity-50">
-                        Technologies
-                      </span>
-                      <ChevronDown
-                        size={14}
-                        className={`text-[hsl(var(--muted-foreground))] transition-transform duration-300 ${
-                          isTechOpen ? "rotate-180" : ""
+                    <div className="border-y border-[hsl(var(--border))] py-3">
+                      <button
+                        onClick={() => setIsTechOpen(!isTechOpen)}
+                        className="flex items-center justify-between w-full group"
+                      >
+                        <span className="text-[10px] uppercase tracking-wider font-bold text-[hsl(var(--muted-foreground))] opacity-50">
+                          Technologies
+                        </span>
+                        <ChevronDown
+                          size={14}
+                          className={`text-[hsl(var(--muted-foreground))] transition-transform duration-300 ${
+                            isTechOpen ? "rotate-180" : ""
+                          }`}
+                        />
+                      </button>
+                      <div
+                        className={`grid transition-all duration-300 ease-in-out ${
+                          isTechOpen
+                            ? "grid-rows-[1fr] opacity-100 mt-2"
+                            : "grid-rows-[0fr] opacity-0 mt-0"
                         }`}
-                      />
-                    </button>
-                    <div
-                      className={`grid transition-all duration-300 ease-in-out ${
-                        isTechOpen
-                          ? "grid-rows-[1fr] opacity-100 mt-2"
-                          : "grid-rows-[0fr] opacity-0 mt-0"
-                      }`}
-                    >
-                      <div className="overflow-hidden">
-                        <div className="flex flex-wrap gap-2">
-                          {(selectedProject.technologies || ["React.js", "Next.js", "TypeScript", "Node.js"]).map(
-                            (tech: string) => (
-                              <span
-                                key={tech}
-                                className="px-2.5 py-1 rounded-full bg-[hsl(var(--secondary))] text-[hsl(var(--secondary-foreground))] text-[10px] font-medium border border-[hsl(var(--border))]"
-                              >
-                                {tech}
-                              </span>
-                            )
-                          )}
+                      >
+                        <div className="overflow-hidden">
+                          <div className="flex flex-wrap gap-2">
+                            {(selectedProject.technologies || ["React.js", "Next.js", "TypeScript", "Node.js"]).map(
+                              (tech: string) => (
+                                <span
+                                  key={tech}
+                                  className="px-2.5 py-1 rounded-full bg-[hsl(var(--secondary))] text-[hsl(var(--secondary-foreground))] text-[10px] font-medium border border-[hsl(var(--border))]"
+                                >
+                                  {tech}
+                                </span>
+                              )
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="prose prose-invert max-w-none">
+                  <div className="prose prose-invert max-w-none pt-2">
                     <div className="text-sm leading-relaxed text-[hsl(var(--foreground))] opacity-90 space-y-4 whitespace-pre-line">
                       {selectedProject.description.split("\n\n").map((text: string, i: number) => {
                         const parts = text.split(/(\*\*.*?\*\*)/g);
