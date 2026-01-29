@@ -12,7 +12,8 @@ import {
   X,
   ExternalLink,
   FileText,
-  ChevronDown,
+  Plus,
+  Minus,
 } from "lucide-react";
 // @ts-ignore
 import Stars from "@/lib/stars";
@@ -461,12 +462,11 @@ export default function LinkInBio() {
                         <span className="text-[10px] uppercase tracking-wider font-bold text-[hsl(var(--muted-foreground))] opacity-50">
                           Technologies
                         </span>
-                        <ChevronDown
-                          size={14}
-                          className={`text-[hsl(var(--muted-foreground))] transition-transform duration-300 ${
-                            isTechOpen ? "rotate-180" : ""
-                          }`}
-                        />
+                        {isTechOpen ? (
+                          <Minus size={14} className="text-[hsl(var(--muted-foreground))]" />
+                        ) : (
+                          <Plus size={14} className="text-[hsl(var(--muted-foreground))]" />
+                        )}
                       </button>
                       <div
                         className={`grid transition-all duration-300 ease-in-out ${
