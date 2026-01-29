@@ -12,6 +12,7 @@ import {
   X,
   ExternalLink,
   FileText,
+  ChevronDown,
 } from "lucide-react";
 // @ts-ignore
 import Stars from "@/lib/stars";
@@ -171,6 +172,7 @@ const bentoCards = [
     date: "2025",
     bgImage: vdproBentoBg,
     images: [vdproSlider1, vdproSlider2, vdproSlider3],
+    technologies: ["React.js", "TypeScript", "Tailwind CSS", "Vite", "Lucide Icons"],
   },
 ];
 
@@ -210,6 +212,13 @@ export default function LinkInBio() {
   const gridCards = bentoCards.filter((c) => !c.featured);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [isTechOpen, setIsTechOpen] = useState(false);
+
+  useEffect(() => {
+    if (!selectedProject) {
+      setIsTechOpen(false);
+    }
+  }, [selectedProject]);
 
   useEffect(() => {
     if (canvasRef.current) {
@@ -441,6 +450,45 @@ export default function LinkInBio() {
                           </p>
                         </div>
                       )}
+                    </div>
+                  </div>
+
+                  <div className="border-t border-[hsl(var(--border))] pt-4">
+                    <button
+                      onClick={() => setIsTechOpen(!isTechOpen)}
+                      className="flex items-center justify-between w-full group"
+                    >
+                      <span className="text-[10px] uppercase tracking-wider font-bold text-[hsl(var(--muted-foreground))] opacity-50">
+                        Technologies
+                      </span>
+                      <ChevronDown
+                        size={14}
+                        className={`text-[hsl(var(--muted-foreground))] transition-transform duration-300 ${
+                          isTechOpen ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    <div
+                      className={`grid transition-all duration-300 ease-in-out ${
+                        isTechOpen
+                          ? "grid-rows-[1fr] opacity-100 mt-3"
+                          : "grid-rows-[0fr] opacity-0 mt-0"
+                      }`}
+                    >
+                      <div className="overflow-hidden">
+                        <div className="flex flex-wrap gap-2">
+                          {(selectedProject.technologies || ["React.js", "Next.js", "TypeScript", "Node.js"]).map(
+                            (tech: string) => (
+                              <span
+                                key={tech}
+                                className="px-2.5 py-1 rounded-full bg-[hsl(var(--secondary))] text-[hsl(var(--secondary-foreground))] text-[10px] font-medium border border-[hsl(var(--border))]"
+                              >
+                                {tech}
+                              </span>
+                            )
+                          )}
+                        </div>
+                      </div>
                     </div>
                   </div>
 
