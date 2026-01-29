@@ -453,7 +453,7 @@ export default function LinkInBio() {
                     </div>
                   </div>
 
-                  <div className="border-t border-[hsl(var(--border))] pt-4">
+                  <div className="border-y border-[hsl(var(--border))] py-3">
                     <button
                       onClick={() => setIsTechOpen(!isTechOpen)}
                       className="flex items-center justify-between w-full group"
@@ -471,7 +471,7 @@ export default function LinkInBio() {
                     <div
                       className={`grid transition-all duration-300 ease-in-out ${
                         isTechOpen
-                          ? "grid-rows-[1fr] opacity-100 mt-3"
+                          ? "grid-rows-[1fr] opacity-100 mt-2"
                           : "grid-rows-[0fr] opacity-0 mt-0"
                       }`}
                     >
