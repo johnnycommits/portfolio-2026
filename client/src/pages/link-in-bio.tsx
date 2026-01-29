@@ -43,6 +43,9 @@ import chevronBentoBg from "@/assets/chevron-bento.jpg";
 import eleoxBentoBg from "@/assets/eleox-bento.jpg";
 import texasGridBentoBg from "@/assets/texas-grid-bento.jpg";
 import vdproBentoBg from "@/assets/vdpro-bento.jpg";
+import vdproSlider1 from "@/assets/vdpro-slider-1.jpg";
+import vdproSlider2 from "@/assets/vdpro-slider-2.jpg";
+import vdproSlider3 from "@/assets/vdpro-slider-3.jpg";
 
 import {
   Dialog,
@@ -167,7 +170,7 @@ const bentoCards = [
     role: "Lead Developer",
     date: "2025",
     bgImage: vdproBentoBg,
-    images: [vdproBentoBg],
+    images: [vdproSlider1, vdproSlider2, vdproSlider3],
   },
 ];
 
