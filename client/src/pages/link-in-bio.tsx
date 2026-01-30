@@ -200,9 +200,8 @@ const bentoCards = [
       "Stripe Checkout",
       "Stripe Dashboard",
       "Payments Integration",
-      "Rapid Prototyping",
+      "Firebase Hosting",
       "User-Centered Problem Discovery",
-      "GitHub",
     ],
   },
 ];
