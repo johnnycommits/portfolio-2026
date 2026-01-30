@@ -172,6 +172,16 @@ const bentoCards = [
     role: "Front-End Lead",
     bgImage: kbrBentoBg,
     images: [kbrSlider1, kbrSlider2, kbrSlider3, kbrSlider4, kbrSlider5],
+    technologies: [
+      "Drupal CMS",
+      "Twig templating",
+      "React",
+      "SCSS",
+      "JavaScript",
+      "Jquery",
+      "Webpack",
+      "Multi Language Support",
+    ],
   },
   {
     id: 4,
