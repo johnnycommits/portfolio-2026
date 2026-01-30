@@ -182,15 +182,22 @@ const bentoCards = [
     title: "Vibe Debugging Pro",
     client: "Personal Project",
     description:
-      "A next-generation debugging utility designed for the modern developer. Vibe Debugging Pro leverages advanced pattern recognition and developer intuition to streamline the troubleshooting process.\n\nPlaceholder text: Detailed feature breakdown and technical specifications coming soon.",
+      "**Vibe Debugging Pro** is an experiment in offering a lightweight, productized service for builders who are exploring modern no-code and AI-assisted tools but don’t come from a traditional engineering background.\n\nAs tools like Lovable, Bolt, Replit, and similar platforms make it easier than ever to start building, I noticed a common pattern: people were excited to create, made strong early progress, and then hit a wall once something broke or behaved unexpectedly. Without an engineering foundation, many struggled to debug issues or reason about what the system was actually doing under the hood.\n\nI built Vibe Debugging Pro as a way to help unblock those builders and give them a clear path forward, without requiring them to fully “become engineers” just to continue their projects. The service focuses on clarity, practical guidance, and momentum rather than abstract theory.\n\nThe interface was designed quickly using **prompt-based design with Bolt.new**, allowing me to iterate rapidly on layout, tone, and visual hierarchy. After settling on a direction, I downloaded the generated files and continued refining the design locally, keeping the implementation intentionally simple as a plain HTML/CSS site.\n\nTo support payments, I integrated **Stripe Checkout**, configuring products and pricing directly in the Stripe Dashboard and wiring them into the site for a clean, frictionless checkout experience. This demonstrates my ability to add secure, production-ready payments to a site quickly, even without a complex frontend framework.\n\nOverall, Vibe Debugging Pro highlights my ability to identify real user friction in emerging AI workflows, design a focused solution around that need, and move from idea to launch quickly using AI-assisted tools and pragmatic engineering decisions.",
     subtitle: "Learn more",
     cta: "Visit Website",
-    url: "https://www.google.com",
-    role: "Lead Developer",
-    date: "2025",
+    url: "https://www.vibedebugging.pro",
+    role: "Product Designer & Engineer",
+    date: "2026",
     bgImage: vdproBentoBg,
     images: [vdproSlider1, vdproSlider2, vdproSlider3],
-    technologies: ["React.js", "TypeScript", "Tailwind CSS", "Vite", "Lucide Icons"],
+    technologies: [
+      "Bolt.new",
+      "Stripe Checkout",
+      "HTML/CSS",
+      "AI-Assisted Design",
+      "Prompt-Driven Development",
+      "Product-Led Growth",
+    ],
   },
 ];
 
