@@ -431,8 +431,8 @@ export default function LinkInBio() {
                     </CarouselContent>
                     {selectedProject.images && selectedProject.images.length > 1 && (
                       <>
-                        <CarouselPrevious className="left-2 bg-black/20 border-white/20 text-white hover:bg-black/40" />
-                        <CarouselNext className="right-2 bg-black/20 border-white/20 text-white hover:bg-black/40" />
+                        <CarouselPrevious className="left-2 bg-black/20 border-white/20 text-white hover:bg-black/40 cursor-pointer" />
+                        <CarouselNext className="right-2 bg-black/20 border-white/20 text-white hover:bg-black/40 cursor-pointer" />
                       </>
                     )}
                   </Carousel>
