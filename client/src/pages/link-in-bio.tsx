@@ -136,6 +136,16 @@ const bentoCards = [
       absWavesightRoles,
       absWavesightArabic,
     ],
+    technologies: [
+      "Drupal CMS",
+      "Acquia Site Studio",
+      "Twig",
+      "SCSS",
+      "Jquery",
+      "Lottie Animation",
+      "Webpack",
+      "Multi Language Support",
+    ],
   },
   {
     id: 2,
