@@ -117,6 +117,14 @@ const bentoCards = [
     date: "2023-2025",
     bgImage: eleoxBentoBg,
     images: [eleoxBentoBg],
+    technologies: [
+      "React.js",
+      "Sketch",
+      "TypeScript",
+      "Cypress",
+      "Tailwind CSS",
+      "Vite",
+    ],
   },
   {
     id: 3,
@@ -205,6 +213,14 @@ const bentoCards = [
     date: "2016 - 2018",
     bgImage: chevronBentoBg,
     images: [chevronBentoBg],
+    technologies: [
+      "Javascript",
+      "jQuery",
+      "CSS",
+      "Sharepoint",
+      "Instructional Design",
+      "User Interface Design",
+    ],
   },
   {
     id: 7,
