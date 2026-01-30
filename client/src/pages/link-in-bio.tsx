@@ -150,6 +150,15 @@ const bentoCards = [
     date: "2021",
     bgImage: loomisBentoBg,
     images: [loomisSlider1, loomisSlider2, loomisSlider3],
+    technologies: [
+      "Drupal CMS",
+      "Twig templating",
+      "Bootstrap",
+      "SCSS",
+      "JavaScript",
+      "Jquery",
+      "Webpack",
+    ],
   },
   {
     id: 1,
