@@ -438,7 +438,7 @@ export default function LinkInBio() {
                   </Carousel>
                   <button
                     onClick={() => setSelectedProject(null)}
-                    className="absolute top-4 right-4 z-50 bg-black/40 backdrop-blur-md border border-white/20 text-white rounded-full p-2 hover:bg-black/60 transition-colors"
+                    className="absolute top-4 right-4 z-50 bg-black/40 backdrop-blur-md border border-white/20 text-white rounded-full p-2 hover:bg-black/60 transition-colors cursor-pointer"
                   >
                     <X size={20} />
                   </button>
@@ -484,7 +484,7 @@ export default function LinkInBio() {
                     <div className="border-y border-[hsl(var(--border))] py-3">
                       <button
                         onClick={() => setIsTechOpen(!isTechOpen)}
-                        className="flex items-center justify-between w-full group"
+                        className="flex items-center justify-between w-full group cursor-pointer"
                       >
                         <span className="text-[10px] uppercase tracking-wider font-bold text-[hsl(var(--muted-foreground))] opacity-50">
                           Tools & Technologies
