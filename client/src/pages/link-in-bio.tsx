@@ -151,7 +151,7 @@ const bentoCards = [
     technologies: [
       "Drupal CMS",
       "Acquia Site Studio",
-      "Twig",
+      "Twig templating",
       "SCSS",
       "jQuery",
       "Lottie Animation",
