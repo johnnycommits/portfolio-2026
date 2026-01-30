@@ -297,9 +297,7 @@ export default function LinkInBio() {
               products for startups, agencies, and Fortune 500 companies.
             </p>
             <p>
-              I bridge design and engineering, bringing strong UX instincts,
-              AI-accelerated workflows, and execution speed to turn complex
-              ideas into clear, high-impact deliverables.
+              I bridge design and engineering, using modern AI-assisted workflows to move quickly from ideas to polished, production-ready products.
             </p>
           </div>
         </header>
