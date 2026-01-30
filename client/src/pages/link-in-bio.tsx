@@ -488,7 +488,7 @@ export default function LinkInBio() {
                         className="flex items-center justify-between w-full group"
                       >
                         <span className="text-[10px] uppercase tracking-wider font-bold text-[hsl(var(--muted-foreground))] opacity-50">
-                          Technologies
+                          Tools Used
                         </span>
                         {isTechOpen ? (
                           <Minus size={14} className="text-[hsl(var(--muted-foreground))]" />
