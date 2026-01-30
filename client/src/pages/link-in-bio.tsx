@@ -88,7 +88,7 @@ const bentoCards = [
     bgImage: texasGridBentoBg,
     images: [texasGridSlider1],
     technologies: [
-      "Next.js (App Router)",
+      "Next.js",
       "React",
       "Serverless API Routes",
       "ERCOT Public APIs",
