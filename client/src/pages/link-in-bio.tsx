@@ -187,7 +187,7 @@ const bentoCards = [
     title: "KBR Inc.",
     client: "Adcetera Design Group",
     description:
-      "At **Adcetera Design Group**, I was entrusted—just one month after joining the studio—with leading the largest and most complex project to date: a multi-million-dollar, four-month rebuild of **KBR**’s global website. This responsibility was awarded after I quickly demonstrated technical and leadership capability by contributing to Adcetera’s own rebranded website.\n\nI led a delivery team of two junior front-end engineers while working in close partnership with a backend engineer. I owned technical direction and execution, mentored and unblocked junior developers, and ensured the team stayed aligned on scope, quality, and timelines throughout the engagement.\n\nA core contribution was the design and implementation of a flexible, component-based system of reusable content blocks within Drupal. This empowered KBR’s internal teams to independently manage and scale content across the site without developer involvement. I worked closely with backend engineering to ensure seamless CMS integration, performance, and long-term maintainability.\n\nThe project required a significant content migration effort, including the transfer and restructuring of legacy articles, press releases, and enterprise content from KBR’s previous website. I helped plan and execute the migration strategy, ensuring content integrity, proper taxonomy mapping, and minimal disruption to ongoing business operations.\n\nAccessibility was a major focus of the project. I helped drive and implement compliance with **WCAG 2.1 AA** standards across the site, ensuring inclusive experiences through proper semantic markup, keyboard navigation, contrast requirements, and accessible component patterns suitable for a global enterprise audience.\n\nThe project also included a custom Google Maps integration to visualize KBR’s worldwide footprint, supporting a broader brand repositioning from an oil-and-gas services company to a world-class technology leader.\n\nThe award-nominated site increased users year-over-year by **12% within six months of launch**, while boosting **average time on site by 15%**. The work went on to win a **Gold ADDY Award** from the **American Advertising Federation (AAF) Houston**, in a highly competitive year against several of Houston’s top agencies, recognizing the project as **Best B2B Enterprise Website**.\n\nIn addition to the studio recognition, I was personally awarded **Team of Distinction** by Adcetera that year—an internal honor given to new hires who significantly exceed expectations—recognizing my leadership, impact, and contributions across one of the most demanding projects in the company’s portfolio.",
+      "<p>About a month after joining Adcetera, they handed me the biggest project the studio had taken on: a full rebuild of KBR's global website. Four months, multi-million-dollar budget, and a lot riding on it.</p><p>I led a small team—two junior front-end engineers and worked closely with the backend team. My job was to keep things on track, unblock the juniors when they got stuck, and make sure we were building something that would actually scale.</p><p>The big technical piece was designing a flexible component system in Drupal so KBR's team could manage their own content without needing a developer every time they wanted to update a page. Worked with backend developers to make sure the CMS integration was solid and performant.</p><p>We also migrated a ton of legacy content—articles, press releases, all the enterprise stuff from their old site. Had to make sure nothing broke and the taxonomy made sense going forward.</p><p>Accessibility was non-negotiable. We built to WCAG 2.1 AA standards across the board: semantic markup, keyboard navigation, proper contrast, all of it. For a global company like KBR, that wasn't optional.</p><p>One of the more interesting pieces was the custom Google Maps integration for their Locations page. We set it up so users would see a branded map on the right and filterable location cards on the left—kind of like a real estate search interface. The filters would update both the map pins and the cards simultaneously, making it easy to narrow down KBR's global presence by region, service type, or whatever criteria mattered.</p><p>The site performed well after launch—12% increase in users and 15% boost in time on site within six months. It won a Gold ADDY Award from AAF Houston for Best B2B Enterprise Website that year, which was cool since the competition included some of Houston's biggest agencies.</p><p>Adcetera gave me their Team of Distinction award that year, which they give to new hires who go above expectations.</p>",
     subtitle: "Learn more",
     url: "https://www.google.com",
     date: "2019",
@@ -570,21 +570,28 @@ export default function LinkInBio() {
                   </div>
 
                   <div className="prose prose-invert max-w-none pt-2">
-                    <div className="text-sm leading-relaxed text-[hsl(var(--foreground))] opacity-90 space-y-4 whitespace-pre-line">
-                      {selectedProject.description.split("\n\n").map((text: string, i: number) => {
-                        const parts = text.split(/(\*\*.*?\*\*)/g);
-                        return (
-                          <p key={i}>
-                            {parts.map((part, j) => {
-                              if (part.startsWith("**") && part.endsWith("**")) {
-                                return <strong key={j}>{part.slice(2, -2)}</strong>;
-                              }
-                              return part;
-                            })}
-                          </p>
-                        );
-                      })}
-                    </div>
+                    {selectedProject.description.includes('<p>') ? (
+                      <div 
+                        className="text-sm leading-relaxed text-[hsl(var(--foreground))] opacity-90 [&>p]:mb-4 [&>p:last-child]:mb-0"
+                        dangerouslySetInnerHTML={{ __html: selectedProject.description }}
+                      />
+                    ) : (
+                      <div className="text-sm leading-relaxed text-[hsl(var(--foreground))] opacity-90 space-y-4 whitespace-pre-line">
+                        {selectedProject.description.split("\n\n").map((text: string, i: number) => {
+                          const parts = text.split(/(\*\*.*?\*\*)/g);
+                          return (
+                            <p key={i}>
+                              {parts.map((part, j) => {
+                                if (part.startsWith("**") && part.endsWith("**")) {
+                                  return <strong key={j}>{part.slice(2, -2)}</strong>;
+                                }
+                                return part;
+                              })}
+                            </p>
+                          );
+                        })}
+                      </div>
+                    )}
                   </div>
                 </div>
 
