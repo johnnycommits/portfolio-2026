@@ -43,7 +43,7 @@ import absWavesightRoles from "@assets/abs-slider-3_1768946859779.jpg";
 import absWavesightArabic from "@assets/abs-slider-4_1768946859778.jpg";
 import chevronBentoBg from "@/assets/chevron-bento.jpg";
 import eleoxBentoBg from "@/assets/eleox-bento.jpg";
-import texasGridBentoBg from "@/assets/texas-grid-bento.jpg";
+import texasGridBentoBg from "@/assets/texas-grid-bento-2.jpg";
 import texasGridSlider1 from "@/assets/texas-grid-slider-1.jpg";
 import vdproBentoBg from "@/assets/vdpro-bento.jpg";
 import vdproSlider1 from "@/assets/vdpro-slider-1.jpg";
