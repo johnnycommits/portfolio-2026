@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import LinkInBio from "@/pages/link-in-bio";
 import NotFound from "@/pages/not-found";
+import { Analytics } from "@vercel/analytics/next"
 
 function Router() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <TooltipProvider>
         <Toaster />
         <Router />
+        <Analytics />
       </TooltipProvider>
     </QueryClientProvider>
   );
