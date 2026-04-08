@@ -67,8 +67,7 @@ import {
 
 const profile = {
   name: "John Ludena",
-  handle: "@johnnycommits",
-  bio: "Senior Frontend Engineer with 10+ years of experience building and shipping software products for both startups and large businesses. I bridge execution and design, with a sharp eye for UX that turns ideas into clean, user-centered, high-impact products.",
+  bio: "I build workflow-driven React + TypeScript applications, specializing in onboarding flows, configuration UIs, and API-driven SaaS products.",
   avatar: profileImage,
 };
 
@@ -279,7 +278,7 @@ const socials = [
   { icon: Mail, url: "mailto:johnludena@gmail.com", label: "Email" },
   {
     icon: FileText,
-    url: "/John-Ludena-Senior-Frontend-Engineer-Design-Engineer.pdf",
+    url: "/John-Ludena-Frontend-Engineer.pdf",
     label: "Resume",
     download: true,
     rel: "nofollow noopener noreferrer",
@@ -343,23 +342,11 @@ export default function LinkInBio() {
           >
             {profile.name}
           </h1>
-          <p
-            className="text-sm text-[hsl(var(--muted-foreground))] mb-2"
-            data-testid="text-profile-handle"
-          >
-            {profile.handle}
-          </p>
           <div
             className="text-sm text-[hsl(var(--foreground))] leading-relaxed max-w-[500px] mx-auto opacity-90 space-y-3"
             data-testid="text-profile-bio"
           >
-            <p>
-              Senior Frontend Engineer with 10+ years of experience shipping digital
-              products for startups, agencies, and Fortune 500 companies.
-            </p>
-            <p>
-              I bridge design and engineering, using modern AI-assisted workflows to move quickly from ideas to polished, production-ready products.
-            </p>
+            <p>{profile.bio}</p>
           </div>
         </header>
 
