@@ -279,7 +279,7 @@ const socials = [
   { icon: Mail, url: "mailto:johnludena@gmail.com", label: "Email" },
   {
     icon: FileText,
-    url: "/resume.pdf",
+    url: "/John-Ludena-Senior-Frontend-Engineer-Design-Engineer.pdf",
     label: "Resume",
     download: true,
     rel: "nofollow noopener noreferrer",
