@@ -67,7 +67,7 @@ import {
 
 const profile = {
   name: "John Ludena",
-  bio: "I build workflow-driven React + TypeScript applications, specializing in onboarding flows, configuration UIs, and API-driven SaaS products.",
+  bio: "Frontend Engineer with 10+ years of experience building React and TypeScript products across SaaS, energy, ecommerce, and creative agency environments. I focus on accessible, workflow-driven user-interfaces that are intuitive to use and built to hold up in production at scale, with a strong foundation in design systems and UX.",
   avatar: profileImage,
 };
 
