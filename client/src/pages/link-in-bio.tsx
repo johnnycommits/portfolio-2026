@@ -49,6 +49,8 @@ import vdproBentoBg from "@/assets/vdpro-bento.jpg";
 import vdproSlider1 from "@/assets/vdpro-slider-1.jpg";
 import vdproSlider2 from "@/assets/vdpro-slider-2.jpg";
 import vdproSlider3 from "@/assets/vdpro-slider-3.jpg";
+import dumbMapsPlaceholder from "@/assets/placeholders/dumbmaps-placeholder.svg";
+import abcEnergyPlaceholder from "@/assets/placeholders/abc-energy-dashboard-demo-placeholder.svg";
 
 import {
   Dialog,
@@ -73,6 +75,37 @@ const profile = {
 
 const bentoCards = [
   {
+    id: 8,
+    title: "DumbMaps",
+    client: "Placeholder Client",
+    description:
+      "<p>This is placeholder copy for DumbMaps. It is here to show how a featured project tile and modal will look once the real content is added.</p><p>Replace this text with the actual project summary, role, goals, outcomes, and any supporting detail when you are ready.</p>",
+    subtitle: "Placeholder subtitle",
+    cta: "Placeholder CTA",
+    url: "https://example.com",
+    role: "Placeholder role",
+    date: "TBD",
+    featured: true,
+    bgImage: dumbMapsPlaceholder,
+    images: [dumbMapsPlaceholder],
+    technologies: ["Placeholder technology", "Placeholder tool", "Placeholder stack"],
+  },
+  {
+    id: 9,
+    title: "ABC Energy Dashboard Demo",
+    client: "Placeholder Client",
+    description:
+      "<p>This is placeholder copy for ABC Energy Dashboard Demo. It is meant to preview how a non-featured project card and project modal will fit into the layout.</p><p>Swap this out with the real project description, meta information, and outcomes later.</p>",
+    subtitle: "Placeholder subtitle",
+    cta: "Placeholder CTA",
+    url: "https://example.com",
+    role: "Placeholder role",
+    date: "TBD",
+    bgImage: abcEnergyPlaceholder,
+    images: [abcEnergyPlaceholder],
+    technologies: ["Placeholder technology", "Placeholder tool", "Placeholder stack"],
+  },
+  {
     id: 6,
     title: "Texas Grid Status",
     client: "Personal Project",
@@ -83,7 +116,6 @@ const bentoCards = [
     url: "https://www.texasgridstatus.com",
     role: "Product Designer & Engineer",
     date: "2026",
-    featured: true,
     bgImage: texasGridBentoBg,
     images: [texasGridSlider1],
     technologies: [

@@ -1,0 +1,31 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#172033"/>
+      <stop offset="1" stop-color="#2D4664"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="220" y1="160" x2="1380" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6EE7FF" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#FBBF24" stop-opacity="0.18"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" rx="72" fill="url(#bg)"/>
+  <rect x="96" y="96" width="1408" height="708" rx="56" fill="url(#accent)"/>
+  <g opacity="0.16" stroke="#FFFFFF">
+    <path d="M240 190L1360 190"/>
+    <path d="M240 310L1360 310"/>
+    <path d="M240 430L1360 430"/>
+    <path d="M240 550L1360 550"/>
+    <path d="M240 670L1360 670"/>
+    <path d="M360 150L360 750"/>
+    <path d="M560 150L560 750"/>
+    <path d="M760 150L760 750"/>
+    <path d="M960 150L960 750"/>
+    <path d="M1160 150L1160 750"/>
+  </g>
+  <circle cx="1210" cy="250" r="88" fill="#6EE7FF" fill-opacity="0.18"/>
+  <circle cx="1330" cy="610" r="132" fill="#FBBF24" fill-opacity="0.14"/>
+  <text x="160" y="360" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="96" font-weight="700">DumbMaps</text>
+  <text x="160" y="448" fill="#D9E4F2" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="400">Placeholder image for layout preview</text>
+  <text x="160" y="520" fill="#D9E4F2" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="400">Featured project placeholder</text>
+</svg>

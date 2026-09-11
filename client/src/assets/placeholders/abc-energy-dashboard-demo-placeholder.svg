@@ -1,0 +1,29 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="1600" y1="0" x2="0" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1B2A2F"/>
+      <stop offset="1" stop-color="#355B5C"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="240" y1="140" x2="1360" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#34D399" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#F97316" stop-opacity="0.16"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" rx="72" fill="url(#bg)"/>
+  <rect x="104" y="104" width="1392" height="692" rx="48" fill="url(#accent)"/>
+  <g opacity="0.18">
+    <rect x="176" y="192" width="240" height="360" rx="28" fill="#FFFFFF"/>
+    <rect x="452" y="248" width="240" height="304" rx="28" fill="#FFFFFF"/>
+    <rect x="728" y="152" width="240" height="400" rx="28" fill="#FFFFFF"/>
+    <rect x="1004" y="296" width="240" height="256" rx="28" fill="#FFFFFF"/>
+    <rect x="1280" y="228" width="140" height="324" rx="28" fill="#FFFFFF"/>
+  </g>
+  <g opacity="0.16" stroke="#FFFFFF" stroke-width="4">
+    <path d="M160 646H1440"/>
+    <path d="M160 560H1440"/>
+    <path d="M160 474H1440"/>
+    <path d="M160 388H1440"/>
+  </g>
+  <text x="160" y="354" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="82" font-weight="700">Placeholder Project</text>
+  <text x="160" y="434" fill="#E6F0EE" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="400">Non-featured layout preview</text>
+</svg>
