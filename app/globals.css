@@ -91,7 +91,13 @@ button:focus-visible, a:focus-visible, [tabindex="0"]:focus-visible {
 .identity strong { display: block; font-size: 16px; font-weight: 500; letter-spacing: .16em; }
 .identity span, .header-note { color: #aaa; font-size: 9px; letter-spacing: .22em; line-height: 1.7; }
 
-.site-header nav { display: flex; gap: clamp(28px, 4vw, 58px); padding-top: 7px; }
+.site-header nav {
+  display: flex;
+  visibility: hidden;
+  pointer-events: none;
+  gap: clamp(28px, 4vw, 58px);
+  padding-top: 7px;
+}
 .site-header nav a { color: #a6a6a6; text-decoration: none; font-size: 10px; letter-spacing: .23em; transition: color .25s ease; }
 .site-header nav a:hover, .site-header nav .active { color: #fff; }
 .site-header nav .active::after { content: ""; display: block; height: 1px; margin-top: 9px; background: currentColor; }

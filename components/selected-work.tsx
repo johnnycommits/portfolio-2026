@@ -58,7 +58,7 @@ export function SelectedWork() {
       <div className="ambient-light" aria-hidden="true" />
       <header className="site-header">
         <a className="identity" href="#work" aria-label="John Ludena, home">
-          <strong>Johnny Commits</strong>
+          <strong>John Ludena</strong>
           <span>Designer / Engineer / Problem Solver</span>
         </a>
         <nav aria-label="Primary navigation">
