@@ -1,14 +1,25 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import type { Project } from "@/data/projects";
 import { projects } from "@/data/projects";
+import { MuseumGallery } from "./museum-gallery";
 import { ProjectDetail } from "./project-detail";
-import { ProjectExhibit } from "./project-exhibit";
+
+const MuseumThreeScene = dynamic(
+  () => import("./museum-three-scene").then((module) => module.MuseumThreeScene),
+  {
+    ssr: false,
+    loading: () => <span className="museum-stage-loader">Preparing gallery…</span>,
+  },
+);
 
 export function SelectedWork() {
   const [selected, setSelected] = useState<Project | null>(null);
   const [closing, setClosing] = useState(false);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const rowRef = useRef<HTMLDivElement>(null);
   const previousScroll = useRef(0);
 
@@ -55,7 +66,13 @@ export function SelectedWork() {
 
   return (
     <main className={`museum${selected ? " has-selection" : ""}${closing ? " is-closing" : ""}`}>
-      <div className="ambient-light" aria-hidden="true" />
+      <MuseumThreeScene
+        projectIds={projects.map((project) => project.id)}
+        projects={projects}
+        hoveredId={hoveredId}
+        selectedId={selected?.id ?? null}
+        scrollProgress={scrollProgress}
+      />
       <header className="site-header">
         <a className="identity" href="#work" aria-label="John Ludena, home">
           <strong>John Ludena</strong>
@@ -70,14 +87,7 @@ export function SelectedWork() {
         <p className="header-note">Real projects.<br />Real people.<br />A brighter internet.</p>
       </header>
 
-      <section id="work" className="work-section" aria-labelledby="work-title">
-        <div className="work-intro">
-          <span>01</span>
-          <h1 id="work-title">Selected Work</h1>
-          <p className="eyebrow">Real problems. Real people. Real impact.</p>
-          <i aria-hidden="true" />
-          <p>A collection of products, experiences, and explorations built at the intersection<br className="desktop-only" /> of design, engineering, and curiosity.</p>
-        </div>
+      <section id="work" className="work-section" aria-label="Selected work gallery">
 
         {selected && (
           <button className="back-control" type="button" onClick={closeDetail}>
@@ -86,17 +96,14 @@ export function SelectedWork() {
         )}
 
         <div className="gallery-layout">
-          <div className="project-row" ref={rowRef} aria-label="Selected project exhibits">
-            {projects.map((project) => (
-              <ProjectExhibit
-                key={project.id}
-                project={project}
-                selected={selected?.id === project.id}
-                muted={Boolean(selected && selected.id !== project.id)}
-                onSelect={selectProject}
-              />
-            ))}
-          </div>
+          <MuseumGallery
+            projects={projects}
+            selected={selected}
+            rowRef={rowRef}
+            onSelect={selectProject}
+            onHover={setHoveredId}
+            onScrollProgress={setScrollProgress}
+          />
           {selected && <ProjectDetail key={selected.id} project={selected} />}
         </div>
 
