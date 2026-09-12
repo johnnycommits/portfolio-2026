@@ -272,6 +272,30 @@ button:focus-visible, a:focus-visible, [tabindex="0"]:focus-visible {
   box-shadow: inset 0 1px rgba(255,235,213,.18), 0 0 14px rgba(211,145,84,.12);
 }
 
+.artifact-object {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  bottom: calc(7% + var(--base-height));
+  width: var(--artifact-width, 76cqi);
+  height: var(--artifact-height, 68cqi);
+  transform: translate3d(-50%, 0, 0);
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+.artifact-object__image {
+  object-fit: contain;
+  object-position: center bottom;
+  user-select: none;
+  filter: drop-shadow(0 10px 8px rgba(0,0,0,.55)) drop-shadow(0 0 8px rgba(211,145,84,.14));
+}
+.project-exhibit[data-project="loomis-us"] { --artifact-width: 82cqi; --artifact-height: 72cqi; }
+.project-exhibit[data-project="abs-wavesight"] { --artifact-width: 84cqi; --artifact-height: 72cqi; }
+.project-exhibit[data-project="eleox"] { --artifact-width: 75cqi; --artifact-height: 64cqi; }
+.project-exhibit[data-project="pomodoro-champion"] { --artifact-width: 62cqi; --artifact-height: 67cqi; }
+.project-exhibit[data-project="adcetera"] { --artifact-width: 64cqi; --artifact-height: 66cqi; }
+.project-exhibit[data-project="chevron"] { --artifact-width: 82cqi; --artifact-height: 72cqi; }
+
 .glass-cuboid {
   --box-width: var(--stage-width);
   --box-depth: var(--stage-depth);

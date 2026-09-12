@@ -35,7 +35,7 @@ export function ProjectExhibit({ project, selected, muted, onSelect }: ProjectEx
         style={{ "--order": Number(project.index) } as CSSProperties}
       >
         <span className="exhibit-visual">
-          <ExhibitBoxes />
+          <ExhibitBoxes image={project.image} title={project.title} />
         </span>
 
         <span className="exhibit-label">
