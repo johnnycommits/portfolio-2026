@@ -1,9 +1,8 @@
 "use client";
 
 import type { CSSProperties, PointerEvent } from "react";
-import Image from "next/image";
 import type { Project } from "@/data/projects";
-import { GlassCase } from "./glass-case";
+import { ExhibitBoxes } from "./glass-case";
 
 type ProjectExhibitProps = {
   project: Project;
@@ -36,17 +35,7 @@ export function ProjectExhibit({ project, selected, muted, onSelect }: ProjectEx
         style={{ "--order": Number(project.index) } as CSSProperties}
       >
         <span className="exhibit-visual">
-          <span className="artifact-wrap">
-            <Image
-              className="artifact-image"
-              src={project.image}
-              alt={project.alt}
-              fill
-              sizes={selected ? "(max-width: 760px) 100vw, 50vw" : "(max-width: 760px) 78vw, 300px"}
-              preload={project.index === "01"}
-            />
-          </span>
-          <GlassCase />
+          <ExhibitBoxes />
         </span>
 
         <span className="exhibit-label">
