@@ -159,13 +159,16 @@ button:focus-visible, a:focus-visible, [tabindex="0"]:focus-visible {
   position: relative;
   width: 100%;
   aspect-ratio: 4 / 5;
+}
+
+.exhibit-visual--css {
   container-type: inline-size;
   perspective: 840px;
   perspective-origin: 50% 40%;
   filter: drop-shadow(0 24px 20px rgba(0,0,0,.72));
 }
 
-.exhibit-visual::before {
+.exhibit-visual--css::before {
   content: "";
   position: absolute;
   z-index: 1;
@@ -185,9 +188,16 @@ button:focus-visible, a:focus-visible, [tabindex="0"]:focus-visible {
   inset: -4% -9% -2%;
   display: block;
   pointer-events: none;
-  filter: drop-shadow(0 24px 18px rgba(0,0,0,.68));
 }
+.three-exhibit > div { width: 100% !important; height: 100% !important; }
 .three-exhibit canvas { display: block; width: 100% !important; height: 100% !important; }
+
+.exhibit-visual--three {
+  container-type: normal;
+  perspective: none;
+  filter: none;
+  isolation: isolate;
+}
 
 .exhibit-rig {
   --rig-yaw: 0deg;

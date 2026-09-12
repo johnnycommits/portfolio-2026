@@ -172,7 +172,7 @@ export function LoomisThreeExhibit(props: LoomisThreeExhibitProps) {
         shadows
         dpr={[1, 1.5]}
         camera={{ position: [6.4, 4.2, 8.6], fov: 28, near: 0.1, far: 60 }}
-        gl={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
+        gl={{ alpha: true, antialias: true, powerPreference: "default" }}
         onCreated={({ gl }) => {
           gl.outputColorSpace = SRGBColorSpace;
           gl.toneMapping = ACESFilmicToneMapping;

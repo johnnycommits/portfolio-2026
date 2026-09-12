@@ -43,7 +43,11 @@ export function ProjectExhibit({ project, selected, muted, onSelect }: ProjectEx
         tabIndex={muted ? -1 : 0}
         style={{ "--order": Number(project.index) } as CSSProperties}
       >
-        <span className="exhibit-visual">
+        <span
+          className={`exhibit-visual ${
+            project.id === "loomis-us" ? "exhibit-visual--three" : "exhibit-visual--css"
+          }`}
+        >
           {project.id === "loomis-us" ? (
             <LoomisThreeExhibit hovered={hovered} selected={selected} />
           ) : (
