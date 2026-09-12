@@ -2,9 +2,11 @@
 
 import { Component, Suspense, useEffect, useMemo, useRef, type ReactNode } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Edges, Environment, Html, Lightformer, RoundedBox, useGLTF, useProgress, useTexture } from "@react-three/drei";
+import { Edges, Environment, Html, Lightformer, MeshTransmissionMaterial, RoundedBox, useGLTF, useProgress, useTexture } from "@react-three/drei";
 import {
   ACESFilmicToneMapping,
+  AdditiveBlending,
+  CanvasTexture,
   Color,
   DoubleSide,
   Group,
@@ -85,34 +87,111 @@ class ModelBoundary extends Component<{ children: ReactNode }, { failed: boolean
   render() { return this.state.failed ? null : this.props.children; }
 }
 
-function GlassCover({ lifted }: { lifted: boolean }) {
+function createGlassSheenTexture() {
+  const canvas = document.createElement("canvas");
+  canvas.width = 512;
+  canvas.height = 512;
+  const context = canvas.getContext("2d");
+  if (context) {
+    const sheen = context.createLinearGradient(0, 512, 512, 0);
+    sheen.addColorStop(0, "rgba(255,255,255,0)");
+    sheen.addColorStop(0.18, "rgba(255,238,222,0.02)");
+    sheen.addColorStop(0.28, "rgba(255,244,232,0.34)");
+    sheen.addColorStop(0.36, "rgba(255,255,255,0.055)");
+    sheen.addColorStop(0.54, "rgba(255,255,255,0)");
+    sheen.addColorStop(0.69, "rgba(235,180,130,0.14)");
+    sheen.addColorStop(0.78, "rgba(255,255,255,0)");
+    context.fillStyle = sheen;
+    context.fillRect(0, 0, 512, 512);
+  }
+  const texture = new CanvasTexture(canvas);
+  texture.colorSpace = SRGBColorSpace;
+  return texture;
+}
+
+function createGlassGlintTexture() {
+  const canvas = document.createElement("canvas");
+  canvas.width = 128;
+  canvas.height = 128;
+  const context = canvas.getContext("2d");
+  if (context) {
+    const glow = context.createRadialGradient(64, 64, 0, 64, 64, 64);
+    glow.addColorStop(0, "rgba(255,255,255,1)");
+    glow.addColorStop(0.08, "rgba(255,226,194,.95)");
+    glow.addColorStop(0.3, "rgba(232,164,104,.28)");
+    glow.addColorStop(1, "rgba(0,0,0,0)");
+    context.fillStyle = glow;
+    context.fillRect(0, 0, 128, 128);
+  }
+  const texture = new CanvasTexture(canvas);
+  texture.colorSpace = SRGBColorSpace;
+  return texture;
+}
+
+function GlassCover({ lifted, sheenTexture, glintTexture }: {
+  lifted: boolean;
+  sheenTexture: Texture;
+  glintTexture: Texture;
+}) {
   const coverRef = useRef<Group>(null);
   useFrame((_, delta) => {
     if (!coverRef.current) return;
     coverRef.current.position.y = MathUtils.damp(coverRef.current.position.y, lifted ? 4.9 : 0, 3.1, delta);
   });
   return (
-    <group ref={coverRef}>
+    <group name="glass-cover" ref={coverRef}>
       <RoundedBox args={[2.16, 2.54, 1.84]} radius={0.035} smoothness={4} position={[0, 2.57, 0]}>
-        <meshPhysicalMaterial
-          color="#f0e6dc"
-          transmission={0.9}
-          thickness={0.055}
-          roughness={0.045}
-          metalness={0}
+        <MeshTransmissionMaterial
+          transmissionSampler
+          samples={8}
+          color="#f7e9dc"
+          transmission={1}
+          thickness={0.075}
+          roughness={0.018}
           ior={1.47}
-          transparent
-          opacity={0.11}
-          depthWrite={false}
+          chromaticAberration={0.008}
+          anisotropy={0.12}
+          anisotropicBlur={0.06}
+          distortion={0.018}
+          distortionScale={0.05}
           clearcoat={1}
-          clearcoatRoughness={0.045}
-          attenuationColor="#f1d8c1"
-          attenuationDistance={30}
-          envMapIntensity={1.1}
+          clearcoatRoughness={0.008}
+          attenuationColor="#f4d7ba"
+          attenuationDistance={18}
+          envMapIntensity={1.8}
           side={DoubleSide}
         />
-        <Edges threshold={18} color="#e7b27e" opacity={0.42} transparent />
+        <Edges threshold={18} color="#f4c89e" opacity={0.68} transparent />
       </RoundedBox>
+      <mesh name="glass-front-sheen" position={[0, 2.57, 0.926]}>
+        <planeGeometry args={[2.08, 2.46]} />
+        <meshBasicMaterial
+          map={sheenTexture}
+          transparent
+          opacity={0.42}
+          depthWrite={false}
+          toneMapped={false}
+          blending={AdditiveBlending}
+        />
+      </mesh>
+      {[
+        [-1.04, 3.79, 0.95, 0.2],
+        [1.04, 3.79, 0.95, 0.14],
+        [-1.04, 1.34, 0.95, 0.12],
+        [1.04, 1.34, 0.95, 0.17],
+      ].map(([x, y, z, size], index) => (
+        <sprite key={index} position={[x, y, z]} scale={[size, size, 1]}>
+          <spriteMaterial
+            map={glintTexture}
+            color="#ffd3a8"
+            transparent
+            opacity={0.82}
+            depthWrite={false}
+            toneMapped={false}
+            blending={AdditiveBlending}
+          />
+        </sprite>
+      ))}
     </group>
   );
 }
@@ -207,7 +286,7 @@ function SceneExhibitLabel({ title, subtitle, index }: { title: string; subtitle
   );
 }
 
-function Exhibit({ id, index, x, title, subtitle, displayIndex, hovered, selectedId, mobile, texture, bumpTexture }: {
+function Exhibit({ id, index, x, title, subtitle, displayIndex, hovered, selectedId, mobile, texture, bumpTexture, glassSheenTexture, glassGlintTexture }: {
   id: string;
   index: number;
   x: number;
@@ -219,6 +298,8 @@ function Exhibit({ id, index, x, title, subtitle, displayIndex, hovered, selecte
   mobile: boolean;
   texture: Texture;
   bumpTexture: Texture;
+  glassSheenTexture: Texture;
+  glassGlintTexture: Texture;
 }) {
   const groupRef = useRef<Group>(null);
   const { viewport, camera } = useThree();
@@ -238,7 +319,7 @@ function Exhibit({ id, index, x, title, subtitle, displayIndex, hovered, selecte
       {id === "loomis-us" && (
         <ModelBoundary><Suspense fallback={null}><ArmoredTruck hovered={hovered} /></Suspense></ModelBoundary>
       )}
-      <GlassCover lifted={selected} />
+      <GlassCover lifted={selected} sheenTexture={glassSheenTexture} glintTexture={glassGlintTexture} />
       {!selectedId && <SceneExhibitLabel title={title} subtitle={subtitle} index={displayIndex} />}
     </group>
   );
@@ -267,6 +348,8 @@ function MuseumWorld({ projectIds, projects, hoveredId, selectedId, scrollProgre
   const floorBump = useMemo(() => sourceTexture.clone(), [sourceTexture]);
   const pedestalTexture = useMemo(() => sourceTexture.clone(), [sourceTexture]);
   const pedestalBump = useMemo(() => sourceTexture.clone(), [sourceTexture]);
+  const glassSheenTexture = useMemo(createGlassSheenTexture, []);
+  const glassGlintTexture = useMemo(createGlassGlintTexture, []);
 
   useEffect(() => {
     [floorTexture, floorBump, pedestalTexture, pedestalBump].forEach((texture) => {
@@ -287,8 +370,10 @@ function MuseumWorld({ projectIds, projects, hoveredId, selectedId, scrollProgre
       floorBump.dispose();
       pedestalTexture.dispose();
       pedestalBump.dispose();
+      glassSheenTexture.dispose();
+      glassGlintTexture.dispose();
     };
-  }, [floorTexture, floorBump, pedestalTexture, pedestalBump]);
+  }, [floorTexture, floorBump, pedestalTexture, pedestalBump, glassSheenTexture, glassGlintTexture]);
 
   const spacing = mobile ? 2.7 : 2.48;
   const mobileOffset = scrollProgress * spacing * (projectIds.length - 1);
@@ -310,6 +395,9 @@ function MuseumWorld({ projectIds, projects, hoveredId, selectedId, scrollProgre
         <Lightformer intensity={4.2} color="#ffd0a3" position={[0, 8, -2]} scale={[13, 1.2, 1]} />
         <Lightformer intensity={2.4} color="#aec4d1" position={[-10, 3, 2]} rotation-y={Math.PI / 2} scale={[7, 1.5, 1]} />
         <Lightformer intensity={3} color="#d78549" position={[10, 2, 1]} rotation-y={-Math.PI / 2} scale={[6, 1.5, 1]} />
+        <Lightformer intensity={6.5} color="#ffe1c3" position={[0, 5.8, 7.5]} target={[0, 2.4, 0]} scale={[11, 0.16, 1]} />
+        <Lightformer intensity={2.8} color="#fff1e2" position={[-4.2, 3.8, 7]} scale={[0.12, 6.5, 1]} />
+        <Lightformer intensity={2.6} color="#e7b07c" position={[4.5, 3.2, 6.5]} scale={[0.1, 5.2, 1]} />
       </Environment>
       <mesh name="museum-floor" rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.015, 0]} receiveShadow>
         <planeGeometry args={[46, 28]} />
@@ -343,6 +431,8 @@ function MuseumWorld({ projectIds, projects, hoveredId, selectedId, scrollProgre
               mobile={mobile}
               texture={pedestalTexture}
               bumpTexture={pedestalBump}
+              glassSheenTexture={glassSheenTexture}
+              glassGlintTexture={glassGlintTexture}
             />
           );
         })}
