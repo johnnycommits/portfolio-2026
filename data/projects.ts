@@ -16,6 +16,12 @@ export type Project = {
   liveUrl?: string;
   caseStudyUrl?: string;
   gallery: string[];
+  assetCredit?: {
+    title: string;
+    author: string;
+    sourceUrl: string;
+    licenseUrl: string;
+  };
 };
 
 export const projects: Project[] = [
@@ -44,6 +50,12 @@ export const projects: Project[] = [
     techStack: ["Drupal", "Twig", "Bootstrap", "SCSS", "JavaScript", "Webpack"],
     liveUrl: "https://www.loomis.us",
     gallery: ["Component system", "ROI calculator", "Responsive product catalog"],
+    assetCredit: {
+      title: "MD '84 Armored — Low poly model",
+      author: "Daniel Zhabotinsky",
+      sourceUrl: "https://sketchfab.com/3d-models/md-84-armored-low-poly-model-26e809cce40e4359a3199649f12ef295",
+      licenseUrl: "https://creativecommons.org/licenses/by/4.0/",
+    },
   },
   {
     id: "abs-wavesight",

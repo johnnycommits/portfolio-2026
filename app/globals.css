@@ -179,6 +179,16 @@ button:focus-visible, a:focus-visible, [tabindex="0"]:focus-visible {
   pointer-events: none;
 }
 
+.three-exhibit {
+  position: absolute;
+  z-index: 2;
+  inset: -4% -9% -2%;
+  display: block;
+  pointer-events: none;
+  filter: drop-shadow(0 24px 18px rgba(0,0,0,.68));
+}
+.three-exhibit canvas { display: block; width: 100% !important; height: 100% !important; }
+
 .exhibit-rig {
   --rig-yaw: 0deg;
   --rig-roll: 0deg;
@@ -433,6 +443,9 @@ button:focus-visible, a:focus-visible, [tabindex="0"]:focus-visible {
 .detail-actions { display: flex; gap: 16px; }
 .detail-actions a { display: flex; justify-content: space-between; min-width: 150px; padding: 13px 17px; color: #ddd; border: 1px solid #777; text-decoration: none; text-transform: uppercase; letter-spacing: .15em; font-size: 8px; transition: color .25s ease, background .25s ease; }
 .detail-actions a:hover { color: #050505; background: #eee; }
+.asset-credit { margin: 20px 0 0; max-width: 560px; color: #68635d; font-size: 8px; line-height: 1.65; letter-spacing: .05em; }
+.asset-credit a { color: #92867a; text-underline-offset: 2px; }
+.asset-credit a:hover { color: #c9b6a2; }
 
 .has-selection .site-header .identity, .has-selection .site-header nav, .has-selection .site-header .header-note { opacity: 0; pointer-events: none; transition: opacity .3s ease; }
 .has-selection .work-section { padding-top: 0; }

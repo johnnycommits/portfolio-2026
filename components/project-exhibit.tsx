@@ -1,8 +1,14 @@
 "use client";
 
-import type { CSSProperties, PointerEvent } from "react";
+import dynamic from "next/dynamic";
+import { useState, type CSSProperties, type PointerEvent } from "react";
 import type { Project } from "@/data/projects";
 import { ExhibitBoxes } from "./glass-case";
+
+const LoomisThreeExhibit = dynamic(
+  () => import("./loomis-three-exhibit").then((module) => module.LoomisThreeExhibit),
+  { ssr: false },
+);
 
 type ProjectExhibitProps = {
   project: Project;
@@ -12,6 +18,7 @@ type ProjectExhibitProps = {
 };
 
 export function ProjectExhibit({ project, selected, muted, onSelect }: ProjectExhibitProps) {
+  const [hovered, setHovered] = useState(false);
   const moveHighlight = (event: PointerEvent<HTMLButtonElement>) => {
     const bounds = event.currentTarget.getBoundingClientRect();
     event.currentTarget.style.setProperty("--pointer-x", `${event.clientX - bounds.left}px`);
@@ -29,13 +36,19 @@ export function ProjectExhibit({ project, selected, muted, onSelect }: ProjectEx
         className="exhibit-trigger"
         onClick={() => onSelect(project)}
         onPointerMove={moveHighlight}
+        onPointerEnter={() => setHovered(true)}
+        onPointerLeave={() => setHovered(false)}
         disabled={selected}
         aria-label={selected ? `${project.title} selected` : `Examine ${project.title}`}
         tabIndex={muted ? -1 : 0}
         style={{ "--order": Number(project.index) } as CSSProperties}
       >
         <span className="exhibit-visual">
-          <ExhibitBoxes image={project.image} title={project.title} />
+          {project.id === "loomis-us" ? (
+            <LoomisThreeExhibit hovered={hovered} selected={selected} />
+          ) : (
+            <ExhibitBoxes image={project.image} title={project.title} />
+          )}
         </span>
 
         <span className="exhibit-label">

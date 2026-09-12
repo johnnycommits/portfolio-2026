@@ -33,6 +33,14 @@ export function ProjectDetail({ project }: { project: Project }) {
             <a href={project.caseStudyUrl}>View case study <span aria-hidden="true">→</span></a>
           )}
         </div>
+        {project.assetCredit && (
+          <p className="asset-credit">
+            3D model: <a href={project.assetCredit.sourceUrl} target="_blank" rel="noreferrer">{project.assetCredit.title}</a>
+            {" by "}{project.assetCredit.author}{", "}
+            <a href={project.assetCredit.licenseUrl} target="_blank" rel="noreferrer">CC BY 4.0</a>.
+            Material and presentation modified for this exhibit.
+          </p>
+        )}
       </div>
     </aside>
   );
