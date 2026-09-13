@@ -108,6 +108,12 @@ export const projects: Project[] = [
     techStack: ["React", "Redux", "React Query", "Tailwind", "SCSS", "Cypress", "Sketch"],
     liveUrl: "https://www.eleox.com",
     gallery: ["OxNom workflows", "Interactive prototypes", "Rebranded design system"],
+    assetCredit: {
+      title: "Ox",
+      author: "VIMUNE",
+      sourceUrl: "https://sketchfab.com/3d-models/ox-24d2fa58691c4d9aa45a9247107032f9",
+      licenseUrl: "https://creativecommons.org/licenses/by/4.0/",
+    },
   },
   {
     id: "pomodoro-champion",

@@ -2,17 +2,16 @@
 
 import { Suspense, useEffect, useMemo, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { ContactShadows, Edges, useGLTF } from "@react-three/drei";
+import { ContactShadows, Edges, Environment, Lightformer, useGLTF } from "@react-three/drei";
 import {
   ACESFilmicToneMapping,
-  Color,
   Group,
   MathUtils,
   Mesh,
-  MeshPhysicalMaterial,
   Object3D,
   SRGBColorSpace,
 } from "three";
+import { metallicExhibitMaterialFor } from "./exhibit-metal-material";
 
 type LoomisThreeExhibitProps = {
   hovered: boolean;
@@ -21,22 +20,6 @@ type LoomisThreeExhibitProps = {
 
 const MODEL_PATH = "/models/loomis/md84-armored-bronze.glb";
 
-function bronzeMaterialFor(mesh: Mesh) {
-  const source = Array.isArray(mesh.material) ? mesh.material[0] : mesh.material;
-  const identity = `${mesh.name} ${source?.name ?? ""}`.toLowerCase();
-  const isTire = /tire|tyre|rubber|wheel/.test(identity);
-  const isGlass = /glass|window|windscreen/.test(identity);
-  const isLight = /light|lamp|head/.test(identity);
-
-  return new MeshPhysicalMaterial({
-    color: new Color(isTire ? "#211713" : isGlass ? "#513326" : isLight ? "#f0b16b" : "#b56d35"),
-    metalness: isTire ? 0.4 : 0.84,
-    roughness: isTire ? 0.58 : isGlass ? 0.18 : 0.32,
-    clearcoat: isGlass || isLight ? 0.8 : 0.28,
-    clearcoatRoughness: 0.18,
-  });
-}
-
 function ArmoredTruck({ hovered }: { hovered: boolean }) {
   const { scene } = useGLTF(MODEL_PATH);
   const truckRef = useRef<Group>(null);
@@ -44,7 +27,7 @@ function ArmoredTruck({ hovered }: { hovered: boolean }) {
     const clone = scene.clone(true);
     clone.traverse((object: Object3D) => {
       if (!(object instanceof Mesh)) return;
-      object.material = bronzeMaterialFor(object);
+      object.material = metallicExhibitMaterialFor(object);
       object.castShadow = true;
       object.receiveShadow = true;
     });
@@ -135,6 +118,12 @@ function ExhibitScene({ hovered, selected }: LoomisThreeExhibitProps) {
       />
       <spotLight position={[5, 4, -3]} intensity={125} angle={0.55} penumbra={0.9} color="#8da8bd" />
       <pointLight position={[0, -0.15, 2.8]} intensity={28} color="#d88945" />
+      <Environment resolution={128}>
+        <Lightformer intensity={5.5} color="#fff1e5" position={[-4.5, 3.2, 4]} scale={[0.16, 5.5, 1]} />
+        <Lightformer intensity={4.2} color="#d6e2e8" position={[4.8, 2.8, 2]} rotation-y={-Math.PI / 2} scale={[5, 0.7, 1]} />
+        <Lightformer intensity={6.4} color="#ffc28c" position={[0, 6.5, 3]} scale={[8, 0.2, 1]} />
+        <Lightformer intensity={3.6} color="#c77b43" position={[4.2, 1.2, 4]} scale={[0.12, 3.8, 1]} />
+      </Environment>
 
       <group rotation={[0, -0.16, 0]} position={[0, -0.42, 0]}>
         <mesh position={[0, -1.02, 0]} receiveShadow castShadow>

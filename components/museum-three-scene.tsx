@@ -7,7 +7,6 @@ import {
   ACESFilmicToneMapping,
   AdditiveBlending,
   CanvasTexture,
-  Color,
   DoubleSide,
   type DepthTexture,
   Group,
@@ -22,6 +21,7 @@ import {
   SpotLight as ThreeSpotLight,
   type Texture,
 } from "three";
+import { metallicExhibitMaterialFor } from "./exhibit-metal-material";
 
 type MuseumThreeSceneProps = {
   projectIds: string[];
@@ -32,23 +32,8 @@ type MuseumThreeSceneProps = {
 };
 
 const MODEL_PATH = "/models/loomis/md84-armored-bronze.glb";
+const OX_MODEL_PATH = "/models/eleox/ox-bronze.glb?v=smooth-300k";
 const FLOOR_TEXTURE_PATH = "/textures/dark-polished-concrete.png";
-
-function bronzeMaterialFor(mesh: Mesh) {
-  const source = Array.isArray(mesh.material) ? mesh.material[0] : mesh.material;
-  const identity = `${mesh.name} ${source?.name ?? ""}`.toLowerCase();
-  const isTire = /tire|tyre|rubber|wheel/.test(identity);
-  const isGlass = /glass|window|windscreen/.test(identity);
-  const isLight = /light|lamp|head/.test(identity);
-  return new MeshPhysicalMaterial({
-    color: new Color(isTire ? "#171310" : isGlass ? "#382922" : isLight ? "#f0b16b" : "#9d6034"),
-    metalness: isTire ? 0.34 : 0.86,
-    roughness: isTire ? 0.62 : isGlass ? 0.2 : 0.29,
-    clearcoat: isGlass || isLight ? 0.9 : 0.34,
-    clearcoatRoughness: 0.16,
-    envMapIntensity: 1.25,
-  });
-}
 
 function ArmoredTruck({ hovered }: { hovered: boolean }) {
   const { scene } = useGLTF(MODEL_PATH);
@@ -57,7 +42,7 @@ function ArmoredTruck({ hovered }: { hovered: boolean }) {
     const clone = scene.clone(true);
     clone.traverse((object: Object3D) => {
       if (!(object instanceof Mesh)) return;
-      object.material = bronzeMaterialFor(object);
+      object.material = metallicExhibitMaterialFor(object);
       object.castShadow = true;
       object.receiveShadow = true;
     });
@@ -81,10 +66,58 @@ function ArmoredTruck({ hovered }: { hovered: boolean }) {
   return <group ref={truckRef}><primitive object={sculpture} scale={0.36} position={[0.18, 2.15, 0.3]} /></group>;
 }
 
+function OxSculpture({ hovered }: { hovered: boolean }) {
+  const { scene } = useGLTF(OX_MODEL_PATH);
+  const oxRef = useRef<Group>(null);
+  const sculpture = useMemo(() => {
+    const clone = scene.clone(true);
+    clone.traverse((object: Object3D) => {
+      if (!(object instanceof Mesh)) return;
+      object.material = new MeshPhysicalMaterial({
+        color: "#25211f",
+        metalness: 0.88,
+        roughness: 0.34,
+        clearcoat: 0.14,
+        clearcoatRoughness: 0.3,
+        envMapIntensity: 1.15,
+        side: DoubleSide,
+      });
+      object.castShadow = true;
+      object.receiveShadow = true;
+    });
+    return clone;
+  }, [scene]);
+
+  useEffect(() => () => {
+    sculpture.traverse((object: Object3D) => {
+      if (!(object instanceof Mesh)) return;
+      const materials = Array.isArray(object.material) ? object.material : [object.material];
+      materials.forEach((material) => material.dispose());
+    });
+  }, [sculpture]);
+
+  useFrame((_, delta) => {
+    if (!oxRef.current) return;
+    oxRef.current.rotation.y = MathUtils.damp(
+      oxRef.current.rotation.y,
+      hovered ? Math.PI / 2 - 0.24 : Math.PI / 2 + 0.07,
+      4.2,
+      delta,
+    );
+    oxRef.current.position.y = MathUtils.damp(oxRef.current.position.y, hovered ? 0.71 : 0.65, 5, delta);
+  });
+
+  return (
+    <group ref={oxRef} position={[0.03, 0.65, -0.13]} rotation={[0, Math.PI / 2 + 0.07, 0]}>
+      <primitive object={sculpture} scale={0.145} />
+    </group>
+  );
+}
+
 class ModelBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
   state = { failed: false };
   static getDerivedStateFromError() { return { failed: true }; }
-  componentDidCatch(error: Error) { console.error("Unable to render the Loomis 3D model", error); }
+  componentDidCatch(error: Error) { console.error("Unable to render the exhibit 3D model", error); }
   render() { return this.state.failed ? null : this.props.children; }
 }
 
@@ -248,7 +281,7 @@ function GlobalSpotlight({ name, source, target, depthBuffer }: {
         angle={0.5}
         penumbra={0.96}
         decay={2}
-        color="#ffc28a"
+        color="#ffdec2"
         volumetric
         depthBuffer={depthBuffer}
         opacity={0.145}
@@ -328,6 +361,9 @@ function Exhibit({ id, index, x, title, subtitle, displayIndex, hovered, selecte
       {id === "loomis-us" && (
         <ModelBoundary><Suspense fallback={null}><ArmoredTruck hovered={hovered} /></Suspense></ModelBoundary>
       )}
+      {id === "eleox" && (
+        <ModelBoundary><Suspense fallback={null}><OxSculpture hovered={hovered} /></Suspense></ModelBoundary>
+      )}
       <GlassCover lifted={selected} sheenTexture={glassSheenTexture} glintTexture={glassGlintTexture} />
       {!selectedId && <SceneExhibitLabel title={title} subtitle={subtitle} index={displayIndex} />}
     </group>
@@ -398,14 +434,14 @@ function MuseumWorld({ projectIds, projects, hoveredId, selectedId, scrollProgre
       </mesh>
       <ambientLight name="museum-fill" intensity={0.28} color="#9d8a78" />
       <hemisphereLight name="ceiling-fill" args={["#bba995", "#160d08", 0.46]} />
-      <directionalLight name="front-fill" position={[0, 5.5, 10]} intensity={0.52} color="#b58f70" />
+      <directionalLight name="front-fill" position={[0, 5.5, 10]} intensity={0.58} color="#c9bbb0" />
       <GlobalSpotlight name="left-overhead-spot" source={[-5.4, 10.8, 4.8]} target={[-3.25, 0.15, 1.65]} depthBuffer={depthBuffer} />
       <GlobalSpotlight name="right-overhead-spot" source={[5.4, 10.8, 4.8]} target={[3.25, 0.15, 1.65]} depthBuffer={depthBuffer} />
       <Environment resolution={192}>
-        <Lightformer intensity={4.2} color="#ffd0a3" position={[0, 8, -2]} scale={[13, 1.2, 1]} />
+        <Lightformer intensity={4.2} color="#ffe2c9" position={[0, 8, -2]} scale={[13, 1.2, 1]} />
         <Lightformer intensity={2.4} color="#aec4d1" position={[-10, 3, 2]} rotation-y={Math.PI / 2} scale={[7, 1.5, 1]} />
-        <Lightformer intensity={3} color="#d78549" position={[10, 2, 1]} rotation-y={-Math.PI / 2} scale={[6, 1.5, 1]} />
-        <Lightformer intensity={6.5} color="#ffe1c3" position={[0, 5.8, 7.5]} target={[0, 2.4, 0]} scale={[11, 0.16, 1]} />
+        <Lightformer intensity={3} color="#dca26f" position={[10, 2, 1]} rotation-y={-Math.PI / 2} scale={[6, 1.5, 1]} />
+        <Lightformer intensity={6.5} color="#fff0e1" position={[0, 5.8, 7.5]} target={[0, 2.4, 0]} scale={[11, 0.16, 1]} />
         <Lightformer intensity={2.8} color="#fff1e2" position={[-4.2, 3.8, 7]} scale={[0.12, 6.5, 1]} />
         <Lightformer intensity={2.6} color="#e7b07c" position={[4.5, 3.2, 6.5]} scale={[0.1, 5.2, 1]} />
       </Environment>
@@ -483,4 +519,5 @@ export function MuseumThreeScene(props: MuseumThreeSceneProps) {
 }
 
 useGLTF.preload(MODEL_PATH);
+useGLTF.preload(OX_MODEL_PATH);
 useTexture.preload(FLOOR_TEXTURE_PATH);

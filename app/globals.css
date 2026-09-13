@@ -253,6 +253,7 @@ button:focus-visible, a:focus-visible, [tabindex="0"]:focus-visible {
 .asset-credit a { color: #92867a; text-underline-offset: 2px; }
 .asset-credit a:hover { color: #c9b6a2; }
 
+.has-selection .site-header { pointer-events: none; }
 .has-selection .site-header .identity, .has-selection .site-header nav, .has-selection .site-header .header-note { opacity: 0; pointer-events: none; transition: opacity .3s ease; }
 .has-selection .work-section { padding-top: 0; }
 .has-selection .gallery-layout { min-height: calc(100svh - 104px); }
