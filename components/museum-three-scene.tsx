@@ -2,13 +2,14 @@
 
 import { Component, Suspense, useEffect, useMemo, useRef, type ReactNode } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Edges, Environment, Html, Lightformer, MeshTransmissionMaterial, RoundedBox, useGLTF, useProgress, useTexture } from "@react-three/drei";
+import { Edges, Environment, Html, Lightformer, MeshTransmissionMaterial, RoundedBox, SpotLight as VolumetricSpotLight, useDepthBuffer, useGLTF, useProgress, useTexture } from "@react-three/drei";
 import {
   ACESFilmicToneMapping,
   AdditiveBlending,
   CanvasTexture,
   Color,
   DoubleSide,
+  type DepthTexture,
   Group,
   MathUtils,
   Mesh,
@@ -221,10 +222,11 @@ function Pedestal({ texture, bumpTexture }: { texture: Texture; bumpTexture: Tex
   );
 }
 
-function GlobalSpotlight({ name, source, target }: {
+function GlobalSpotlight({ name, source, target, depthBuffer }: {
   name: string;
   source: [number, number, number];
   target: [number, number, number];
+  depthBuffer: DepthTexture;
 }) {
   const lightRef = useRef<ThreeSpotLight>(null);
   const targetObject = useMemo(() => {
@@ -236,17 +238,24 @@ function GlobalSpotlight({ name, source, target }: {
 
   return (
     <>
-      <spotLight
+      <VolumetricSpotLight
         name={name}
         ref={lightRef}
         target={targetObject}
         position={source}
-        intensity={2200}
-        distance={28}
+        intensity={2380}
+        distance={15}
         angle={0.5}
         penumbra={0.96}
         decay={2}
         color="#ffc28a"
+        volumetric
+        depthBuffer={depthBuffer}
+        opacity={0.145}
+        attenuation={20}
+        anglePower={3.6}
+        radiusTop={0.08}
+        radiusBottom={3.15}
         castShadow
         shadow-mapSize-width={2048}
         shadow-mapSize-height={2048}
@@ -343,6 +352,7 @@ function CameraRig({ selectedId }: { selectedId: string | null }) {
 function MuseumWorld({ projectIds, projects, hoveredId, selectedId, scrollProgress }: MuseumThreeSceneProps) {
   const { size } = useThree();
   const mobile = size.width <= 900;
+  const depthBuffer = useDepthBuffer({ size: mobile ? 256 : 512, frames: Infinity });
   const sourceTexture = useTexture(FLOOR_TEXTURE_PATH);
   const floorTexture = useMemo(() => sourceTexture.clone(), [sourceTexture]);
   const floorBump = useMemo(() => sourceTexture.clone(), [sourceTexture]);
@@ -389,8 +399,8 @@ function MuseumWorld({ projectIds, projects, hoveredId, selectedId, scrollProgre
       <ambientLight name="museum-fill" intensity={0.28} color="#9d8a78" />
       <hemisphereLight name="ceiling-fill" args={["#bba995", "#160d08", 0.46]} />
       <directionalLight name="front-fill" position={[0, 5.5, 10]} intensity={0.52} color="#b58f70" />
-      <GlobalSpotlight name="left-overhead-spot" source={[-5.4, 10.8, 4.8]} target={[-3.25, 0.15, 1.65]} />
-      <GlobalSpotlight name="right-overhead-spot" source={[5.4, 10.8, 4.8]} target={[3.25, 0.15, 1.65]} />
+      <GlobalSpotlight name="left-overhead-spot" source={[-5.4, 10.8, 4.8]} target={[-3.25, 0.15, 1.65]} depthBuffer={depthBuffer} />
+      <GlobalSpotlight name="right-overhead-spot" source={[5.4, 10.8, 4.8]} target={[3.25, 0.15, 1.65]} depthBuffer={depthBuffer} />
       <Environment resolution={192}>
         <Lightformer intensity={4.2} color="#ffd0a3" position={[0, 8, -2]} scale={[13, 1.2, 1]} />
         <Lightformer intensity={2.4} color="#aec4d1" position={[-10, 3, 2]} rotation-y={Math.PI / 2} scale={[7, 1.5, 1]} />
