@@ -19,6 +19,7 @@ export function SelectedWork() {
   const [selected, setSelected] = useState<Project | null>(null);
   const [closing, setClosing] = useState(false);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [rotationResetToken, setRotationResetToken] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
   const rowRef = useRef<HTMLDivElement>(null);
   const previousScroll = useRef(0);
@@ -29,6 +30,8 @@ export function SelectedWork() {
   const selectProject = (project: Project) => {
     if (selected || closing) return;
     previousScroll.current = rowRef.current?.scrollLeft ?? 0;
+    setHoveredId(null);
+    setRotationResetToken((token) => token + 1);
     setSelected(project);
     window.history.replaceState(null, "", `#${project.id}`);
     requestAnimationFrame(() =>
@@ -39,6 +42,8 @@ export function SelectedWork() {
   const closeDetail = () => {
     if (!selected || closing) return;
     const selectedId = selected?.id;
+    setHoveredId(null);
+    setRotationResetToken((token) => token + 1);
     setClosing(true);
     window.history.replaceState(null, "", "#work");
     window.setTimeout(() => {
@@ -71,6 +76,7 @@ export function SelectedWork() {
         projects={projects}
         hoveredId={hoveredId}
         selectedId={selected?.id ?? null}
+        rotationResetToken={rotationResetToken}
         scrollProgress={scrollProgress}
       />
       <header className="site-header">

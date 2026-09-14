@@ -188,6 +188,7 @@ button:focus-visible, a:focus-visible, [tabindex="0"]:focus-visible {
   pointer-events: auto;
 }
 .exhibit-trigger:disabled { cursor: default; }
+.exhibit-trigger--detail { cursor: default; }
 
 .scroll-cue { width: min(330px, 70vw); margin: 20px auto 0; text-align: center; transition: opacity .35s ease; }
 .scroll-cue > span { display: block; height: 1px; background: rgba(255,255,255,.45); }

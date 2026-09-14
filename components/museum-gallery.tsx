@@ -1,6 +1,6 @@
 "use client";
 
-import type { CSSProperties, RefObject, UIEvent } from "react";
+import type { CSSProperties, PointerEvent, RefObject, UIEvent } from "react";
 import type { Project } from "@/data/projects";
 
 type MuseumGalleryProps = {
@@ -32,6 +32,14 @@ export function MuseumGallery({
     const maximum = row.scrollWidth - row.clientWidth;
     onScrollProgress(maximum > 0 ? row.scrollLeft / maximum : 0);
   };
+  const beginDesktopHover = (event: PointerEvent<HTMLElement>, projectId: string) => {
+    if (
+      event.pointerType === "mouse" &&
+      window.matchMedia("(min-width: 901px) and (hover: hover) and (pointer: fine)").matches
+    ) {
+      onHover(projectId);
+    }
+  };
 
   return (
     <div className="project-row" ref={rowRef} onScroll={reportScroll} aria-label="Selected project exhibits">
@@ -43,16 +51,23 @@ export function MuseumGallery({
               className={`project-exhibit${selected ? " is-selected" : ""}`}
               data-project={project.id}
             >
-              <button
-                type="button"
-                className="exhibit-trigger"
-                onClick={() => onSelect(project)}
-                onPointerEnter={() => onHover(project.id)}
-                onPointerLeave={() => onHover(null)}
-                disabled={Boolean(selected)}
-                aria-label={selected ? `${project.title} selected` : `Examine ${project.title}`}
-              >
-              </button>
+              {selected ? (
+                <div
+                  className="exhibit-trigger exhibit-trigger--detail"
+                  onPointerEnter={(event) => beginDesktopHover(event, project.id)}
+                  onPointerLeave={() => onHover(null)}
+                  aria-hidden="true"
+                />
+              ) : (
+                <button
+                  type="button"
+                  className="exhibit-trigger"
+                  onClick={() => onSelect(project)}
+                  onPointerEnter={(event) => beginDesktopHover(event, project.id)}
+                  onPointerLeave={() => onHover(null)}
+                  aria-label={`Examine ${project.title}`}
+                />
+              )}
             </article>
           ))}
         </div>

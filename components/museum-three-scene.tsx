@@ -1,6 +1,6 @@
 "use client";
 
-import { Component, Suspense, useEffect, useMemo, useRef, type ReactNode } from "react";
+import { Component, Suspense, useEffect, useMemo, useRef, useState, type ReactNode, type RefObject } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Edges, Environment, Html, Lightformer, MeshTransmissionMaterial, RoundedBox, SpotLight as VolumetricSpotLight, useDepthBuffer, useGLTF, useProgress, useTexture } from "@react-three/drei";
 import {
@@ -29,6 +29,7 @@ type MuseumThreeSceneProps = {
   projects: Array<{ id: string; title: string; subtitle: string; index: string }>;
   hoveredId: string | null;
   selectedId: string | null;
+  rotationResetToken: number;
   scrollProgress: number;
 };
 
@@ -37,8 +38,90 @@ const OX_MODEL_PATH = "/models/eleox/ox-bronze.glb?v=smooth-300k";
 const HARD_HAT_MODEL_PATH = "/models/chevron/safety-helmet.glb";
 const ANVIL_MODEL_PATH = "/models/champion-labs/anvil.glb";
 const FLOOR_TEXTURE_PATH = "/textures/dark-polished-concrete.png";
+const TURNTABLE_RADIANS_PER_SECOND = (Math.PI * 2) / 18;
 
-function ArmoredTruck({ hovered }: { hovered: boolean }) {
+function nearestEquivalentAngle(current: number, displayAngle: number) {
+  return current + MathUtils.euclideanModulo(displayAngle - current + Math.PI, Math.PI * 2) - Math.PI;
+}
+
+function usePrefersReducedMotion() {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePreference = () => setPrefersReducedMotion(query.matches);
+    updatePreference();
+    query.addEventListener("change", updatePreference);
+    return () => query.removeEventListener("change", updatePreference);
+  }, []);
+
+  return prefersReducedMotion;
+}
+
+function useTurntableMotion({
+  groupRef,
+  rotating,
+  resetToken,
+  displayAngle,
+  restingY,
+  hoveredY,
+  reduceMotion,
+}: {
+  groupRef: RefObject<Group | null>;
+  rotating: boolean;
+  resetToken: number;
+  displayAngle: number;
+  restingY: number;
+  hoveredY: number;
+  reduceMotion: boolean;
+}) {
+  const previousResetToken = useRef(resetToken);
+  const resetTarget = useRef(displayAngle);
+  const resetting = useRef(false);
+
+  useEffect(() => {
+    if (previousResetToken.current === resetToken) return;
+    previousResetToken.current = resetToken;
+    if (!groupRef.current) return;
+    resetTarget.current = nearestEquivalentAngle(groupRef.current.rotation.y, displayAngle);
+    resetting.current = true;
+  }, [displayAngle, groupRef, resetToken]);
+
+  useFrame((_, delta) => {
+    const group = groupRef.current;
+    if (!group) return;
+
+    if (resetting.current) {
+      if (reduceMotion) {
+        group.rotation.y = resetTarget.current;
+        resetting.current = false;
+      } else {
+        group.rotation.y = MathUtils.damp(group.rotation.y, resetTarget.current, 5.2, delta);
+        if (Math.abs(group.rotation.y - resetTarget.current) < 0.001) {
+          group.rotation.y = resetTarget.current;
+          resetting.current = false;
+        }
+      }
+    } else if (rotating && !reduceMotion) {
+      group.rotation.y += TURNTABLE_RADIANS_PER_SECOND * Math.min(delta, 0.05);
+    }
+
+    group.position.y = MathUtils.damp(
+      group.position.y,
+      rotating && !reduceMotion ? hoveredY : restingY,
+      5,
+      delta,
+    );
+  });
+}
+
+type SculptureInteractionProps = {
+  rotating: boolean;
+  resetToken: number;
+  reduceMotion: boolean;
+};
+
+function ArmoredTruck({ rotating, resetToken, reduceMotion }: SculptureInteractionProps) {
   const { scene } = useGLTF(MODEL_PATH);
   const truckRef = useRef<Group>(null);
   const sculpture = useMemo(() => {
@@ -60,16 +143,20 @@ function ArmoredTruck({ hovered }: { hovered: boolean }) {
     });
   }, [sculpture]);
 
-  useFrame((_, delta) => {
-    if (!truckRef.current) return;
-    truckRef.current.rotation.y = MathUtils.damp(truckRef.current.rotation.y, hovered ? -0.24 : 0.07, 4.5, delta);
-    truckRef.current.position.y = MathUtils.damp(truckRef.current.position.y, hovered ? 0.08 : 0, 5, delta);
+  useTurntableMotion({
+    groupRef: truckRef,
+    rotating,
+    resetToken,
+    displayAngle: 0.07,
+    restingY: 0,
+    hoveredY: 0.08,
+    reduceMotion,
   });
 
   return <group ref={truckRef}><primitive object={sculpture} scale={0.36} position={[0.18, 2.15, 0.3]} /></group>;
 }
 
-function OxSculpture({ hovered }: { hovered: boolean }) {
+function OxSculpture({ rotating, resetToken, reduceMotion }: SculptureInteractionProps) {
   const { scene } = useGLTF(OX_MODEL_PATH);
   const oxRef = useRef<Group>(null);
   const sculpture = useMemo(() => {
@@ -99,15 +186,14 @@ function OxSculpture({ hovered }: { hovered: boolean }) {
     });
   }, [sculpture]);
 
-  useFrame((_, delta) => {
-    if (!oxRef.current) return;
-    oxRef.current.rotation.y = MathUtils.damp(
-      oxRef.current.rotation.y,
-      hovered ? Math.PI / 2 - 0.24 : Math.PI / 2 + 0.07,
-      4.2,
-      delta,
-    );
-    oxRef.current.position.y = MathUtils.damp(oxRef.current.position.y, hovered ? 0.71 : 0.65, 5, delta);
+  useTurntableMotion({
+    groupRef: oxRef,
+    rotating,
+    resetToken,
+    displayAngle: Math.PI / 2 + 0.07,
+    restingY: 0.65,
+    hoveredY: 0.71,
+    reduceMotion,
   });
 
   return (
@@ -117,7 +203,7 @@ function OxSculpture({ hovered }: { hovered: boolean }) {
   );
 }
 
-function HardHatSculpture({ hovered }: { hovered: boolean }) {
+function HardHatSculpture({ rotating, resetToken, reduceMotion }: SculptureInteractionProps) {
   const { scene } = useGLTF(HARD_HAT_MODEL_PATH);
   const helmetRef = useRef<Group>(null);
   const sculpture = useMemo(() => {
@@ -147,10 +233,14 @@ function HardHatSculpture({ hovered }: { hovered: boolean }) {
     });
   }, [sculpture]);
 
-  useFrame((_, delta) => {
-    if (!helmetRef.current) return;
-    helmetRef.current.rotation.y = MathUtils.damp(helmetRef.current.rotation.y, hovered ? -0.54 : -0.36, 4.4, delta);
-    helmetRef.current.position.y = MathUtils.damp(helmetRef.current.position.y, hovered ? 1.64 : 1.57, 5, delta);
+  useTurntableMotion({
+    groupRef: helmetRef,
+    rotating,
+    resetToken,
+    displayAngle: -0.36,
+    restingY: 1.57,
+    hoveredY: 1.64,
+    reduceMotion,
   });
 
   return (
@@ -160,7 +250,7 @@ function HardHatSculpture({ hovered }: { hovered: boolean }) {
   );
 }
 
-function ChampionAnvil({ hovered }: { hovered: boolean }) {
+function ChampionAnvil({ rotating, resetToken, reduceMotion }: SculptureInteractionProps) {
   const { scene } = useGLTF(ANVIL_MODEL_PATH);
   const anvilRef = useRef<Group>(null);
   const sculpture = useMemo(() => {
@@ -190,15 +280,14 @@ function ChampionAnvil({ hovered }: { hovered: boolean }) {
     });
   }, [sculpture]);
 
-  useFrame((_, delta) => {
-    if (!anvilRef.current) return;
-    anvilRef.current.rotation.y = MathUtils.damp(
-      anvilRef.current.rotation.y,
-      hovered ? Math.PI / 2 - 0.18 : Math.PI / 2 + 0.08,
-      4.4,
-      delta,
-    );
-    anvilRef.current.position.y = MathUtils.damp(anvilRef.current.position.y, hovered ? 1.39 : 1.31, 5, delta);
+  useTurntableMotion({
+    groupRef: anvilRef,
+    rotating,
+    resetToken,
+    displayAngle: Math.PI / 2 + 0.08,
+    restingY: 1.31,
+    hoveredY: 1.39,
+    reduceMotion,
   });
 
   return (
@@ -208,7 +297,7 @@ function ChampionAnvil({ hovered }: { hovered: boolean }) {
   );
 }
 
-function AdceteraMark({ hovered }: { hovered: boolean }) {
+function AdceteraMark({ rotating, resetToken, reduceMotion }: SculptureInteractionProps) {
   const markRef = useRef<Group>(null);
   const shape = useMemo(() => {
     const mark = new Shape();
@@ -234,10 +323,14 @@ function AdceteraMark({ hovered }: { hovered: boolean }) {
     [],
   );
 
-  useFrame((_, delta) => {
-    if (!markRef.current) return;
-    markRef.current.rotation.y = MathUtils.damp(markRef.current.rotation.y, hovered ? -0.2 : 0.08, 4.4, delta);
-    markRef.current.position.y = MathUtils.damp(markRef.current.position.y, hovered ? 1.44 : 1.36, 5, delta);
+  useTurntableMotion({
+    groupRef: markRef,
+    rotating,
+    resetToken,
+    displayAngle: 0.08,
+    restingY: 1.36,
+    hoveredY: 1.44,
+    reduceMotion,
   });
 
   return (
@@ -474,7 +567,7 @@ function SceneExhibitLabel({ title, subtitle, index }: { title: string; subtitle
   );
 }
 
-function Exhibit({ id, index, projectCount, x, title, subtitle, displayIndex, hovered, selectedId, mobile, texture, bumpTexture, glassSheenTexture, glassGlintTexture }: {
+function Exhibit({ id, index, projectCount, x, title, subtitle, displayIndex, hovered, selectedId, mobile, reduceMotion, rotationResetToken, texture, bumpTexture, glassSheenTexture, glassGlintTexture }: {
   id: string;
   index: number;
   projectCount: number;
@@ -485,6 +578,8 @@ function Exhibit({ id, index, projectCount, x, title, subtitle, displayIndex, ho
   hovered: boolean;
   selectedId: string | null;
   mobile: boolean;
+  reduceMotion: boolean;
+  rotationResetToken: number;
   texture: Texture;
   bumpTexture: Texture;
   glassSheenTexture: Texture;
@@ -493,6 +588,7 @@ function Exhibit({ id, index, projectCount, x, title, subtitle, displayIndex, ho
   const groupRef = useRef<Group>(null);
   const { viewport, camera } = useThree();
   const selected = selectedId === id;
+  const rotating = hovered && !mobile;
   useFrame((_, delta) => {
     if (!groupRef.current) return;
     const currentViewport = viewport.getCurrentViewport(camera, [0, 2, 0]);
@@ -506,17 +602,17 @@ function Exhibit({ id, index, projectCount, x, title, subtitle, displayIndex, ho
     <group name={`exhibit-${id}`} ref={groupRef} position={[x, 0, 0]} rotation={[0, yaw, 0]}>
       <Pedestal texture={texture} bumpTexture={bumpTexture} />
       {(!selectedId || selected) && id === "champion-labs" && (
-        <ModelBoundary><Suspense fallback={null}><ChampionAnvil hovered={hovered} /></Suspense></ModelBoundary>
+        <ModelBoundary><Suspense fallback={null}><ChampionAnvil rotating={rotating} resetToken={rotationResetToken} reduceMotion={reduceMotion} /></Suspense></ModelBoundary>
       )}
       {(!selectedId || selected) && id === "loomis-us" && (
-        <ModelBoundary><Suspense fallback={null}><ArmoredTruck hovered={hovered} /></Suspense></ModelBoundary>
+        <ModelBoundary><Suspense fallback={null}><ArmoredTruck rotating={rotating} resetToken={rotationResetToken} reduceMotion={reduceMotion} /></Suspense></ModelBoundary>
       )}
       {(!selectedId || selected) && id === "eleox" && (
-        <ModelBoundary><Suspense fallback={null}><OxSculpture hovered={hovered} /></Suspense></ModelBoundary>
+        <ModelBoundary><Suspense fallback={null}><OxSculpture rotating={rotating} resetToken={rotationResetToken} reduceMotion={reduceMotion} /></Suspense></ModelBoundary>
       )}
-      {(!selectedId || selected) && id === "adcetera" && <AdceteraMark hovered={hovered} />}
+      {(!selectedId || selected) && id === "adcetera" && <AdceteraMark rotating={rotating} resetToken={rotationResetToken} reduceMotion={reduceMotion} />}
       {(!selectedId || selected) && id === "chevron" && (
-        <ModelBoundary><Suspense fallback={null}><HardHatSculpture hovered={hovered} /></Suspense></ModelBoundary>
+        <ModelBoundary><Suspense fallback={null}><HardHatSculpture rotating={rotating} resetToken={rotationResetToken} reduceMotion={reduceMotion} /></Suspense></ModelBoundary>
       )}
       <GlassCover lifted={selected} sheenTexture={glassSheenTexture} glintTexture={glassGlintTexture} />
       {!selectedId && <SceneExhibitLabel title={title} subtitle={subtitle} index={displayIndex} />}
@@ -539,9 +635,10 @@ function CameraRig({ selectedId }: { selectedId: string | null }) {
   return null;
 }
 
-function MuseumWorld({ projectIds, projects, hoveredId, selectedId, scrollProgress }: MuseumThreeSceneProps) {
+function MuseumWorld({ projectIds, projects, hoveredId, selectedId, rotationResetToken, scrollProgress }: MuseumThreeSceneProps) {
   const { size } = useThree();
   const mobile = size.width <= 900;
+  const reduceMotion = usePrefersReducedMotion();
   const depthBuffer = useDepthBuffer({ size: mobile ? 256 : 512, frames: Infinity });
   const sourceTexture = useTexture(FLOOR_TEXTURE_PATH);
   const floorTexture = useMemo(() => sourceTexture.clone(), [sourceTexture]);
@@ -630,6 +727,8 @@ function MuseumWorld({ projectIds, projects, hoveredId, selectedId, scrollProgre
               hovered={hoveredId === id}
               selectedId={selectedId}
               mobile={mobile}
+              reduceMotion={reduceMotion}
+              rotationResetToken={rotationResetToken}
               texture={pedestalTexture}
               bumpTexture={pedestalBump}
               glassSheenTexture={glassSheenTexture}
