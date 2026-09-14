@@ -334,7 +334,7 @@ function AdceteraMark({ rotating, resetToken, reduceMotion }: SculptureInteracti
   });
 
   return (
-    <group ref={markRef} position={[0, 1.36, 0]} rotation={[0, 0.08, 0]}>
+    <group ref={markRef} position={[0, 1.36, 0]} rotation={[0, 0.08, 0]} scale={0.42}>
       <mesh position={[0, 0, -0.24]} castShadow receiveShadow>
         <extrudeGeometry args={[shape, extrudeSettings]} />
         <meshPhysicalMaterial
@@ -413,7 +413,7 @@ function GlassCover({ lifted, sheenTexture, glintTexture }: {
   });
   return (
     <group name="glass-cover" ref={coverRef}>
-      <RoundedBox args={[2.16, 2.54, 1.84]} radius={0.035} smoothness={4} position={[0, 2.57, 0]}>
+      <RoundedBox args={[2.16, 1.4, 1.84]} radius={0.035} smoothness={4} position={[0, 2.01, 0]}>
         <MeshTransmissionMaterial
           transmissionSampler
           samples={8}
@@ -436,8 +436,8 @@ function GlassCover({ lifted, sheenTexture, glintTexture }: {
         />
         <Edges threshold={18} color="#f4c89e" opacity={0.68} transparent />
       </RoundedBox>
-      <mesh name="glass-front-sheen" position={[0, 2.57, 0.926]}>
-        <planeGeometry args={[2.08, 2.46]} />
+      <mesh name="glass-front-sheen" position={[0, 2.01, 0.926]}>
+        <planeGeometry args={[2.08, 1.32]} />
         <meshBasicMaterial
           map={sheenTexture}
           transparent
@@ -448,8 +448,8 @@ function GlassCover({ lifted, sheenTexture, glintTexture }: {
         />
       </mesh>
       {[
-        [-1.04, 3.79, 0.95, 0.2],
-        [1.04, 3.79, 0.95, 0.14],
+        [-1.04, 2.66, 0.95, 0.2],
+        [1.04, 2.66, 0.95, 0.14],
         [-1.04, 1.34, 0.95, 0.12],
         [1.04, 1.34, 0.95, 0.17],
       ].map(([x, y, z, size], index) => (
@@ -539,9 +539,10 @@ function GlobalSpotlight({ name, source, target, depthBuffer }: {
   );
 }
 
-function SceneIntroduction() {
+function SceneIntroduction({ mobile }: { mobile: boolean }) {
+  const anchoredY = mobile ? 5.1 : 4.3;
   return (
-    <Html center position={[0, 5.7, 0]} zIndexRange={[20, 20]} style={{ pointerEvents: "none" }}>
+    <Html center position={[0, anchoredY, 0]} zIndexRange={[20, 20]} style={{ pointerEvents: "none" }}>
       <section className="scene-work-intro" aria-labelledby="selected-work-title">
         <span aria-hidden="true">01</span>
         <h1 id="selected-work-title">Selected Work</h1>
@@ -627,9 +628,12 @@ function CameraRig({ selectedId }: { selectedId: string | null }) {
     const mobile = size.width <= 900;
     const targetZ = mobile ? (selectedId ? 8.6 : 9.5) : (selectedId ? 10.2 : 18.5);
     const targetY = mobile ? 1.75 : 1.85;
+    const lookAtY = mobile
+      ? (selectedId ? 3.05 : 2.45)
+      : (selectedId ? 3.35 : 1.95);
     perspectiveCamera.position.z = MathUtils.damp(perspectiveCamera.position.z, targetZ, 3.2, delta);
     perspectiveCamera.position.y = MathUtils.damp(perspectiveCamera.position.y, targetY, 3.2, delta);
-    perspectiveCamera.lookAt(0, mobile ? 3.05 : 3.35, 0);
+    perspectiveCamera.lookAt(0, lookAtY, 0);
     perspectiveCamera.updateProjectionMatrix();
   });
   return null;
@@ -677,7 +681,7 @@ function MuseumWorld({ projectIds, projects, hoveredId, selectedId, rotationRese
   return (
     <>
       <CameraRig selectedId={selectedId} />
-      {!selectedId && <SceneIntroduction />}
+      {!selectedId && <SceneIntroduction mobile={mobile} />}
       <fog attach="fog" args={["#030303", 15, 34]} />
       <mesh name="museum-back-wall" position={[0, 5.1, -5]} receiveShadow>
         <planeGeometry args={[44, 16]} />

@@ -187,6 +187,9 @@ button:focus-visible, a:focus-visible, [tabindex="0"]:focus-visible {
   display: block;
   pointer-events: auto;
 }
+.museum:not(.has-selection) .exhibit-trigger {
+  bottom: calc(clamp(30px, 5svh, 64px) + 16svh);
+}
 .exhibit-trigger:disabled { cursor: default; }
 .exhibit-trigger--detail { cursor: default; }
 
@@ -295,6 +298,7 @@ button:focus-visible, a:focus-visible, [tabindex="0"]:focus-visible {
     width: 92%;
     height: clamp(330px, 54svh, 520px);
   }
+  .museum:not(.has-selection) .exhibit-trigger { bottom: 12svh; }
   .has-selection { overflow-y: auto; }
   .has-selection .site-header { height: 70px; }
   .has-selection .gallery-layout { display: block; }
