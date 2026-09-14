@@ -120,7 +120,7 @@ button:focus-visible, a:focus-visible, [tabindex="0"]:focus-visible {
 .museum-stage-track {
   position: relative;
   width: 100%;
-  min-width: 1398px;
+  min-width: 100%;
   height: calc(100svh - 152px);
   isolation: isolate;
 }
@@ -153,10 +153,14 @@ button:focus-visible, a:focus-visible, [tabindex="0"]:focus-visible {
 .museum-stage-hotspots {
   position: absolute;
   z-index: 2;
-  inset: 0;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: min(100%, var(--desktop-hotspot-width));
+  transform: translateX(-50%);
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: clamp(18px, 1.45vw, 28px);
+  grid-template-columns: repeat(var(--exhibit-count), minmax(0, 1fr));
+  pointer-events: none;
 }
 
 .project-exhibit {
@@ -168,8 +172,12 @@ button:focus-visible, a:focus-visible, [tabindex="0"]:focus-visible {
 }
 
 .exhibit-trigger {
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  left: 50%;
+  bottom: clamp(30px, 5svh, 64px);
+  width: min(88%, 22svh);
+  height: clamp(250px, 38svh, 470px);
+  transform: translateX(-50%);
   padding: 0;
   border: 0;
   color: inherit;
@@ -177,7 +185,7 @@ button:focus-visible, a:focus-visible, [tabindex="0"]:focus-visible {
   text-align: left;
   cursor: pointer;
   display: block;
-  position: relative;
+  pointer-events: auto;
 }
 .exhibit-trigger:disabled { cursor: default; }
 
@@ -274,6 +282,18 @@ button:focus-visible, a:focus-visible, [tabindex="0"]:focus-visible {
   .site-header nav a:nth-child(2), .site-header nav a:nth-child(3) { display: none; }
   .work-section { min-height: calc(100svh - 92px); }
   .project-row { padding-inline: 15vw; }
+  .museum-stage-track { min-width: var(--mobile-track-width); }
+  .museum-stage-hotspots {
+    left: 0;
+    width: 100%;
+    transform: none;
+    gap: 18px;
+  }
+  .exhibit-trigger {
+    bottom: 0;
+    width: 92%;
+    height: clamp(330px, 54svh, 520px);
+  }
   .has-selection { overflow-y: auto; }
   .has-selection .site-header { height: 70px; }
   .has-selection .gallery-layout { display: block; }
@@ -295,8 +315,6 @@ button:focus-visible, a:focus-visible, [tabindex="0"]:focus-visible {
   .scene-work-intro > p:last-child { max-width: 84vw; font-size: 10px; }
   .scene-intro-wide-break { display: none; }
   .project-row { padding-inline: 12vw; }
-  .museum-stage-track { min-width: calc(456vw + 90px); }
-  .museum-stage-hotspots { gap: 18px; }
   .has-selection .museum-stage-track { min-width: 0; }
   .overview-grid { grid-template-columns: 1fr; }
   .tech-stack { padding: 20px 0 0; border-left: 0; border-top: 1px solid var(--hairline); }

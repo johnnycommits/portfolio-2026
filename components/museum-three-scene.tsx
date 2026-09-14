@@ -17,6 +17,7 @@ import {
   Object3D,
   PerspectiveCamera,
   RepeatWrapping,
+  Shape,
   SRGBColorSpace,
   SpotLight as ThreeSpotLight,
   type Texture,
@@ -33,6 +34,7 @@ type MuseumThreeSceneProps = {
 
 const MODEL_PATH = "/models/loomis/md84-armored-bronze.glb";
 const OX_MODEL_PATH = "/models/eleox/ox-bronze.glb?v=smooth-300k";
+const HARD_HAT_MODEL_PATH = "/models/chevron/safety-helmet.glb";
 const FLOOR_TEXTURE_PATH = "/textures/dark-polished-concrete.png";
 
 function ArmoredTruck({ hovered }: { hovered: boolean }) {
@@ -110,6 +112,101 @@ function OxSculpture({ hovered }: { hovered: boolean }) {
   return (
     <group ref={oxRef} position={[0.03, 0.65, -0.13]} rotation={[0, Math.PI / 2 + 0.07, 0]}>
       <primitive object={sculpture} scale={0.145} />
+    </group>
+  );
+}
+
+function HardHatSculpture({ hovered }: { hovered: boolean }) {
+  const { scene } = useGLTF(HARD_HAT_MODEL_PATH);
+  const helmetRef = useRef<Group>(null);
+  const sculpture = useMemo(() => {
+    const clone = scene.clone(true);
+    clone.traverse((object: Object3D) => {
+      if (!(object instanceof Mesh)) return;
+      object.material = new MeshPhysicalMaterial({
+        color: "#463c36",
+        metalness: 0.92,
+        roughness: 0.28,
+        clearcoat: 0.2,
+        clearcoatRoughness: 0.22,
+        envMapIntensity: 1.9,
+        side: DoubleSide,
+      });
+      object.castShadow = true;
+      object.receiveShadow = true;
+    });
+    return clone;
+  }, [scene]);
+
+  useEffect(() => () => {
+    sculpture.traverse((object: Object3D) => {
+      if (!(object instanceof Mesh)) return;
+      const materials = Array.isArray(object.material) ? object.material : [object.material];
+      materials.forEach((material) => material.dispose());
+    });
+  }, [sculpture]);
+
+  useFrame((_, delta) => {
+    if (!helmetRef.current) return;
+    helmetRef.current.rotation.y = MathUtils.damp(helmetRef.current.rotation.y, hovered ? -0.54 : -0.36, 4.4, delta);
+    helmetRef.current.position.y = MathUtils.damp(helmetRef.current.position.y, hovered ? 1.64 : 1.57, 5, delta);
+  });
+
+  return (
+    <group ref={helmetRef} position={[0.02, 1.57, 0.03]} rotation={[0, -0.36, 0]}>
+      <primitive object={sculpture} scale={0.58} />
+    </group>
+  );
+}
+
+function AdceteraMark({ hovered }: { hovered: boolean }) {
+  const markRef = useRef<Group>(null);
+  const shape = useMemo(() => {
+    const mark = new Shape();
+    mark.moveTo(0, 1.92);
+    mark.lineTo(0.86, 0);
+    mark.lineTo(0.49, 0);
+    mark.lineTo(0, 1.12);
+    mark.lineTo(-0.49, 0);
+    mark.lineTo(-0.86, 0);
+    mark.closePath();
+    return mark;
+  }, []);
+  const extrudeSettings = useMemo(
+    () => ({
+      depth: 0.48,
+      bevelEnabled: true,
+      bevelThickness: 0.045,
+      bevelSize: 0.035,
+      bevelSegments: 5,
+      curveSegments: 1,
+      steps: 1,
+    }),
+    [],
+  );
+
+  useFrame((_, delta) => {
+    if (!markRef.current) return;
+    markRef.current.rotation.y = MathUtils.damp(markRef.current.rotation.y, hovered ? -0.2 : 0.08, 4.4, delta);
+    markRef.current.position.y = MathUtils.damp(markRef.current.position.y, hovered ? 1.44 : 1.36, 5, delta);
+  });
+
+  return (
+    <group ref={markRef} position={[0, 1.36, 0]} rotation={[0, 0.08, 0]}>
+      <mesh position={[0, 0, -0.24]} castShadow receiveShadow>
+        <extrudeGeometry args={[shape, extrudeSettings]} />
+        <meshPhysicalMaterial
+          color="#575553"
+          metalness={0.97}
+          roughness={0.17}
+          anisotropy={0.48}
+          anisotropyRotation={Math.PI / 2}
+          clearcoat={0.1}
+          clearcoatRoughness={0.16}
+          envMapIntensity={2.25}
+        />
+        <Edges threshold={24} color="#b7906d" opacity={0.3} transparent />
+      </mesh>
     </group>
   );
 }
@@ -328,9 +425,10 @@ function SceneExhibitLabel({ title, subtitle, index }: { title: string; subtitle
   );
 }
 
-function Exhibit({ id, index, x, title, subtitle, displayIndex, hovered, selectedId, mobile, texture, bumpTexture, glassSheenTexture, glassGlintTexture }: {
+function Exhibit({ id, index, projectCount, x, title, subtitle, displayIndex, hovered, selectedId, mobile, texture, bumpTexture, glassSheenTexture, glassGlintTexture }: {
   id: string;
   index: number;
+  projectCount: number;
   x: number;
   title: string;
   subtitle: string;
@@ -354,15 +452,19 @@ function Exhibit({ id, index, x, title, subtitle, displayIndex, hovered, selecte
     groupRef.current.position.x = MathUtils.damp(groupRef.current.position.x, destination, 3.3, delta);
     groupRef.current.scale.setScalar(MathUtils.damp(groupRef.current.scale.x, selected ? 1.14 : 1, 3.3, delta));
   });
-  const yaw = selectedId ? 0 : MathUtils.degToRad((index - 2.5) * 0.95);
+  const yaw = selectedId ? 0 : MathUtils.degToRad((index - (projectCount - 1) / 2) * 0.95);
   return (
     <group name={`exhibit-${id}`} ref={groupRef} position={[x, 0, 0]} rotation={[0, yaw, 0]}>
       <Pedestal texture={texture} bumpTexture={bumpTexture} />
-      {id === "loomis-us" && (
+      {(!selectedId || selected) && id === "loomis-us" && (
         <ModelBoundary><Suspense fallback={null}><ArmoredTruck hovered={hovered} /></Suspense></ModelBoundary>
       )}
-      {id === "eleox" && (
+      {(!selectedId || selected) && id === "eleox" && (
         <ModelBoundary><Suspense fallback={null}><OxSculpture hovered={hovered} /></Suspense></ModelBoundary>
+      )}
+      {(!selectedId || selected) && id === "adcetera" && <AdceteraMark hovered={hovered} />}
+      {(!selectedId || selected) && id === "chevron" && (
+        <ModelBoundary><Suspense fallback={null}><HardHatSculpture hovered={hovered} /></Suspense></ModelBoundary>
       )}
       <GlassCover lifted={selected} sheenTexture={glassSheenTexture} glintTexture={glassGlintTexture} />
       {!selectedId && <SceneExhibitLabel title={title} subtitle={subtitle} index={displayIndex} />}
@@ -468,6 +570,7 @@ function MuseumWorld({ projectIds, projects, hoveredId, selectedId, scrollProgre
               key={id}
               id={id}
               index={index}
+              projectCount={projectIds.length}
               x={x}
               title={project?.title ?? id}
               subtitle={project?.subtitle ?? ""}
@@ -520,4 +623,5 @@ export function MuseumThreeScene(props: MuseumThreeSceneProps) {
 
 useGLTF.preload(MODEL_PATH);
 useGLTF.preload(OX_MODEL_PATH);
+useGLTF.preload(HARD_HAT_MODEL_PATH);
 useTexture.preload(FLOOR_TEXTURE_PATH);

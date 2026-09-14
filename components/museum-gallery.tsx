@@ -1,6 +1,6 @@
 "use client";
 
-import type { RefObject, UIEvent } from "react";
+import type { CSSProperties, RefObject, UIEvent } from "react";
 import type { Project } from "@/data/projects";
 
 type MuseumGalleryProps = {
@@ -21,6 +21,12 @@ export function MuseumGallery({
   onScrollProgress,
 }: MuseumGalleryProps) {
   const visibleProjects = selected ? [selected] : projects;
+  const exhibitCount = visibleProjects.length;
+  const trackStyle = {
+    "--exhibit-count": exhibitCount,
+    "--desktop-hotspot-width": `${exhibitCount * 26.8}svh`,
+    "--mobile-track-width": `calc(${exhibitCount * 76}vw + ${Math.max(0, exhibitCount - 1) * 18}px)`,
+  } as CSSProperties;
   const reportScroll = (event: UIEvent<HTMLDivElement>) => {
     const row = event.currentTarget;
     const maximum = row.scrollWidth - row.clientWidth;
@@ -29,7 +35,7 @@ export function MuseumGallery({
 
   return (
     <div className="project-row" ref={rowRef} onScroll={reportScroll} aria-label="Selected project exhibits">
-      <div className={`museum-stage-track${selected ? " is-focused" : ""}`}>
+      <div className={`museum-stage-track${selected ? " is-focused" : ""}`} style={trackStyle}>
         <div className="museum-stage-hotspots">
           {visibleProjects.map((project) => (
             <article

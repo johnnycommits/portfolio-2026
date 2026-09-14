@@ -25,67 +25,92 @@ export type Project = {
 };
 
 export const projects: Project[] = [
-  {
-    id: "loomis-us",
+  // {
+  //   id: "loomis-us",
+  //   index: "01",
+  //   title: "Loomis US",
+  //   subtitle: "Product Design + Frontend",
+  //   image: "/images/artifacts/loomis-us-object.png",
+  //   alt: "Miniature black and silver armored security truck on a black stone plinth",
+  //   role: "Senior Front-End Developer",
+  //   year: "2021",
+  //   tagline: "Modernizing security for a complex world",
+  //   description:
+  //     "Loomis needed a complete website rebuild on a demanding eight-week timeline. I worked on a three-person delivery team to create a scalable, accessible platform for its services, product catalog, and customer tools.",
+  //   process:
+  //     "We built a reusable component system in Drupal Layout Builder so the content team could assemble and maintain pages without developer support. I partnered closely with backend engineering on CMS integration and reliable data handling.",
+  //   impact:
+  //     "The team delivered the full rebuild on time and on budget, including a custom ROI calculator that helped small businesses understand the value of Loomis services and qualify leads.",
+  //   contributions: [
+  //     "Built a scalable Drupal component system",
+  //     "Delivered the complete rebuild in eight weeks",
+  //     "Developed the custom ROI calculator",
+  //     "Implemented accessible, responsive interfaces",
+  //   ],
+  //   techStack: ["Drupal", "Twig", "Bootstrap", "SCSS", "JavaScript", "Webpack"],
+  //   liveUrl: "https://www.loomis.us",
+  //   gallery: ["Component system", "ROI calculator", "Responsive product catalog"],
+  //   assetCredit: {
+  //     title: "MD '84 Armored — Low poly model",
+  //     author: "Daniel Zhabotinsky",
+  //     sourceUrl: "https://sketchfab.com/3d-models/md-84-armored-low-poly-model-26e809cce40e4359a3199649f12ef295",
+  //     licenseUrl: "https://creativecommons.org/licenses/by/4.0/",
+  //   },
+  // },
+  // {
+  //   id: "abs-wavesight",
+  //   index: "02",
+  //   title: "ABS Wavesight",
+  //   subtitle: "Product Design + Engineering",
+  //   image: "/images/artifacts/abs-wavesight-object.png",
+  //   alt: "Miniature commercial maritime work vessel on a black stone plinth",
+  //   role: "Front-End Co-Lead",
+  //   year: "2023",
+  //   tagline: "Maritime intelligence, translated clearly",
+  //   description:
+  //     "ABS Wavesight needed a modern, data-driven site with the technical credibility expected by maritime and offshore audiences. I was one of two front-end co-leads working closely with UX, visual design, and motion teams.",
+  //   process:
+  //     "We built the experience in Drupal with Acquia Site Studio, combining flexible visual authoring with custom HTML, SCSS, jQuery, Lottie, and front-end architecture. The most exacting work was adapting the angular design system and animation language for full Arabic RTL support.",
+  //   impact:
+  //     "The resulting platform gave editors faster iteration while preserving the brand's motion, performance, multilingual requirements, and accessibility across a technically complex global site.",
+  //   contributions: [
+  //     "Co-led front-end delivery and sprint planning",
+  //     "Built reusable Acquia Site Studio components",
+  //     "Implemented full right-to-left language support",
+  //     "Integrated custom motion and Lottie sequences",
+  //   ],
+  //   techStack: ["Drupal", "Acquia", "SCSS", "jQuery", "Lottie", "Webpack"],
+  //   liveUrl: "https://www.abswavesight.com/",
+  //   gallery: ["Global homepage", "Product portfolio", "Arabic RTL experience"],
+  // },
+    {
+    id: "champion-labs",
     index: "01",
-    title: "Loomis US",
-    subtitle: "Product Design + Frontend",
-    image: "/images/artifacts/loomis-us-object.png",
-    alt: "Miniature black and silver armored security truck on a black stone plinth",
-    role: "Senior Front-End Developer",
-    year: "2021",
-    tagline: "Modernizing security for a complex world",
+    title: "Champion Labs",
+    subtitle: "Independent Product",
+    image: "/images/artifacts/pomodoro-champion-object.png",
+    alt: "Premium black and silver mechanical stopwatch on a black stone plinth",
+    role: "Product Designer & Engineer",
+    year: "2026",
+    tagline: "A quieter way to protect focused time",
     description:
-      "Loomis needed a complete website rebuild on a demanding eight-week timeline. I worked on a three-person delivery team to create a scalable, accessible platform for its services, product catalog, and customer tools.",
+      "An independent product exploration centered on making focused work feel direct, calm, and rewarding. The experience reduces the timer to its essential states and keeps progress legible without visual noise.",
     process:
-      "We built a reusable component system in Drupal Layout Builder so the content team could assemble and maintain pages without developer support. I partnered closely with backend engineering on CMS integration and reliable data handling.",
+      "The concept is shaped around fast setup, clear session states, keyboard-friendly controls, and a visual system that can remain present without competing for attention.",
     impact:
-      "The team delivered the full rebuild on time and on budget, including a custom ROI calculator that helped small businesses understand the value of Loomis services and qualify leads.",
+      "The project serves as a focused study in interaction rhythm, restrained feedback, and building a small utility with the finish of a considered product.",
     contributions: [
-      "Built a scalable Drupal component system",
-      "Delivered the complete rebuild in eight weeks",
-      "Developed the custom ROI calculator",
-      "Implemented accessible, responsive interfaces",
+      "Defined the product interaction model",
+      "Designed focused and rest states",
+      "Created an accessible keyboard flow",
+      "Built a restrained responsive interface",
     ],
-    techStack: ["Drupal", "Twig", "Bootstrap", "SCSS", "JavaScript", "Webpack"],
-    liveUrl: "https://www.loomis.us",
-    gallery: ["Component system", "ROI calculator", "Responsive product catalog"],
-    assetCredit: {
-      title: "MD '84 Armored — Low poly model",
-      author: "Daniel Zhabotinsky",
-      sourceUrl: "https://sketchfab.com/3d-models/md-84-armored-low-poly-model-26e809cce40e4359a3199649f12ef295",
-      licenseUrl: "https://creativecommons.org/licenses/by/4.0/",
-    },
-  },
-  {
-    id: "abs-wavesight",
-    index: "02",
-    title: "ABS Wavesight",
-    subtitle: "Product Design + Engineering",
-    image: "/images/artifacts/abs-wavesight-object.png",
-    alt: "Miniature commercial maritime work vessel on a black stone plinth",
-    role: "Front-End Co-Lead",
-    year: "2023",
-    tagline: "Maritime intelligence, translated clearly",
-    description:
-      "ABS Wavesight needed a modern, data-driven site with the technical credibility expected by maritime and offshore audiences. I was one of two front-end co-leads working closely with UX, visual design, and motion teams.",
-    process:
-      "We built the experience in Drupal with Acquia Site Studio, combining flexible visual authoring with custom HTML, SCSS, jQuery, Lottie, and front-end architecture. The most exacting work was adapting the angular design system and animation language for full Arabic RTL support.",
-    impact:
-      "The resulting platform gave editors faster iteration while preserving the brand's motion, performance, multilingual requirements, and accessibility across a technically complex global site.",
-    contributions: [
-      "Co-led front-end delivery and sprint planning",
-      "Built reusable Acquia Site Studio components",
-      "Implemented full right-to-left language support",
-      "Integrated custom motion and Lottie sequences",
-    ],
-    techStack: ["Drupal", "Acquia", "SCSS", "jQuery", "Lottie", "Webpack"],
-    liveUrl: "https://www.abswavesight.com/",
-    gallery: ["Global homepage", "Product portfolio", "Arabic RTL experience"],
+    techStack: ["Next.js", "React", "TypeScript", "Product Design"],
+    gallery: ["Focus state", "Session controls", "Responsive timer"],
   },
   {
     id: "eleox",
-    index: "03",
+    index: "02",
     title: "Eleox",
     subtitle: "Product Design + UX",
     image: "/images/artifacts/eleox-object.png",
@@ -116,33 +141,8 @@ export const projects: Project[] = [
     },
   },
   {
-    id: "pomodoro-champion",
-    index: "04",
-    title: "Pomodoro Champion",
-    subtitle: "Independent Product",
-    image: "/images/artifacts/pomodoro-champion-object.png",
-    alt: "Premium black and silver mechanical stopwatch on a black stone plinth",
-    role: "Product Designer & Engineer",
-    year: "2026",
-    tagline: "A quieter way to protect focused time",
-    description:
-      "An independent product exploration centered on making focused work feel direct, calm, and rewarding. The experience reduces the timer to its essential states and keeps progress legible without visual noise.",
-    process:
-      "The concept is shaped around fast setup, clear session states, keyboard-friendly controls, and a visual system that can remain present without competing for attention.",
-    impact:
-      "The project serves as a focused study in interaction rhythm, restrained feedback, and building a small utility with the finish of a considered product.",
-    contributions: [
-      "Defined the product interaction model",
-      "Designed focused and rest states",
-      "Created an accessible keyboard flow",
-      "Built a restrained responsive interface",
-    ],
-    techStack: ["Next.js", "React", "TypeScript", "Product Design"],
-    gallery: ["Focus state", "Session controls", "Responsive timer"],
-  },
-  {
     id: "adcetera",
-    index: "05",
+    index: "03",
     title: "Adcetera",
     subtitle: "Brand + Web",
     image: "/images/artifacts/adcetera-object.png",
@@ -168,7 +168,7 @@ export const projects: Project[] = [
   },
   {
     id: "chevron",
-    index: "06",
+    index: "04",
     title: "Chevron",
     subtitle: "Enterprise UX",
     image: "/images/artifacts/chevron-object.png",
