@@ -89,7 +89,7 @@ export const projects: Project[] = [
     title: "Champion Labs",
     subtitle: "Independent Product",
     image: "/images/artifacts/pomodoro-champion-object.png",
-    alt: "Premium black and silver mechanical stopwatch on a black stone plinth",
+    alt: "Dark metallic blacksmith anvil displayed on a black stone plinth",
     role: "Product Designer & Engineer",
     year: "2026",
     tagline: "A quieter way to protect focused time",
@@ -107,6 +107,12 @@ export const projects: Project[] = [
     ],
     techStack: ["Next.js", "React", "TypeScript", "Product Design"],
     gallery: ["Focus state", "Session controls", "Responsive timer"],
+    assetCredit: {
+      title: "Blacksmith Anvil (game ready asset)",
+      author: "Aparicio Silva 3D",
+      sourceUrl: "https://sketchfab.com/3d-models/blacksmith-anvil-game-ready-asset-e63f1154ee0b41f8a797db683526142a",
+      licenseUrl: "https://creativecommons.org/licenses/by/4.0/",
+    },
   },
   {
     id: "eleox",

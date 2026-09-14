@@ -35,6 +35,7 @@ type MuseumThreeSceneProps = {
 const MODEL_PATH = "/models/loomis/md84-armored-bronze.glb";
 const OX_MODEL_PATH = "/models/eleox/ox-bronze.glb?v=smooth-300k";
 const HARD_HAT_MODEL_PATH = "/models/chevron/safety-helmet.glb";
+const ANVIL_MODEL_PATH = "/models/champion-labs/anvil.glb";
 const FLOOR_TEXTURE_PATH = "/textures/dark-polished-concrete.png";
 
 function ArmoredTruck({ hovered }: { hovered: boolean }) {
@@ -155,6 +156,54 @@ function HardHatSculpture({ hovered }: { hovered: boolean }) {
   return (
     <group ref={helmetRef} position={[0.02, 1.57, 0.03]} rotation={[0, -0.36, 0]}>
       <primitive object={sculpture} scale={0.58} />
+    </group>
+  );
+}
+
+function ChampionAnvil({ hovered }: { hovered: boolean }) {
+  const { scene } = useGLTF(ANVIL_MODEL_PATH);
+  const anvilRef = useRef<Group>(null);
+  const sculpture = useMemo(() => {
+    const clone = scene.clone(true);
+    clone.traverse((object: Object3D) => {
+      if (!(object instanceof Mesh)) return;
+      object.material = new MeshPhysicalMaterial({
+        color: "#403934",
+        metalness: 0.94,
+        roughness: 0.24,
+        clearcoat: 0.16,
+        clearcoatRoughness: 0.2,
+        envMapIntensity: 1.85,
+        side: DoubleSide,
+      });
+      object.castShadow = true;
+      object.receiveShadow = true;
+    });
+    return clone;
+  }, [scene]);
+
+  useEffect(() => () => {
+    sculpture.traverse((object: Object3D) => {
+      if (!(object instanceof Mesh)) return;
+      const materials = Array.isArray(object.material) ? object.material : [object.material];
+      materials.forEach((material) => material.dispose());
+    });
+  }, [sculpture]);
+
+  useFrame((_, delta) => {
+    if (!anvilRef.current) return;
+    anvilRef.current.rotation.y = MathUtils.damp(
+      anvilRef.current.rotation.y,
+      hovered ? Math.PI / 2 - 0.18 : Math.PI / 2 + 0.08,
+      4.4,
+      delta,
+    );
+    anvilRef.current.position.y = MathUtils.damp(anvilRef.current.position.y, hovered ? 1.39 : 1.31, 5, delta);
+  });
+
+  return (
+    <group ref={anvilRef} position={[0, 1.31, 0]} rotation={[0, Math.PI / 2 + 0.08, 0]}>
+      <primitive object={sculpture} scale={0.0072} />
     </group>
   );
 }
@@ -456,6 +505,9 @@ function Exhibit({ id, index, projectCount, x, title, subtitle, displayIndex, ho
   return (
     <group name={`exhibit-${id}`} ref={groupRef} position={[x, 0, 0]} rotation={[0, yaw, 0]}>
       <Pedestal texture={texture} bumpTexture={bumpTexture} />
+      {(!selectedId || selected) && id === "champion-labs" && (
+        <ModelBoundary><Suspense fallback={null}><ChampionAnvil hovered={hovered} /></Suspense></ModelBoundary>
+      )}
       {(!selectedId || selected) && id === "loomis-us" && (
         <ModelBoundary><Suspense fallback={null}><ArmoredTruck hovered={hovered} /></Suspense></ModelBoundary>
       )}
@@ -624,4 +676,5 @@ export function MuseumThreeScene(props: MuseumThreeSceneProps) {
 useGLTF.preload(MODEL_PATH);
 useGLTF.preload(OX_MODEL_PATH);
 useGLTF.preload(HARD_HAT_MODEL_PATH);
+useGLTF.preload(ANVIL_MODEL_PATH);
 useTexture.preload(FLOOR_TEXTURE_PATH);
