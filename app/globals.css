@@ -265,7 +265,16 @@ button:focus-visible, a:focus-visible, [tabindex="0"]:focus-visible {
   animation: detailIn .7s .3s cubic-bezier(.22,.8,.2,1) forwards;
 }
 
-.detail-scroll { max-width: 760px; height: calc(100svh - 104px); overflow-y: auto; padding: clamp(34px, 5vw, 82px) clamp(28px, 5vw, 84px) 50px; }
+.detail-scroll {
+  max-width: 760px;
+  height: calc(100svh - 104px);
+  overflow-y: auto;
+  padding: clamp(34px, 5vw, 82px) clamp(28px, 5vw, 84px) 50px;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity .22s ease, transform .28s cubic-bezier(.22,.8,.2,1);
+}
+.detail-scroll.is-switching { opacity: 0; transform: translateY(6px); }
 .detail-meta { display: flex; justify-content: space-between; color: #aaa; font-size: 9px; letter-spacing: .18em; text-transform: uppercase; }
 .status { color: #dedbd6; }
 .status i { display: inline-block; width: 7px; height: 7px; margin-right: 8px; border-radius: 50%; background: #ff42a8; box-shadow: 0 0 10px #ff42a8; }
@@ -315,6 +324,26 @@ button:focus-visible, a:focus-visible, [tabindex="0"]:focus-visible {
 
 @keyframes detailIn { to { opacity: 1; transform: none; } }
 @keyframes reveal { from { opacity: 0; transform: translateY(-7px); } to { opacity: 1; transform: none; } }
+
+@media (min-width: 901px) {
+  .has-selection .site-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  .has-selection .work-section,
+  .has-selection .gallery-layout,
+  .has-selection .project-detail { min-height: 100svh; }
+  .has-selection .detail-scroll {
+    display: flex;
+    flex-direction: column;
+    height: 100svh;
+    padding-top: 37px;
+    padding-bottom: 37px;
+  }
+  .has-selection .asset-credit { margin-top: auto; padding-top: 20px; }
+}
 
 @media (max-width: 900px) {
   .site-header { grid-template-columns: 1fr auto; height: 92px; padding: 24px; }

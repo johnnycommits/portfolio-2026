@@ -145,7 +145,7 @@ export function SelectedWork() {
             onHover={setHoveredId}
             onScrollProgress={setScrollProgress}
           />
-          {selected && <ProjectDetail key={selected.id} project={selected} totalProjects={projects.length} />}
+          {selected && <ProjectDetail project={selected} totalProjects={projects.length} />}
         </div>
 
         <div className="scroll-cue" aria-hidden="true">

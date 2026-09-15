@@ -662,7 +662,7 @@ function Exhibit({ id, index, projectCount, selectedIndex, x, title, subtitle, d
 
     groupRef.current.position.x = MathUtils.lerp(x, ringX, focus);
     groupRef.current.position.z = MathUtils.lerp(0, ringZ, focus);
-    groupRef.current.rotation.y = MathUtils.lerp(rowYaw, orbitAngle.current * 0.72, focus);
+    groupRef.current.rotation.y = rowYaw;
     groupRef.current.scale.setScalar(reduceMotion
       ? targetScale
       : MathUtils.damp(groupRef.current.scale.x, targetScale, 3.3, delta));
@@ -698,8 +698,8 @@ function CameraRig({ selectedId }: { selectedId: string | null }) {
     const targetZ = mobile ? (selectedId ? 8.6 : 9.5) : (selectedId ? 10.2 : 18.5);
     const targetY = mobile ? 1.75 : 1.85;
     const lookAtY = mobile
-      ? (selectedId ? 3.05 : 2.45)
-      : (selectedId ? 3.35 : 1.95);
+      ? (selectedId ? 2.35 : 2.45)
+      : (selectedId ? 2.4 : 1.95);
     perspectiveCamera.position.z = MathUtils.damp(perspectiveCamera.position.z, targetZ, 3.2, delta);
     perspectiveCamera.position.y = MathUtils.damp(perspectiveCamera.position.y, targetY, 3.2, delta);
     perspectiveCamera.lookAt(0, lookAtY, 0);
