@@ -10,6 +10,7 @@ import {
   DoubleSide,
   type DepthTexture,
   Group,
+  type Material,
   MathUtils,
   Mesh,
   MeshPhysicalMaterial,
@@ -401,15 +402,49 @@ function createGlassGlintTexture() {
   return texture;
 }
 
-function GlassCover({ lifted, sheenTexture, glintTexture }: {
+function setGlassOpacity(group: Group, opacity: number) {
+  group.traverse((object) => {
+    const material = (object as Object3D & { material?: Material | Material[] }).material;
+    if (!material) return;
+    const materials = Array.isArray(material) ? material : [material];
+    materials.forEach((candidate) => {
+      if (typeof candidate.userData.glassBaseOpacity !== "number") {
+        candidate.userData.glassBaseOpacity = candidate.opacity;
+      }
+      candidate.transparent = true;
+      candidate.opacity = candidate.userData.glassBaseOpacity * opacity;
+    });
+  });
+}
+
+function GlassCover({ lifted, reduceMotion, sheenTexture, glintTexture }: {
   lifted: boolean;
+  reduceMotion: boolean;
   sheenTexture: Texture;
   glintTexture: Texture;
 }) {
   const coverRef = useRef<Group>(null);
+  const liftProgress = useRef(lifted ? 1 : 0);
   useFrame((_, delta) => {
-    if (!coverRef.current) return;
-    coverRef.current.position.y = MathUtils.damp(coverRef.current.position.y, lifted ? 4.9 : 0, 3.1, delta);
+    const cover = coverRef.current;
+    if (!cover) return;
+    const destination = lifted ? 1 : 0;
+    if (reduceMotion) {
+      liftProgress.current = destination;
+    } else {
+      const direction = Math.sign(destination - liftProgress.current);
+      liftProgress.current = MathUtils.clamp(
+        liftProgress.current + direction * Math.min(delta / 1.35, Math.abs(destination - liftProgress.current)),
+        0,
+        1,
+      );
+    }
+
+    const easedLift = MathUtils.smootherstep(liftProgress.current, 0, 1);
+    const opacity = 1 - MathUtils.smoothstep(liftProgress.current, 0.34, 0.88);
+    cover.position.y = easedLift * 7.2;
+    cover.visible = opacity > 0.002 || !lifted;
+    setGlassOpacity(cover, opacity);
   });
   return (
     <group name="glass-cover" ref={coverRef}>
@@ -568,10 +603,11 @@ function SceneExhibitLabel({ title, subtitle, index }: { title: string; subtitle
   );
 }
 
-function Exhibit({ id, index, projectCount, x, title, subtitle, displayIndex, hovered, selectedId, mobile, reduceMotion, rotationResetToken, texture, bumpTexture, glassSheenTexture, glassGlintTexture }: {
+function Exhibit({ id, index, projectCount, selectedIndex, x, title, subtitle, displayIndex, hovered, selectedId, mobile, reduceMotion, rotationResetToken, texture, bumpTexture, glassSheenTexture, glassGlintTexture }: {
   id: string;
   index: number;
   projectCount: number;
+  selectedIndex: number;
   x: number;
   title: string;
   subtitle: string;
@@ -587,35 +623,68 @@ function Exhibit({ id, index, projectCount, x, title, subtitle, displayIndex, ho
   glassGlintTexture: Texture;
 }) {
   const groupRef = useRef<Group>(null);
+  const orbitAngle = useRef(0);
+  const focusProgress = useRef(0);
   const { viewport, camera } = useThree();
   const selected = selectedId === id;
   const rotating = hovered && !mobile;
   useFrame((_, delta) => {
     if (!groupRef.current) return;
     const currentViewport = viewport.getCurrentViewport(camera, [0, 2, 0]);
-    const selectedX = mobile ? 0 : -currentViewport.width * 0.235;
-    const destination = selectedId ? (selected ? selectedX : x * 1.8) : x;
-    groupRef.current.position.x = MathUtils.damp(groupRef.current.position.x, destination, 3.3, delta);
-    groupRef.current.scale.setScalar(MathUtils.damp(groupRef.current.scale.x, selected ? 1.14 : 1, 3.3, delta));
+    const rowYaw = MathUtils.degToRad((index - (projectCount - 1) / 2) * 0.95);
+    const destinationFocus = selectedId ? 1 : 0;
+    focusProgress.current = reduceMotion
+      ? destinationFocus
+      : MathUtils.damp(focusProgress.current, destinationFocus, 3.3, delta);
+
+    if (selectedId) {
+      const step = (Math.PI * 2) / projectCount;
+      const relativeIndex = MathUtils.euclideanModulo(
+        index - selectedIndex + Math.floor(projectCount / 2),
+        projectCount,
+      ) - Math.floor(projectCount / 2);
+      const targetAngle = relativeIndex * step;
+      const continuousTarget = nearestEquivalentAngle(orbitAngle.current, targetAngle);
+      orbitAngle.current = reduceMotion
+        ? continuousTarget
+        : MathUtils.damp(orbitAngle.current, continuousTarget, 3.05, delta);
+    }
+
+    const focus = focusProgress.current;
+    const ringCenterX = mobile ? 0 : -currentViewport.width * 0.235;
+    const ringRadius = mobile ? 2.18 : 2.62;
+    const ringCenterZ = mobile ? -1.05 : -1.25;
+    const ringX = ringCenterX + Math.sin(orbitAngle.current) * ringRadius;
+    const ringZ = ringCenterZ + Math.cos(orbitAngle.current) * ringRadius;
+    const depth = (Math.cos(orbitAngle.current) + 1) / 2;
+    const ringScale = selected ? 1.12 : MathUtils.lerp(0.66, 0.84, depth);
+    const targetScale = MathUtils.lerp(1, ringScale, focus);
+
+    groupRef.current.position.x = MathUtils.lerp(x, ringX, focus);
+    groupRef.current.position.z = MathUtils.lerp(0, ringZ, focus);
+    groupRef.current.rotation.y = MathUtils.lerp(rowYaw, orbitAngle.current * 0.72, focus);
+    groupRef.current.scale.setScalar(reduceMotion
+      ? targetScale
+      : MathUtils.damp(groupRef.current.scale.x, targetScale, 3.3, delta));
   });
-  const yaw = selectedId ? 0 : MathUtils.degToRad((index - (projectCount - 1) / 2) * 0.95);
+  const yaw = MathUtils.degToRad((index - (projectCount - 1) / 2) * 0.95);
   return (
     <group name={`exhibit-${id}`} ref={groupRef} position={[x, 0, 0]} rotation={[0, yaw, 0]}>
       <Pedestal texture={texture} bumpTexture={bumpTexture} />
-      {(!selectedId || selected) && id === "champion-labs" && (
+      {id === "champion-labs" && (
         <ModelBoundary><Suspense fallback={null}><ChampionAnvil rotating={rotating} resetToken={rotationResetToken} reduceMotion={reduceMotion} /></Suspense></ModelBoundary>
       )}
-      {(!selectedId || selected) && id === "loomis-us" && (
+      {id === "loomis-us" && (
         <ModelBoundary><Suspense fallback={null}><ArmoredTruck rotating={rotating} resetToken={rotationResetToken} reduceMotion={reduceMotion} /></Suspense></ModelBoundary>
       )}
-      {(!selectedId || selected) && id === "eleox" && (
+      {id === "eleox" && (
         <ModelBoundary><Suspense fallback={null}><OxSculpture rotating={rotating} resetToken={rotationResetToken} reduceMotion={reduceMotion} /></Suspense></ModelBoundary>
       )}
-      {(!selectedId || selected) && id === "adcetera" && <AdceteraMark rotating={rotating} resetToken={rotationResetToken} reduceMotion={reduceMotion} />}
-      {(!selectedId || selected) && id === "chevron" && (
+      {id === "adcetera" && <AdceteraMark rotating={rotating} resetToken={rotationResetToken} reduceMotion={reduceMotion} />}
+      {id === "chevron" && (
         <ModelBoundary><Suspense fallback={null}><HardHatSculpture rotating={rotating} resetToken={rotationResetToken} reduceMotion={reduceMotion} /></Suspense></ModelBoundary>
       )}
-      <GlassCover lifted={selected} sheenTexture={glassSheenTexture} glintTexture={glassGlintTexture} />
+      <GlassCover lifted={selected} reduceMotion={reduceMotion} sheenTexture={glassSheenTexture} glintTexture={glassGlintTexture} />
       {!selectedId && <SceneExhibitLabel title={title} subtitle={subtitle} index={displayIndex} />}
     </group>
   );
@@ -678,6 +747,7 @@ function MuseumWorld({ projectIds, projects, hoveredId, selectedId, rotationRese
 
   const spacing = mobile ? 2.7 : 2.48;
   const mobileOffset = scrollProgress * spacing * (projectIds.length - 1);
+  const selectedIndex = selectedId ? Math.max(0, projectIds.indexOf(selectedId)) : 0;
   return (
     <>
       <CameraRig selectedId={selectedId} />
@@ -724,6 +794,7 @@ function MuseumWorld({ projectIds, projects, hoveredId, selectedId, rotationRese
               id={id}
               index={index}
               projectCount={projectIds.length}
+              selectedIndex={selectedIndex}
               x={x}
               title={project?.title ?? id}
               subtitle={project?.subtitle ?? ""}

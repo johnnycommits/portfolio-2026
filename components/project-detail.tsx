@@ -3,12 +3,12 @@
 import type { Project } from "@/data/projects";
 import { ProjectTabs } from "./project-tabs";
 
-export function ProjectDetail({ project }: { project: Project }) {
+export function ProjectDetail({ project, totalProjects }: { project: Project; totalProjects: number }) {
   return (
     <aside className="project-detail" aria-live="polite" aria-label={`${project.title} project details`}>
       <div className="detail-scroll">
         <div className="detail-meta">
-          <span>{project.index} / 06</span>
+          <span>{project.index} / {String(totalProjects).padStart(2, "0")}</span>
           <span className="status"><i aria-hidden="true" /> Completed</span>
         </div>
         <div className="detail-heading">

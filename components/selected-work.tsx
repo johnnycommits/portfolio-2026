@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { Project } from "@/data/projects";
 import { projects } from "@/data/projects";
 import { MuseumGallery } from "./museum-gallery";
@@ -39,7 +39,18 @@ export function SelectedWork() {
     );
   };
 
-  const closeDetail = () => {
+  const showAdjacentProject = useCallback((direction: -1 | 1) => {
+    if (!selected || closing) return;
+    const currentIndex = projects.findIndex((project) => project.id === selected.id);
+    const nextIndex = (currentIndex + direction + projects.length) % projects.length;
+    const nextProject = projects[nextIndex];
+    setHoveredId(null);
+    setRotationResetToken((token) => token + 1);
+    setSelected(nextProject);
+    window.history.replaceState(null, "", `#${nextProject.id}`);
+  }, [closing, selected]);
+
+  const closeDetail = useCallback(() => {
     if (!selected || closing) return;
     const selectedId = selected?.id;
     setHoveredId(null);
@@ -59,15 +70,28 @@ export function SelectedWork() {
         }
       });
     }, prefersReducedMotion() ? 0 : 620);
-  };
+  }, [closing, selected]);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape" && selected) closeDetail();
+      if (!selected) return;
+      const target = event.target instanceof HTMLElement ? event.target : null;
+      if (event.key === "Escape") {
+        closeDetail();
+      } else if (!target?.closest("[role='tablist'], input, textarea, select")) {
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          showAdjacentProject(-1);
+        }
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          showAdjacentProject(1);
+        }
+      }
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [selected]);
+  }, [closeDetail, selected, showAdjacentProject]);
 
   return (
     <main className={`museum${selected ? " has-selection" : ""}${closing ? " is-closing" : ""}`}>
@@ -96,9 +120,20 @@ export function SelectedWork() {
       <section id="work" className="work-section" aria-label="Selected work gallery">
 
         {selected && (
-          <button className="back-control" type="button" onClick={closeDetail}>
-            <span aria-hidden="true">←</span> Back to work
-          </button>
+          <>
+            <button className="back-control" type="button" onClick={closeDetail}>
+              <span aria-hidden="true">←</span> Back to work
+            </button>
+            <nav className="carousel-controls" aria-label="Browse project exhibits">
+              <button type="button" onClick={() => showAdjacentProject(-1)} aria-label="Show previous project">
+                <span aria-hidden="true">←</span>
+              </button>
+              <span aria-live="polite">{selected.index} / {String(projects.length).padStart(2, "0")}</span>
+              <button type="button" onClick={() => showAdjacentProject(1)} aria-label="Show next project">
+                <span aria-hidden="true">→</span>
+              </button>
+            </nav>
+          </>
         )}
 
         <div className="gallery-layout">
@@ -110,7 +145,7 @@ export function SelectedWork() {
             onHover={setHoveredId}
             onScrollProgress={setScrollProgress}
           />
-          {selected && <ProjectDetail key={selected.id} project={selected} />}
+          {selected && <ProjectDetail key={selected.id} project={selected} totalProjects={projects.length} />}
         </div>
 
         <div className="scroll-cue" aria-hidden="true">
